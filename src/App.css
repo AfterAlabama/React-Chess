@@ -25,6 +25,18 @@
   height: 48px
 }
 
+.cell:hover {
+  background-color:forestgreen;
+}
+
+.cell img:hover {
+  cursor: grab
+}
+
+.cell img:active {
+  cursor: grabbing
+}
+
 .black {
   background-color: chocolate;
 }

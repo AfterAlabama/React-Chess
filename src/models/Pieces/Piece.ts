@@ -17,6 +17,7 @@ export class Piece {
   }
 
 
+
   // Piece's ability to move to the cell
   public canMove(target: Cell){
     if(this.color === target.piece?.color){

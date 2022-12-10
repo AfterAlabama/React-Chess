@@ -29,9 +29,7 @@ export class King extends Piece {
           (target.y === this.cell.y + 1 ||
             target.y === this.cell.y - 1)
           ||
-          (target.y === this.cell.y))          
-          && 
-          this.cell.board.getCells(target.y, target.x).isEmpty()){
+          (target.y === this.cell.y))){
       return true
     }
     return false
