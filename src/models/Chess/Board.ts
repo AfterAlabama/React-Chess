@@ -1,7 +1,7 @@
-import { Colors } from "../helpers/Colors";
+import { Colors } from "../../helpers/Colors";
 import { Cell } from "./Cell";
 import { Bishop } from "./Pieces/Bishop";
-import { King } from "./Pieces/King";
+import { King } from './Pieces/King';
 import { Knight } from "./Pieces/Knight";
 import { Pawn } from "./Pieces/Pawn";
 import { Queen } from "./Pieces/Queen";

@@ -1,9 +1,9 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../../helpers/Colors";
 import { Cell } from "../Cell";
 import { Piece } from "./Piece";
-import blackLogo from '../../assets/black-pawn.png'
-import whiteLogo from '../../assets/white-pawn.png'
-import { PieceNames } from "../../helpers/PieceNames";
+import blackLogo from '../../../assets/black-pawn.png'
+import whiteLogo from '../../../assets/white-pawn.png'
+import { PieceNames } from "../../../helpers/PieceNames";
 
 
 export class Pawn extends Piece {

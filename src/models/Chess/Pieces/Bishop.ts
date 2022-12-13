@@ -1,9 +1,9 @@
-import { Colors } from "../../helpers/Colors";
-import { Cell } from "../Cell";
-import { Piece } from "./Piece";
-import blackLogo from '../../assets/black-bishop.png'
-import whiteLogo from '../../assets/white-bishop.png'
-import { PieceNames } from "../../helpers/PieceNames";
+import { Colors } from '../../../helpers/Colors';
+import { Cell } from '../Cell';
+import { Piece } from './Piece';
+import blackLogo from '../../../assets/black-bishop.png'
+import whiteLogo from '../../../assets/white-bishop.png'
+import { PieceNames } from "../../../helpers/PieceNames";
 
 
 export class Bishop extends Piece {

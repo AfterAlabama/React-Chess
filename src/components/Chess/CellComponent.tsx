@@ -1,15 +1,11 @@
-import React, { FC} from "react";
-import { CellProps } from "../helpers/Props";
+import React, { FC } from "react";
+import { CellProps } from "../../helpers/Props";
 
 const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
-
   const cellStyle = ["cell", cell.color, selected ? "selected" : ""].join(" ");
 
   const showPieces = cell.piece?.logo ? (
-    <img 
-      alt="" 
-      src={cell.piece.logo}
-      draggable = {false}></img>
+    <img alt="" src={cell.piece.logo} draggable={false}></img>
   ) : (
     ""
   );

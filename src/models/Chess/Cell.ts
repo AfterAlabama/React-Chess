@@ -1,4 +1,4 @@
-import { Colors } from "../helpers/Colors";
+import { Colors } from "../../helpers/Colors";
 import { Board } from "./Board";
 import { Piece } from "./Pieces/Piece";
 
@@ -20,6 +20,8 @@ export class Cell {
     this.available = false;
     this.id = Math.random()
   }
+
+  
 
   public isEmpty(){
     return this.piece === null

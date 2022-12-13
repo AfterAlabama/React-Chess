@@ -1,9 +1,9 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../../helpers/Colors";
 import { Cell } from "../Cell";
 import { Piece } from "./Piece";
-import blackLogo from '../../assets/black-king.png'
-import whiteLogo from '../../assets/white-king.png'
-import { PieceNames } from "../../helpers/PieceNames";
+import blackLogo from '../../../assets/black-king.png'
+import whiteLogo from '../../../assets/white-king.png'
+import { PieceNames } from "../../../helpers/PieceNames";
 
 
 export class King extends Piece {
@@ -32,6 +32,7 @@ export class King extends Piece {
           (target.y === this.cell.y))){
       return true
     }
+
     return false
   }
 }

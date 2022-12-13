@@ -1,6 +1,6 @@
-import { Colors } from "../../helpers/Colors";
-import { PieceNames } from "../../helpers/PieceNames";
-import logo from '../../assets/black-bishop.png'
+import { Colors } from "../../../helpers/Colors";
+import { PieceNames } from "../../../helpers/PieceNames";
+import logo from '../../../assets/black-bishop.png'
 import { Cell } from "../Cell";
 
 export class Piece {
@@ -15,8 +15,6 @@ export class Piece {
     this.cell = cell
     this.cell.piece = this
   }
-
-
 
   // Piece's ability to move to the cell
   public canMove(target: Cell){

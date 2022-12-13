@@ -1,5 +1,8 @@
 import './App.css';
-import ChessBoard from './components/ChessBoard';
+import AppRouter from './components/Main Page/AppRouter';
+
+import NavBar from './components/Main Page/NavBar';
+
 
 
 
@@ -7,7 +10,8 @@ function App() {
 
   return (
     <div>
-      <ChessBoard/>
+      <NavBar/>
+      <AppRouter/>
     </div>
   )
 }
