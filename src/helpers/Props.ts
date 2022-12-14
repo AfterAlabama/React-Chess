@@ -4,9 +4,11 @@ import { Player } from "../models/Chess/Player";
 
 export interface Boardprops {
   board: Board;
-  setBoard: (board: Board) => void
+  setBoard: (board: Board) => void;
   currentPlayer: Player | null;
-  swapPlayers: () => void
+  swapPlayers: () => void;
+  selectedCell: Cell | null;
+  setSelectedCell: (cell: Cell | null) => void
 }
 
 export interface CellProps {

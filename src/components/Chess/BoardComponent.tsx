@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { Boardprops } from "../../helpers/Props";
 import { Cell } from "../../models/Chess/Cell";
 import CellComponent from "./CellComponent";
@@ -8,9 +8,9 @@ const BoardComponent: FC<Boardprops> = ({
   setBoard,
   currentPlayer,
   swapPlayers,
+  selectedCell,
+  setSelectedCell
 }) => {
-  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
-
 
   // highlights and moves pieces on click
   function click(target: Cell) {
@@ -55,14 +55,12 @@ const BoardComponent: FC<Boardprops> = ({
     const newBoard = board.getCopyBoard();
     setBoard(newBoard);
   }, [board, setBoard]);
-  
 
   // creates highlight dots and updates
   const highlightCells = useCallback(() => {
     board.highlightCells(selectedCell);
     updateBoard();
-  }, [board, selectedCell, updateBoard])
-
+  }, [board, selectedCell, updateBoard]);
 
   useEffect(() => {
     highlightCells();

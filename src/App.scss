@@ -56,7 +56,7 @@
   height: calc(64px * 8);
   display: flex;
   flex-wrap: wrap;
-  border: chocolate ridge 40px
+  border: rgb(187, 121, 0) ridge 40px
 }
 
 
@@ -67,27 +67,22 @@
   align-items: center;
   justify-content: center;
 
-    img{
-      width: 48px;
-      height: 48px;
+  img{
+    width: 48px;
+    height: 48px;
 
-      &:hover {
-        cursor: grab
-      };
-  
-      &:active {
-        cursor: grabbing
-      }
+    &:hover {
+      cursor: grab
+    };
+
+    &:active {
+      cursor: grabbing
     }
-
+  }
 }
 
 .black {
   background-color: chocolate;
-}
-
-.green {
-  background-color: green;
 }
 
 .white {
@@ -233,20 +228,10 @@
 }
 
 .restartBtn {
-  font-size: 20px;
-  border: none;
-  border-radius: 15px;
-  padding: 15px 40px;
-  background: rgba(185, 178, 178, 0.4);
+  @extend %btn-shared;
   color: black;
   background-color: #f3f3f3;
   margin-bottom: 50px;
-
-  &:hover {
-    background: coral;
-    color:black;
-    cursor:pointer
-  }
 }
 
 

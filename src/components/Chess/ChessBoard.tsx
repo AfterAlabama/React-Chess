@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Colors } from "../../helpers/Colors";
 import { Board } from "../../models/Chess/Board";
+import { Cell } from "../../models/Chess/Cell";
 import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
+
+
+
 
 const ChessBoard = () => {
   const [board, setBoard] = useState(new Board());
@@ -13,6 +17,8 @@ const ChessBoard = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
+  const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
+
 
   // Creates and updates the board
   const restart = useCallback(() => {
@@ -20,7 +26,9 @@ const ChessBoard = () => {
     newBoard.initCells();
     newBoard.addPieces();
     setBoard(newBoard);
-    setCurrentPlayer(whitePlayer)}, [whitePlayer]);
+    setSelectedCell(null);
+    setCurrentPlayer(whitePlayer)}, 
+    [whitePlayer]);
 
 
   useEffect(() => {
@@ -45,6 +53,8 @@ const ChessBoard = () => {
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayers={swapPlayers}
+        selectedCell ={selectedCell}
+        setSelectedCell = {setSelectedCell}
       />
     </div>
   );
