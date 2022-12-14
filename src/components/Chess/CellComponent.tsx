@@ -5,17 +5,19 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
   const cellStyle = ["cell", cell.color, selected ? "selected" : ""].join(" ");
 
   const showPieces = cell.piece?.logo ? (
-    <img alt="" src={cell.piece.logo} draggable={false}></img>
+    <img id="pic" alt="" src={cell.piece.logo} draggable={false}></img>
   ) : (
-    ""
+    null
   );
 
   const availableDots =
     cell.available && !cell.piece ? <div className="available"></div> : "";
 
   const PieceUnderAttack = {
-    background: cell.available && cell.piece ? "green" : "",
+    background:
+      cell.available && cell.piece ? "radial-gradient(red, burlywood)" : "",
   };
+
 
   return (
     <div

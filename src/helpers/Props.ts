@@ -14,3 +14,8 @@ export interface CellProps {
   selected: boolean
   click: (cell: Cell) => void
 }
+
+
+export interface HeaderProps {
+  clickHandler: () => void
+}

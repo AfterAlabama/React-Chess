@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Colors } from "../../helpers/Colors";
 import { Board } from "../../models/Chess/Board";
 import { Player } from "../../models/Chess/Player";
@@ -7,24 +7,26 @@ import BoardComponent from "./BoardComponent";
 const ChessBoard = () => {
   const [board, setBoard] = useState(new Board());
 
-  const [whitePlayer, _] = useState(new Player(Colors.WHITE));
+  const [whitePlayer] = useState(new Player(Colors.WHITE));
 
-  const [blackPlayer, __] = useState(new Player(Colors.BLACK));
+  const [blackPlayer] = useState(new Player(Colors.BLACK));
 
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
-  useEffect(() => {
-    restart();
-    setCurrentPlayer(whitePlayer);
-  }, []);
 
   // Creates and updates the board
-  function restart() {
+  const restart = useCallback(() => {
     const newBoard = new Board();
     newBoard.initCells();
     newBoard.addPieces();
     setBoard(newBoard);
-  }
+    setCurrentPlayer(whitePlayer)}, [whitePlayer]);
+
+
+  useEffect(() => {
+    restart();
+  
+  }, [restart]);
 
   function swapPlayers() {
     setCurrentPlayer(
@@ -33,17 +35,18 @@ const ChessBoard = () => {
   }
 
   return (
-    <>
+    <div className="chess">
       <div className="turn">{currentPlayer?.color} to move</div>
-      <div className="chess">
-        <BoardComponent
-          board={board}
-          setBoard={setBoard}
-          currentPlayer={currentPlayer}
-          swapPlayers={swapPlayers}
-        />
-      </div>
-    </>
+      <button className="restartBtn"
+      onClick= {() => restart()}
+      >Restart</button>
+      <BoardComponent
+        board={board}
+        setBoard={setBoard}
+        currentPlayer={currentPlayer}
+        swapPlayers={swapPlayers}
+      />
+    </div>
   );
 };
 
