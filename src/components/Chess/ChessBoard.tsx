@@ -4,6 +4,7 @@ import { Board } from "../../models/Chess/Board";
 import { Cell } from "../../models/Chess/Cell";
 import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
+import LostPieces from "./LostPieces";
 
 
 
@@ -32,9 +33,9 @@ const ChessBoard = () => {
 
 
   useEffect(() => {
-    restart();
-  
+    restart(); 
   }, [restart]);
+
 
   function swapPlayers() {
     setCurrentPlayer(
@@ -48,14 +49,22 @@ const ChessBoard = () => {
       <button className="restartBtn"
       onClick= {() => restart()}
       >Restart</button>
-      <BoardComponent
-        board={board}
-        setBoard={setBoard}
-        currentPlayer={currentPlayer}
-        swapPlayers={swapPlayers}
-        selectedCell ={selectedCell}
-        setSelectedCell = {setSelectedCell}
-      />
+      <div style={{display: 'flex'}}>
+        <BoardComponent
+          board={board}
+          setBoard={setBoard}
+          currentPlayer={currentPlayer}
+          swapPlayers={swapPlayers}
+          selectedCell ={selectedCell}
+          setSelectedCell = {setSelectedCell}
+        />
+        <LostPieces 
+          title = "Черные Фигуры"
+          pieces = {board.lostBlackPieces}/>
+        <LostPieces 
+          title = "Белые Фигуры"
+          pieces = {board.lostWhitePieces}/>
+      </div>
     </div>
   );
 };

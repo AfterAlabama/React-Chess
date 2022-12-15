@@ -1,23 +1,24 @@
-import React, { FC } from "react";
+import React, { FC} from "react";
 import { CellProps } from "../../helpers/Props";
 
+
 const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
+
   const cellStyle = ["cell", cell.color, selected ? "selected" : ""].join(" ");
 
+
+
   const showPieces = cell.piece?.logo ? (
-    <img id="pic" alt="" src={cell.piece.logo} draggable={false}></img>
-  ) : (
-    null
-  );
+    <img draggable={false} id="pic" alt="" src={cell.piece.logo}></img>
+  ) : null;
 
   const availableDots =
     cell.available && !cell.piece ? <div className="available"></div> : "";
 
   const PieceUnderAttack = {
     background:
-      cell.available && cell.piece ? "radial-gradient(red, burlywood)" : "",
+      cell.available && cell.piece ? 'radial-gradient(red, burlywood)' : "",
   };
-
 
   return (
     <div
@@ -29,6 +30,7 @@ const CellComponent: FC<CellProps> = ({ cell, selected, click }) => {
       {availableDots}
     </div>
   );
+
 };
 
 export default CellComponent;

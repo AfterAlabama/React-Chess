@@ -1,5 +1,5 @@
 export enum Colors {
   BLACK = 'black',
   WHITE = 'white',
-  GREEN = 'green'
+  UNDERATTACK = 'underAttack'
 }

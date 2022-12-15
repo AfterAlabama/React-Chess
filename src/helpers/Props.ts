@@ -1,5 +1,6 @@
 import { Board } from "../models/Chess/Board";
 import { Cell } from "../models/Chess/Cell";
+import { Piece } from "../models/Chess/Pieces/Piece";
 import { Player } from "../models/Chess/Player";
 
 export interface Boardprops {
@@ -20,4 +21,9 @@ export interface CellProps {
 
 export interface HeaderProps {
   clickHandler: () => void
+}
+
+export interface lostprops {
+  title: string;
+  pieces: Piece[]
 }

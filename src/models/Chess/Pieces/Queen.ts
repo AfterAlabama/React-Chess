@@ -13,6 +13,7 @@ export class Queen extends Piece {
     this.name = PieceNames.QUEEN
   }
 
+  
   public canMove(target: Cell){
     if(!super.canMove(target)){
       return false

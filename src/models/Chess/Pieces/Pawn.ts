@@ -20,33 +20,14 @@ export class Pawn extends Piece {
       return false
     }
 
-    const direction = this.color === Colors.BLACK ? 1 : -1;
-    const firstStep = this.color === Colors.BLACK ? 2 : -2;
-
-    if(
-      //checks for a right vertical
-      (this.cell.y === target.y)
-      &&
-      (  //moves only one or two cells ahead
-        (target.x === this.cell.x + direction)
-        ||
-        (this.isFirstMove && target.x === this.cell.x + firstStep)
-      )
-      && //checks if target is empty
-      (this.cell.board.getCells(target.y , target.x).isEmpty())
-    ){
+    if(this.cell.isPawnMove(target, this.isFirstMove)){
       return true
     }
 
-    // pawn attacks
-    if(
-      target.x === this.cell.x + direction 
-      && 
-      ((target.y === this.cell.y + 1) || (target.y === this.cell.y - 1))
-      &&
-      (this.cell.isEnemy(target))){
-        return true
-      }
+    if(this.cell.isPawnAttack(target)){
+      return true
+    }
+
     return false
   }
 

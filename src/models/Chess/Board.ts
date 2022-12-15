@@ -4,12 +4,15 @@ import { Bishop } from "./Pieces/Bishop";
 import { King } from './Pieces/King';
 import { Knight } from "./Pieces/Knight";
 import { Pawn } from "./Pieces/Pawn";
+import { Piece } from "./Pieces/Piece";
 import { Queen } from "./Pieces/Queen";
 import { Rook } from "./Pieces/Rook";
 
 
 export class Board {
   cells: Cell[][] = [];
+  lostBlackPieces: Piece[] = [];
+  lostWhitePieces: Piece[] = [];
 
   // creates cells
   public initCells(){
@@ -32,7 +35,7 @@ export class Board {
       const row : Cell[] = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
-        target.available = !!selectedCell?.piece?.canMove(target)
+        target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
   }
@@ -40,6 +43,8 @@ export class Board {
   public getCopyBoard(){
     const newBoard = new Board();
     newBoard.cells = this.cells;
+    newBoard.lostBlackPieces = this.lostBlackPieces;
+    newBoard.lostWhitePieces = this.lostWhitePieces;
     return newBoard
   }
 

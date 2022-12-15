@@ -2,6 +2,7 @@ import { Colors } from "../../helpers/Colors";
 import { Board } from "./Board";
 import { Piece } from "./Pieces/Piece";
 
+
 export class Cell {
   x : number;
   y: number;
@@ -21,6 +22,44 @@ export class Cell {
     this.id = Math.random()
   }
 
+
+  public isPawnMove(target: Cell, isFirstMove:boolean){
+
+    const direction = this.piece?.color === Colors.BLACK ? 1 : -1;
+
+    const firstStep = this.piece?.color === Colors.BLACK ? 2 : -2;
+
+    if(
+      //checks for a right vertical
+      (this.y === target.y)
+      &&
+      (  //moves only one or two cells ahead
+        (target.x === this.x + direction)
+        ||
+        (isFirstMove && target.x === this.x + firstStep)
+      )
+      && 
+      //checks if target is empty
+      (this.board.getCells(target.y , target.x).isEmpty())
+    ){
+      return true
+    }
+    return false
+  }
+
+  public isPawnAttack(target: Cell){
+
+    const direction = this.piece?.color === Colors.BLACK ? 1 : -1;
+
+    if(
+      target.x === this.x + direction 
+      && 
+      ((target.y === this.y + 1) || (target.y === this.y - 1))
+      &&
+      (this.isEnemy(target))){
+        return true
+      }
+  }
   
 
   public isEmpty(){
@@ -90,12 +129,25 @@ export class Cell {
     this.piece.cell = this;
   }
 
-  // Moves a piece
-  public movePiece(target: Cell){
-    if(this.piece && this.piece.canMove(target)){
+  addLostPiece(piece: Piece){
+    if(piece.color === Colors.BLACK){
+      this.board.lostBlackPieces.push(piece)
+    }
+    if(piece.color === Colors.WHITE){
+      this.board.lostWhitePieces.push(piece)
+    }
+  }
+
+  // Moves a piece and castles
+  movePiece(target: Cell) {
+
+    if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);
-      target.setPiece(this.piece)
-      this.piece = null
+      if (target.piece) {
+        this.addLostPiece(target.piece);
+      }
+      target.setPiece(this.piece);
+      this.piece = null;
     }
   }
 }

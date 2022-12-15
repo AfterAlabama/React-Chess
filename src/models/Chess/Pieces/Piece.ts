@@ -8,6 +8,7 @@ export class Piece {
   name: PieceNames;
   logo : typeof logo | null;
   cell: Cell;
+  isFirstStep: boolean = true
 
   constructor(color: Colors, cell: Cell){
     this.color = color;
@@ -21,14 +22,12 @@ export class Piece {
     if(this.color === target.piece?.color){
       return false
     }
-    if(target.piece?.name === PieceNames.KING){
-      return false
-    }
     return true
   }
 
+
   // checks if a piece already moved
   public movePiece(target: Cell){
-
+    this.isFirstStep = false
   }
 }

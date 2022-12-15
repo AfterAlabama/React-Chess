@@ -60,11 +60,11 @@ const BoardComponent: FC<Boardprops> = ({
   const highlightCells = useCallback(() => {
     board.highlightCells(selectedCell);
     updateBoard();
-  }, [board, selectedCell, updateBoard]);
+  }, [selectedCell, board, updateBoard]);
 
   useEffect(() => {
     highlightCells();
-  }, [selectedCell, highlightCells]);
+  }, [selectedCell]);
 
   return (
     <>
