@@ -53,6 +53,7 @@ const BoardComponent: FC<Boardprops> = ({
 
   const updateBoard = useCallback(() => {
     const newBoard = board.getCopyBoard();
+    newBoard.isKingUnderAttack();
     setBoard(newBoard);
   }, [board, setBoard]);
 
@@ -65,6 +66,24 @@ const BoardComponent: FC<Boardprops> = ({
   useEffect(() => {
     highlightCells();
   }, [selectedCell]);
+
+
+  if(board.isKingUnderAttack().blackKingCheck === true){
+    return (
+      <div style={{display:"flex", flexDirection: 'column'}}>
+        <h1 style={{color: 'white'}}>Black Checked</h1>
+        <div className="board">{showCells}</div>
+      </div>
+    );
+  }
+  if(board.isKingUnderAttack().whiteKingCheck === true){
+    return (
+      <div style={{display:"flex", flexDirection: 'column'}}>
+        <h1 style={{color: 'white'}}>White Checked</h1>
+        <div className="board">{showCells}</div>
+      </div>
+    );
+  }
 
   return (
     <>

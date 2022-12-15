@@ -17,6 +17,13 @@ export class Piece {
     this.cell.piece = this
   }
 
+  public attacksKing(target: Cell){
+    if(target.piece?.name === PieceNames.KING && target.piece.color !== this.color && this.canMove(target)){
+      return true
+    }
+    return false
+  }
+
   // Piece's ability to move to the cell
   public canMove(target: Cell){
     if(this.color === target.piece?.color){
