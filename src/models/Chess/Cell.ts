@@ -142,10 +142,6 @@ export class Cell {
   // Moves a piece and castles
   movePiece(target: Cell) {
 
-    const {blackKing, whiteKing} = this.board.findKings()
-
-
-
     if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);
       if (target.piece) {

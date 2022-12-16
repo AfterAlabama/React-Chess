@@ -3,6 +3,7 @@ import { PieceNames } from "../../../helpers/PieceNames";
 import logo from '../../../assets/black-bishop.png'
 import { Cell } from "../Cell";
 
+
 export class Piece {
   color: Colors;
   name: PieceNames;
@@ -26,6 +27,7 @@ export class Piece {
 
   // Piece's ability to move to the cell
   public canMove(target: Cell){
+  
 
     if(this.color === target.piece?.color){
       return false

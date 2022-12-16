@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useEffect } from "react";
-import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { Boardprops } from "../../helpers/Props";
 import { Cell } from "../../models/Chess/Cell";
