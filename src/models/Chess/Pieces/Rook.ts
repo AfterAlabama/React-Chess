@@ -25,4 +25,7 @@ export class Rook extends Piece {
     }
     return false
   }
+  public movePiece(target: Cell): void {
+    this.isFirstStep = false
+  }
 }

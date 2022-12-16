@@ -26,9 +26,12 @@ export class Piece {
 
   // Piece's ability to move to the cell
   public canMove(target: Cell){
+
     if(this.color === target.piece?.color){
       return false
     }
+
+
     return true
   }
 
@@ -36,5 +39,4 @@ export class Piece {
   // checks if a piece already moved
   public movePiece(target: Cell){
     this.isFirstStep = false
-  }
-}
+}}

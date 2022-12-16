@@ -59,10 +59,10 @@ const ChessBoard = () => {
           setSelectedCell = {setSelectedCell}
         />
         <LostPieces 
-          title = "Черные Фигуры"
+          title = "Black Pieces"
           pieces = {board.lostBlackPieces}/>
         <LostPieces 
-          title = "Белые Фигуры"
+          title = "White Pieces"
           pieces = {board.lostWhitePieces}/>
       </div>
     </div>

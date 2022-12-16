@@ -23,7 +23,7 @@ export class Cell {
   }
 
 
-  public isPawnMove(target: Cell, isFirstMove:boolean){
+  public isPawnMove(target: Cell, isFirstStep: boolean){
 
     const direction = this.piece?.color === Colors.BLACK ? 1 : -1;
 
@@ -36,7 +36,7 @@ export class Cell {
       (  //moves only one or two cells ahead
         (target.x === this.x + direction)
         ||
-        (isFirstMove && target.x === this.x + firstStep)
+        (isFirstStep && target.x === this.x + firstStep)
       )
       && 
       //checks if target is empty
@@ -124,6 +124,7 @@ export class Cell {
   }
 
 
+
   public setPiece(piece: Piece){
     this.piece = piece;
     this.piece.cell = this;
@@ -141,6 +142,10 @@ export class Cell {
   // Moves a piece and castles
   movePiece(target: Cell) {
 
+    const {blackKing, whiteKing} = this.board.findKings()
+
+
+
     if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);
       if (target.piece) {
@@ -149,5 +154,35 @@ export class Cell {
       target.setPiece(this.piece);
       this.piece = null;
     }
-  }
+
+
+  //   if(this.piece === whiteKing.piece && this.piece?.canMove(this.board.getCells(2, 7))){
+
+  //     this.piece.movePiece(this.board.getCells(2, 7));
+  //     this.board.getCells(2, 7).setPiece(this.piece);
+  //     this.piece = null;    
+  //   }
+
+  //   if(this.piece === whiteKing.piece && this.piece?.canMove(this.board.getCells(6, 7))){
+
+  //     this.piece.movePiece(this.board.getCells(6, 7));
+  //     this.board.getCells(6, 7).setPiece(this.piece);
+  //     this.piece = null;    
+  //   }
+
+  //   if(this.piece === blackKing.piece && this.piece?.canMove(this.board.getCells(2, 0))){
+
+  //     this.piece.movePiece(this.board.getCells(2, 0));
+  //     this.board.getCells(2, 0).setPiece(this.piece);
+  //     this.piece = null;    
+  //   }
+
+  //   if(this.piece === blackKing.piece && this.piece?.canMove(this.board.getCells(6, 0))){
+
+  //     this.piece.movePiece(this.board.getCells(6, 0));
+  //     this.board.getCells(6, 0).setPiece(this.piece);
+  //     this.piece = null;    
+  //   }
+    
+   }
 }

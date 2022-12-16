@@ -7,7 +7,6 @@ import { PieceNames } from "../../../helpers/PieceNames";
 
 
 export class Pawn extends Piece {
-  isFirstMove: boolean = true;
 
   constructor(color: Colors, cell: Cell){
     super(color, cell);
@@ -20,7 +19,7 @@ export class Pawn extends Piece {
       return false
     }
 
-    if(this.cell.isPawnMove(target, this.isFirstMove)){
+    if(this.cell.isPawnMove(target, this.isFirstStep)){
       return true
     }
 
@@ -32,6 +31,6 @@ export class Pawn extends Piece {
   }
 
   public movePiece(target: Cell): void {
-    this.isFirstMove = false
+    this.isFirstStep = false
   }
 }
