@@ -18,13 +18,67 @@ const BoardComponent: FC<Boardprops> = ({
   // highlights and moves pieces on click
   function click(target: Cell) {
 
+    const {blackKingCheck, whiteKingCheck} = board.isKingUnderAttack()
+
     const {blackKing, whiteKing} = board.findKings()
 
+    //king moves out of check
     if (
       selectedCell &&
       selectedCell !== target &&
       selectedCell.piece?.canMove(target)
-    ) {
+    ) {     
+
+
+      if(selectedCell === blackKing && blackKingCheck && selectedCell.piece.canMove(target)){
+        selectedCell.movePiece(target);
+        setSelectedCell(null);
+        swapPlayers();
+
+        for (let i = 0; i < board.cells.length; i++) {
+          const row = board.cells[i];
+          for (let j = 0; j < row.length; j++) {
+            const target = row[j];
+            if (
+              (target.x === blackKing.x + 1 && target.y === blackKing.y) ||
+              (target.x === blackKing.x && target.y === blackKing.y + 1)
+            ) {
+              if (target.color === Colors.BLACK) {
+                blackKing.color = Colors.WHITE;
+              }
+              if (target.color === Colors.WHITE) {
+                blackKing.color = Colors.BLACK;
+              }
+            }
+          }
+        }
+      } else
+
+      if(selectedCell === whiteKing && whiteKingCheck && selectedCell.piece.canMove(target)){
+        selectedCell.movePiece(target);
+        setSelectedCell(null);
+        swapPlayers();
+
+        for (let i = 0; i < board.cells.length; i++) {
+          const row = board.cells[i];
+          for (let j = 0; j < row.length; j++) {
+            const target = row[j];
+            if (
+              (target.x === whiteKing.x - 1 && target.y === whiteKing.y) ||
+              (target.x === whiteKing.x && target.y === whiteKing.y - 1)
+            ) {
+              if (target.color === Colors.BLACK) {
+                whiteKing.color = Colors.WHITE;
+              }
+              if (target.color === Colors.WHITE) {
+                whiteKing.color = Colors.BLACK;
+              }
+            }
+          }
+        }
+
+
+      } else 
 
       if(selectedCell.piece.name === PieceNames.PAWN && selectedCell.piece.color === Colors.WHITE && target.x === 0){      
         const whiteQueen = new Queen(Colors.WHITE, board.getCells(target.y, target.x));    
@@ -111,7 +165,7 @@ const BoardComponent: FC<Boardprops> = ({
 
   // creates highlight dots and updates
   const highlightCells = useCallback(() => {
-    board.highlightCells(selectedCell);
+    board.highlightCells(selectedCell, currentPlayer?.color);
     updateBoard();
   }, [selectedCell, board, updateBoard]);
 
@@ -128,6 +182,7 @@ const BoardComponent: FC<Boardprops> = ({
       </div>
     );
   }
+  
   if(board.isKingUnderAttack().whiteKingCheck === true){
     return (
       <div className = 'check'>

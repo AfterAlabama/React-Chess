@@ -124,25 +124,7 @@ export class Cell {
     return true
   }
 
-  public isCellUnderAttack(target:Cell, color: Colors | undefined){
-    for (let i = 0; i < this.board.cells.length; i++) {
-      const row = this.board.cells[i];
-      for (let j = 0; j < row.length; j++) {
-        const randomCell = row[j];
-        if(randomCell.piece?.color !== color){
-          if(randomCell.piece?.name === PieceNames.PAWN && this.isPawnAttack(target)){
-            return true
-          }
 
-          if(randomCell.piece?.name !== PieceNames.PAWN && randomCell.piece?.canMove(target)){
-            return true
-          }
-          return false
-        }
-        return false
-      }
-    }
-  }
 
 
 
@@ -162,6 +144,19 @@ export class Cell {
 
   // Moves a piece
   movePiece(target: Cell) {
+
+    if(
+      this.piece && this.piece.name === PieceNames.PAWN 
+      && 
+      this.piece.canMove(this.board.getCells(this.y + 1, this.x - 1)) 
+      && 
+      this.board.getCells(this.y + 1, this.x - 1).isEmpty()){
+
+      this.board.getCells(this.y + 1, this.x - 1).setPiece(this.piece)
+      this.piece = null;
+      this.addLostPiece(this.board.getCells(this.y + 1, this.x).piece!);
+      this.board.getCells(this.y + 1, this.x).piece = null
+    }
 
     if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);

@@ -14,14 +14,30 @@ export class Pawn extends Piece {
     this.name = PieceNames.PAWN
   }
 
+  
+
   public canMove(target: Cell): boolean {
     if(!super.canMove(target)){
       return false
     }
 
+    if(
+      this.color === Colors.WHITE 
+      && 
+      target.x === 2 
+      && 
+      target.y === this.cell.y + 1 
+      && 
+      this.cell.board.getCells( this.cell.y + 1, this.cell.x).piece?.color === Colors.BLACK && this.cell.board.getCells( this.cell.y + 1, this.cell.x).piece?.name === PieceNames.PAWN){
+      return true
+    }
+
+
     if(this.cell.isPawnMove(target, this.isFirstStep)){
       return true
     }
+
+    
 
     if(this.cell.isPawnAttack(target)){
       return true
@@ -29,6 +45,7 @@ export class Pawn extends Piece {
 
     return false
   }
+
 
   public movePiece(target: Cell): void {
     this.isFirstStep = false

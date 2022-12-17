@@ -1,3 +1,4 @@
+import { argv, pid } from "process";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { Cell } from "./Cell";
@@ -28,7 +29,7 @@ export class Board {
     }
   }
 
-  public highlightCells(selectedCell: Cell | null) {
+  public highlightCells(selectedCell: Cell | null, color: Colors | undefined) {
 
     for (let i = 0; i < this.cells.length; i++) {
       const row: Cell[] = this.cells[i];
@@ -43,9 +44,43 @@ export class Board {
         const {blackKingCheck, whiteKingCheck} = this.isKingUnderAttack();
 
 
+
+        //right black pawn 
+        if(selectedCell
+          &&
+          selectedCell.piece
+          &&
+          selectedCell.x === 1
+          &&
+          selectedCell.piece.name === PieceNames.PAWN
+          &&
+          target.x === 3 
+          && 
+          target.y === selectedCell.y
+          &&
+          selectedCell.piece.color === Colors.BLACK  
+          ){
+            if(
+              this.getCells(selectedCell.y - 1 ,3)
+              &&
+              this.getCells(selectedCell.y - 1 ,3).piece
+              &&
+              this.getCells(selectedCell.y - 1 ,3).piece?.name === PieceNames.PAWN
+              &&
+              this.getCells(selectedCell.y - 1 ,3).piece?.color === Colors.WHITE){
+                if(selectedCell.piece.isFirstStep){
+
+                  if(selectedCell.piece.canMove(target)){
+                   
+                    
+                  }
+                }
+              }
+          } 
+      
+
+
         
-
-
         //left white castling
         if(
           (whiteKing.x === leftWhiteRook.x)
@@ -253,6 +288,8 @@ export class Board {
       }
     }
 
+
+
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
@@ -301,33 +338,7 @@ export class Board {
 
   }
 
-
-  public isCellUnderAttack(color: Colors | undefined, target: Cell){
-    let targetUnderAttack: boolean = false
-    for (let i = 0; i < this.cells.length; i++) {
-      const row= this.cells[i];
-      for (let j = 0; j < row.length; j++) {
-        const randomCell = row[j];
-
-        console.log(randomCell.piece?.color)
-
-        if(color !== randomCell.piece?.color){
-          if(randomCell.piece?.name === PieceNames.PAWN && randomCell.isPawnAttack(target)){
-            targetUnderAttack = true
-          }
-          if(randomCell.piece?.name !== PieceNames.PAWN && randomCell.piece?.canMove(target)){
-            targetUnderAttack = true
-          }
-        }
-       
-      }
-    }
-    if(targetUnderAttack){
-      return false
-    }
-    return true
-  }
-
+      
 
 
 
