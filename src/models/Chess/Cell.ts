@@ -1,4 +1,5 @@
 import { Colors } from "../../helpers/Colors";
+import { PieceNames } from "../../helpers/PieceNames";
 import { Board } from "./Board";
 import { Piece } from "./Pieces/Piece";
 
@@ -123,6 +124,26 @@ export class Cell {
     return true
   }
 
+  public isCellUnderAttack(target:Cell, color: Colors | undefined){
+    for (let i = 0; i < this.board.cells.length; i++) {
+      const row = this.board.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const randomCell = row[j];
+        if(randomCell.piece?.color !== color){
+          if(randomCell.piece?.name === PieceNames.PAWN && this.isPawnAttack(target)){
+            return true
+          }
+
+          if(randomCell.piece?.name !== PieceNames.PAWN && randomCell.piece?.canMove(target)){
+            return true
+          }
+          return false
+        }
+        return false
+      }
+    }
+  }
+
 
 
   public setPiece(piece: Piece){
@@ -139,7 +160,7 @@ export class Cell {
     }
   }
 
-  // Moves a piece and castles
+  // Moves a piece
   movePiece(target: Cell) {
 
     if (this.piece && this.piece?.canMove(target)) {
@@ -151,34 +172,5 @@ export class Cell {
       this.piece = null;
     }
 
-
-  //   if(this.piece === whiteKing.piece && this.piece?.canMove(this.board.getCells(2, 7))){
-
-  //     this.piece.movePiece(this.board.getCells(2, 7));
-  //     this.board.getCells(2, 7).setPiece(this.piece);
-  //     this.piece = null;    
-  //   }
-
-  //   if(this.piece === whiteKing.piece && this.piece?.canMove(this.board.getCells(6, 7))){
-
-  //     this.piece.movePiece(this.board.getCells(6, 7));
-  //     this.board.getCells(6, 7).setPiece(this.piece);
-  //     this.piece = null;    
-  //   }
-
-  //   if(this.piece === blackKing.piece && this.piece?.canMove(this.board.getCells(2, 0))){
-
-  //     this.piece.movePiece(this.board.getCells(2, 0));
-  //     this.board.getCells(2, 0).setPiece(this.piece);
-  //     this.piece = null;    
-  //   }
-
-  //   if(this.piece === blackKing.piece && this.piece?.canMove(this.board.getCells(6, 0))){
-
-  //     this.piece.movePiece(this.board.getCells(6, 0));
-  //     this.board.getCells(6, 0).setPiece(this.piece);
-  //     this.piece = null;    
-  //   }
-    
    }
 }

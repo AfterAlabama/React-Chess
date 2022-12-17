@@ -40,9 +40,17 @@ export class Board {
 
         const {leftBlackRook, leftWhiteRook ,rightBlackRook, rightWhiteRook} = this.findRooks();
 
+        const {blackKingCheck, whiteKingCheck} = this.isKingUnderAttack();
+
+
+        
+
+
         //left white castling
         if(
           (whiteKing.x === leftWhiteRook.x)
+          &&
+          (!whiteKingCheck)
           &&
           (whiteKing.piece?.isFirstStep && leftWhiteRook.piece?.isFirstStep)
           &&
@@ -60,6 +68,8 @@ export class Board {
         if(
           (whiteKing.x === rightWhiteRook.x)
           &&
+          (!whiteKingCheck)
+          &&
           (whiteKing.piece?.isFirstStep && rightWhiteRook.piece?.isFirstStep)
           &&
           (this.getCells(6, 7).isEmpty())
@@ -74,6 +84,8 @@ export class Board {
         //left black castling
         if(
           (blackKing.x === leftBlackRook.x)
+          &&
+          (!blackKingCheck)
           &&
           (blackKing.piece?.isFirstStep && leftBlackRook.piece?.isFirstStep)
           &&
@@ -92,6 +104,8 @@ export class Board {
         if(
           (blackKing.x === rightBlackRook.x)
           &&
+          (!blackKingCheck)
+          &&
           (blackKing.piece?.isFirstStep && rightBlackRook.piece?.isFirstStep)
           &&
           (this.getCells(5, 0).isEmpty())
@@ -103,11 +117,13 @@ export class Board {
             }
           };
 
+          target.available = !!selectedCell?.piece?.canMove(target);
 
-        target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
   }
+
+
 
   public getCopyBoard() {
     const newBoard = new Board();
@@ -284,6 +300,35 @@ export class Board {
     }
 
   }
+
+
+  public isCellUnderAttack(color: Colors | undefined, target: Cell){
+    let targetUnderAttack: boolean = false
+    for (let i = 0; i < this.cells.length; i++) {
+      const row= this.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const randomCell = row[j];
+
+        console.log(randomCell.piece?.color)
+
+        if(color !== randomCell.piece?.color){
+          if(randomCell.piece?.name === PieceNames.PAWN && randomCell.isPawnAttack(target)){
+            targetUnderAttack = true
+          }
+          if(randomCell.piece?.name !== PieceNames.PAWN && randomCell.piece?.canMove(target)){
+            targetUnderAttack = true
+          }
+        }
+       
+      }
+    }
+    if(targetUnderAttack){
+      return false
+    }
+    return true
+  }
+
+
 
 
   private addKings() {

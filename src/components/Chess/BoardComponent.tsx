@@ -1,7 +1,9 @@
 import React, { FC, useCallback, useEffect } from "react";
+import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { Boardprops } from "../../helpers/Props";
 import { Cell } from "../../models/Chess/Cell";
+import { Queen } from "../../models/Chess/Pieces/Queen";
 import CellComponent from "./CellComponent";
 
 const BoardComponent: FC<Boardprops> = ({
@@ -24,7 +26,19 @@ const BoardComponent: FC<Boardprops> = ({
       selectedCell.piece?.canMove(target)
     ) {
 
-      if(selectedCell.piece.name === PieceNames.KING && selectedCell.piece.isFirstStep){
+      if(selectedCell.piece.name === PieceNames.PAWN && selectedCell.piece.color === Colors.WHITE && target.x === 0){      
+        const whiteQueen = new Queen(Colors.WHITE, board.getCells(target.y, target.x));    
+        selectedCell.piece = null;
+        target.setPiece(whiteQueen.cell.piece!);
+      }
+
+      if(selectedCell.piece?.name === PieceNames.PAWN && selectedCell.piece.color === Colors.BLACK && target.x === 7){
+        const blackQueen = new Queen(Colors.BLACK, board.getCells(target.y, target.x));
+        selectedCell.piece = null;
+        target.setPiece(blackQueen.cell.piece!)
+      }
+
+      if(selectedCell.piece?.name === PieceNames.KING && selectedCell.piece.isFirstStep){
         if(selectedCell === whiteKing  && target.x === 7 && target.y === 2){
           selectedCell.movePiece(target);
           board.castling();
