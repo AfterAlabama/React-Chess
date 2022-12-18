@@ -22,13 +22,20 @@ export class Pawn extends Piece {
     }
 
     if(
-      this.color === Colors.WHITE 
-      && 
-      target.x === 2 
-      && 
-      target.y === this.cell.y + 1 
-      && 
-      this.cell.board.getCells( this.cell.y + 1, this.cell.x).piece?.color === Colors.BLACK && this.cell.board.getCells( this.cell.y + 1, this.cell.x).piece?.name === PieceNames.PAWN){
+      this.color === Colors.WHITE
+      &&
+      this.cell.x === 3
+      &&
+      this.cell.board.getCells(this.cell.y + 1, 3).piece?.name === PieceNames.PAWN
+      &&
+      this.cell.board.getCells(this.cell.y + 1, 3).piece?.color === Colors.BLACK
+      &&
+      this.cell.board.getCells(this.cell.y + 1, 3).piece?.count === 1
+      &&
+      target.x === 2
+      &&
+      target.y === this.cell.y + 1
+    ){
       return true
     }
 
@@ -37,7 +44,11 @@ export class Pawn extends Piece {
       return true
     }
 
-    
+
+
+
+
+
 
     if(this.cell.isPawnAttack(target)){
       return true
@@ -49,5 +60,6 @@ export class Pawn extends Piece {
 
   public movePiece(target: Cell): void {
     this.isFirstStep = false
+    this.count += 1
   }
 }

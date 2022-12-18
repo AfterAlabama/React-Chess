@@ -38,6 +38,7 @@ const ChessBoard = () => {
 
 
   function swapPlayers() {
+
     setCurrentPlayer(
       currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
     );

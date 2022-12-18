@@ -147,16 +147,21 @@ export class Cell {
 
     if(
       this.piece && this.piece.name === PieceNames.PAWN 
+      &&
+      this.y !== 7
       && 
       this.piece.canMove(this.board.getCells(this.y + 1, this.x - 1)) 
       && 
-      this.board.getCells(this.y + 1, this.x - 1).isEmpty()){
+      this.board.getCells(this.y + 1, this.x - 1).isEmpty()
+      &&
+      target.x === this.x - 1 && target.y === this.y + 1){
 
       this.board.getCells(this.y + 1, this.x - 1).setPiece(this.piece)
       this.piece = null;
       this.addLostPiece(this.board.getCells(this.y + 1, this.x).piece!);
       this.board.getCells(this.y + 1, this.x).piece = null
-    }
+    } 
+
 
     if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);

@@ -34,6 +34,7 @@ const BoardComponent: FC<Boardprops> = ({
         selectedCell.movePiece(target);
         setSelectedCell(null);
         swapPlayers();
+        
 
         for (let i = 0; i < board.cells.length; i++) {
           const row = board.cells[i];

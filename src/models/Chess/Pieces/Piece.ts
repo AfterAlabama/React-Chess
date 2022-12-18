@@ -10,6 +10,7 @@ export class Piece {
   logo : typeof logo | null;
   cell: Cell;
   isFirstStep: boolean = true;
+  count: number = 0;
 
   constructor(color: Colors, cell: Cell){
     this.color = color;
@@ -43,4 +44,5 @@ export class Piece {
   // checks if a piece already moved
   public movePiece(target: Cell){
     this.isFirstStep = false;
+    this.count = 1
 }}

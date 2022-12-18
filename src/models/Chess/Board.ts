@@ -44,42 +44,6 @@ export class Board {
         const {blackKingCheck, whiteKingCheck} = this.isKingUnderAttack();
 
 
-
-        //right black pawn 
-        if(selectedCell
-          &&
-          selectedCell.piece
-          &&
-          selectedCell.x === 1
-          &&
-          selectedCell.piece.name === PieceNames.PAWN
-          &&
-          target.x === 3 
-          && 
-          target.y === selectedCell.y
-          &&
-          selectedCell.piece.color === Colors.BLACK  
-          ){
-            if(
-              this.getCells(selectedCell.y - 1 ,3)
-              &&
-              this.getCells(selectedCell.y - 1 ,3).piece
-              &&
-              this.getCells(selectedCell.y - 1 ,3).piece?.name === PieceNames.PAWN
-              &&
-              this.getCells(selectedCell.y - 1 ,3).piece?.color === Colors.WHITE){
-                if(selectedCell.piece.isFirstStep){
-
-                  if(selectedCell.piece.canMove(target)){
-                   
-                    
-                  }
-                }
-              }
-          } 
-      
-
-
         
         //left white castling
         if(
@@ -98,6 +62,8 @@ export class Board {
               this.getCells(2, 7).available = true
             }
         };
+
+
 
         //right white castling
         if(
