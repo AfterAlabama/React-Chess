@@ -1,4 +1,3 @@
-import { argv, pid } from "process";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { Cell } from "./Cell";
@@ -27,104 +26,94 @@ export class Board {
       }
       this.cells.push(row);
     }
-  }
+  };
+
+  private highlightCastling(selectedCell: Cell | null){
+
+    const { blackKing, whiteKing } = this.findKings();
+
+    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
+      this.findRooks();
+
+    const { blackKingCheck, whiteKingCheck } = this.isKingUnderAttack();
+
+     //left white castling
+     if (
+      whiteKing.x === leftWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      leftWhiteRook.piece?.isFirstStep &&
+      this.getCells(1, 7).isEmpty() &&
+      this.getCells(2, 7).isEmpty() &&
+      this.getCells(3, 7).isEmpty()
+    ) {
+      if (selectedCell === whiteKing) {
+        this.getCells(2, 7).available = true;
+      }
+    }
+
+    //right white castling
+    if (
+      whiteKing.x === rightWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      rightWhiteRook.piece?.isFirstStep &&
+      this.getCells(6, 7).isEmpty() &&
+      this.getCells(5, 7).isEmpty()
+    ) {
+      if (selectedCell === whiteKing) {
+        this.getCells(6, 7).available = true;
+      }
+    }
+
+    //left black castling
+    if (
+      blackKing.x === leftBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      leftBlackRook.piece?.isFirstStep &&
+      this.getCells(1, 0).isEmpty() &&
+      this.getCells(2, 0).isEmpty() &&
+      this.getCells(3, 0).isEmpty()
+    ) {
+      if (selectedCell === blackKing) {
+        this.getCells(2, 0).available = true;
+      }
+    }
+
+    //right black castling
+    if (
+      blackKing.x === rightBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      rightBlackRook.piece?.isFirstStep &&
+      this.getCells(5, 0).isEmpty() &&
+      this.getCells(6, 0).isEmpty()
+    ) {
+      if (selectedCell === blackKing) {
+        this.getCells(6, 0).available = true;
+      }
+    }
+
+  };
+
+
 
   public highlightCells(selectedCell: Cell | null, color: Colors | undefined) {
+
+    
 
     for (let i = 0; i < this.cells.length; i++) {
       const row: Cell[] = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
 
-
-        const { blackKing, whiteKing } = this.findKings();
-
-        const {leftBlackRook, leftWhiteRook ,rightBlackRook, rightWhiteRook} = this.findRooks();
-
-        const {blackKingCheck, whiteKingCheck} = this.isKingUnderAttack();
-
-
-        
-        //left white castling
-        if(
-          (whiteKing.x === leftWhiteRook.x)
-          &&
-          (!whiteKingCheck)
-          &&
-          (whiteKing.piece?.isFirstStep && leftWhiteRook.piece?.isFirstStep)
-          &&
-          (this.getCells(1, 7).isEmpty())
-          &&
-          (this.getCells(2, 7).isEmpty())
-          &&
-          (this.getCells(3, 7).isEmpty())) {         
-            if(selectedCell === whiteKing){
-              this.getCells(2, 7).available = true
-            }
-        };
-
-
-
-        //right white castling
-        if(
-          (whiteKing.x === rightWhiteRook.x)
-          &&
-          (!whiteKingCheck)
-          &&
-          (whiteKing.piece?.isFirstStep && rightWhiteRook.piece?.isFirstStep)
-          &&
-          (this.getCells(6, 7).isEmpty())
-          &&
-          (this.getCells(5, 7).isEmpty())
-          ){
-            if(selectedCell === whiteKing){
-              this.getCells(6, 7).available = true;
-            }
-          };
-
-        //left black castling
-        if(
-          (blackKing.x === leftBlackRook.x)
-          &&
-          (!blackKingCheck)
-          &&
-          (blackKing.piece?.isFirstStep && leftBlackRook.piece?.isFirstStep)
-          &&
-          (this.getCells(1, 0).isEmpty())
-          &&
-          (this.getCells(2, 0).isEmpty())
-          &&
-          (this.getCells(3, 0).isEmpty())
-          ){
-            if(selectedCell === blackKing){
-              this.getCells(2, 0).available = true;
-            }
-          };
-
-        //right black castling
-        if(
-          (blackKing.x === rightBlackRook.x)
-          &&
-          (!blackKingCheck)
-          &&
-          (blackKing.piece?.isFirstStep && rightBlackRook.piece?.isFirstStep)
-          &&
-          (this.getCells(5, 0).isEmpty())
-          &&
-          (this.getCells(6, 0).isEmpty())
-          ){
-            if(selectedCell === blackKing){
-              this.getCells(6, 0).available = true;
-            }
-          };
-
-          target.available = !!selectedCell?.piece?.canMove(target);
-
+        this.highlightCastling(selectedCell);
+       
+        target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
   }
-
-
 
   public getCopyBoard() {
     const newBoard = new Board();
@@ -176,35 +165,40 @@ export class Board {
         const target = row[j];
         if (
           target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.BLACK && target.x === 0 && target.y === 0
+          target.piece.color === Colors.BLACK &&
+          target.x === 0 &&
+          target.y === 0
         ) {
           leftBlackRook = target;
         }
         if (
           target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.BLACK
-          && target.y === 7 && target.x === 0
+          target.piece.color === Colors.BLACK &&
+          target.y === 7 &&
+          target.x === 0
         ) {
           rightBlackRook = target;
         }
         if (
           target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.WHITE
-          && target.y === 0 && target.x === 7
+          target.piece.color === Colors.WHITE &&
+          target.y === 0 &&
+          target.x === 7
         ) {
           leftWhiteRook = target;
         }
         if (
           target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.WHITE
-          && target.y === 7 && target.x === 7
+          target.piece.color === Colors.WHITE &&
+          target.y === 7 &&
+          target.x === 7
         ) {
           rightWhiteRook = target;
         }
       }
     }
-    return {leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook};
-  };
+    return { leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook };
+  }
 
   public isKingUnderAttack() {
     let { blackKing, whiteKing } = this.findKings();
@@ -254,8 +248,6 @@ export class Board {
       }
     }
 
-
-
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
@@ -275,38 +267,48 @@ export class Board {
     return { blackKingCheck, whiteKingCheck };
   }
 
-  public castling(){
-    const {leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook} = this.findRooks();
+  public castling() {
+    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
+      this.findRooks();
 
+    const { blackKing, whiteKing } = this.findKings();
 
-    const {blackKing, whiteKing} = this.findKings();
-
-
-    if(whiteKing.x === 7 && whiteKing.y === 2 && leftWhiteRook.piece?.isFirstStep){
+    if (
+      whiteKing.x === 7 &&
+      whiteKing.y === 2 &&
+      leftWhiteRook.piece?.isFirstStep
+    ) {
       this.getCells(3, 7).setPiece(leftWhiteRook.piece!);
-      leftWhiteRook.piece = null
+      leftWhiteRook.piece = null;
     }
 
-    if(whiteKing.x === 7 && whiteKing.y === 6 && rightWhiteRook.piece?.isFirstStep){
+    if (
+      whiteKing.x === 7 &&
+      whiteKing.y === 6 &&
+      rightWhiteRook.piece?.isFirstStep
+    ) {
       this.getCells(5, 7).setPiece(rightWhiteRook.piece!);
-      rightWhiteRook.piece = null
+      rightWhiteRook.piece = null;
     }
 
-    if(blackKing.x === 0 && blackKing.y === 2 && leftBlackRook.piece?.isFirstStep){
+    if (
+      blackKing.x === 0 &&
+      blackKing.y === 2 &&
+      leftBlackRook.piece?.isFirstStep
+    ) {
       this.getCells(3, 0).setPiece(leftBlackRook.piece!);
-      leftBlackRook.piece = null
+      leftBlackRook.piece = null;
     }
 
-    if(blackKing.x === 0 && blackKing.y === 6 && rightBlackRook.piece?.isFirstStep){
+    if (
+      blackKing.x === 0 &&
+      blackKing.y === 6 &&
+      rightBlackRook.piece?.isFirstStep
+    ) {
       this.getCells(5, 0).setPiece(rightBlackRook.piece!);
-      rightBlackRook.piece = null
+      rightBlackRook.piece = null;
     }
-
   }
-
-      
-
-
 
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));

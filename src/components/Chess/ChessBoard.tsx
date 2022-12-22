@@ -6,9 +6,6 @@ import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
 
-
-
-
 const ChessBoard = () => {
   const [board, setBoard] = useState(new Board());
 
@@ -20,7 +17,6 @@ const ChessBoard = () => {
 
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
-
   // Creates and updates the board
   const restart = useCallback(() => {
     const newBoard = new Board();
@@ -28,17 +24,14 @@ const ChessBoard = () => {
     newBoard.addPieces();
     setBoard(newBoard);
     setSelectedCell(null);
-    setCurrentPlayer(whitePlayer)}, 
-    [whitePlayer]);
-
+    setCurrentPlayer(whitePlayer);
+  }, [whitePlayer]);
 
   useEffect(() => {
-    restart(); 
+    restart();
   }, [restart]);
 
-
   function swapPlayers() {
-
     setCurrentPlayer(
       currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
     );
@@ -47,24 +40,26 @@ const ChessBoard = () => {
   return (
     <div className="chess">
       <div className="turn">{currentPlayer?.color} to move</div>
-      <button className="restartBtn"
-      onClick= {() => restart()}
-      >Restart</button>
-      <div style={{display: 'flex'}}>
+      <button className="restartBtn" onClick={() => restart()}>
+        Restart
+      </button>
+      <div className = 'flex'>
         <BoardComponent
           board={board}
           setBoard={setBoard}
           currentPlayer={currentPlayer}
           swapPlayers={swapPlayers}
-          selectedCell ={selectedCell}
-          setSelectedCell = {setSelectedCell}
+          selectedCell={selectedCell}
+          setSelectedCell={setSelectedCell}
         />
         <LostPieces 
-          title = "Black Pieces"
-          pieces = {board.lostBlackPieces}/>
+          title="Black Pieces" 
+          pieces={board.lostBlackPieces} 
+        />
         <LostPieces 
-          title = "White Pieces"
-          pieces = {board.lostWhitePieces}/>
+          title="White Pieces" 
+          pieces={board.lostWhitePieces} 
+        />
       </div>
     </div>
   );

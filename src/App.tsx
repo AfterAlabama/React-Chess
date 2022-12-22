@@ -8,10 +8,10 @@ import NavBar from './components/Main Page/NavBar';
 function App() {
 
   return (
-    <div>
+    <>
       <NavBar/>
       <AppRouter/>
-    </div>
+    </>
   )
 }
 

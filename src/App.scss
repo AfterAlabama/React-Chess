@@ -42,6 +42,15 @@
   border: none;
 }
 
+.pieceImg {
+  width: 20px;
+  height: 20px
+}
+
+.flex {
+  display: flex
+}
+
 .chess {
   background: url('./assets//chessOverlay.jpg');
   height: 100vh;
