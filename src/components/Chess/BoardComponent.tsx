@@ -213,19 +213,14 @@ const BoardComponent: FC<Boardprops> = ({
 
   const updateBoard = useCallback(() => {
     const newBoard = board.getCopyBoard();
-    newBoard.isKingUnderAttack();
     setBoard(newBoard);
-  }, [board, setBoard]);
+  }, [board, setBoard])
 
-  // creates highlight dots and updates
-  const highlightCells = useCallback(() => {
-    board.highlightCells(selectedCell, currentPlayer?.color);
-    updateBoard();
-  }, [selectedCell, board, updateBoard, currentPlayer?.color]);
 
   useEffect(() => {
-    highlightCells();
-  }, [highlightCells]);
+    board.highlightCells(selectedCell);
+    updateBoard();
+  }, [selectedCell]);
 
 
   if(board.isKingUnderAttack().blackKingCheck){

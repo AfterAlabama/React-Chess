@@ -99,7 +99,7 @@ export class Board {
 
 
 
-  public highlightCells(selectedCell: Cell | null, color: Colors | undefined) {
+  public highlightCells(selectedCell: Cell | null) {
 
     
 
@@ -109,7 +109,7 @@ export class Board {
         const target = row[j];
 
         this.highlightCastling(selectedCell);
-       
+      
         target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
