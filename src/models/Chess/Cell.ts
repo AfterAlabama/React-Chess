@@ -34,12 +34,11 @@ export class Cell {
     const firstStep = this.piece?.color === Colors.BLACK ? 2 : -2;
 
     if (
-      this.y === target.y 
-      &&
+      this.y === target.y &&
       (target.x === this.x + direction ||
-        (isFirstStep 
-          && 
-          target.x === this.x + firstStep)
+        (isFirstStep && 
+        target.x === this.x + firstStep
+        )
         ) 
       &&
       this.board.getCells(target.y, target.x).isEmpty()
@@ -68,8 +67,7 @@ export class Cell {
   };
 
   public isEnemy(target: Cell) {
-    if (target.piece 
-      && 
+    if (target.piece && 
       this.piece?.color !== target.piece.color) {
       return true;
     }
@@ -142,7 +140,7 @@ export class Cell {
     if (piece.color === Colors.WHITE) {
       this.board.lostWhitePieces.push(piece);
     }
-  }
+  };
 
   // Moves a piece
   movePiece(target: Cell) {
@@ -165,7 +163,8 @@ export class Cell {
       this.board.getCells(this.y + 1, this.x).piece = null;
     };
 
-    if (this.piece && this.piece?.canMove(target)) {
+    if (this.piece && 
+      this.piece?.canMove(target)) {
       this.piece.movePiece(target);
       if (target.piece) {
         this.addLostPiece(target.piece);

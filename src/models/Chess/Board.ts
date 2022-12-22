@@ -113,7 +113,7 @@ export class Board {
         target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
-  }
+  };
 
   public getCopyBoard() {
     const newBoard = new Board();
@@ -121,7 +121,7 @@ export class Board {
     newBoard.lostBlackPieces = this.lostBlackPieces;
     newBoard.lostWhitePieces = this.lostWhitePieces;
     return newBoard;
-  }
+  };
 
   //looks for kings
   public findKings() {
@@ -148,7 +148,7 @@ export class Board {
       }
     }
     return { whiteKing, blackKing };
-  }
+  };
 
   public findRooks() {
     let leftBlackRook = new Cell(0, 0, Colors.BLACK, this, null);
@@ -170,7 +170,8 @@ export class Board {
           target.y === 0
         ) {
           leftBlackRook = target;
-        }
+        };
+
         if (
           target.piece?.name === PieceNames.ROOK &&
           target.piece.color === Colors.BLACK &&
@@ -178,7 +179,8 @@ export class Board {
           target.x === 0
         ) {
           rightBlackRook = target;
-        }
+        };
+
         if (
           target.piece?.name === PieceNames.ROOK &&
           target.piece.color === Colors.WHITE &&
@@ -186,7 +188,8 @@ export class Board {
           target.x === 7
         ) {
           leftWhiteRook = target;
-        }
+        };
+
         if (
           target.piece?.name === PieceNames.ROOK &&
           target.piece.color === Colors.WHITE &&
@@ -198,7 +201,7 @@ export class Board {
       }
     }
     return { leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook };
-  }
+  };
 
   public isKingUnderAttack() {
     let { blackKing, whiteKing } = this.findKings();
@@ -225,9 +228,9 @@ export class Board {
           }
         }
       }
-    }
+    };
 
-    //for a white king
+    //white king cell return original color
     if (!whiteKingCheck) {
       for (let i = 0; i < this.cells.length; i++) {
         const row = this.cells[i];
@@ -265,7 +268,7 @@ export class Board {
       }
     }
     return { blackKingCheck, whiteKingCheck };
-  }
+  };
 
   public castling() {
     const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
@@ -280,7 +283,7 @@ export class Board {
     ) {
       this.getCells(3, 7).setPiece(leftWhiteRook.piece!);
       leftWhiteRook.piece = null;
-    }
+    };
 
     if (
       whiteKing.x === 7 &&
@@ -289,7 +292,7 @@ export class Board {
     ) {
       this.getCells(5, 7).setPiece(rightWhiteRook.piece!);
       rightWhiteRook.piece = null;
-    }
+    };
 
     if (
       blackKing.x === 0 &&
@@ -298,7 +301,7 @@ export class Board {
     ) {
       this.getCells(3, 0).setPiece(leftBlackRook.piece!);
       leftBlackRook.piece = null;
-    }
+    };
 
     if (
       blackKing.x === 0 &&
@@ -308,50 +311,50 @@ export class Board {
       this.getCells(5, 0).setPiece(rightBlackRook.piece!);
       rightBlackRook.piece = null;
     }
-  }
+  };
 
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));
     new King(Colors.WHITE, this.getCells(4, 7));
-  }
+  };
 
   private addQueens() {
     new Queen(Colors.BLACK, this.getCells(3, 0));
     new Queen(Colors.WHITE, this.getCells(3, 7));
-  }
+  };
 
   private addRooks() {
     new Rook(Colors.BLACK, this.getCells(0, 0));
     new Rook(Colors.BLACK, this.getCells(7, 0));
     new Rook(Colors.WHITE, this.getCells(0, 7));
     new Rook(Colors.WHITE, this.getCells(7, 7));
-  }
+  };
 
   private addBishops() {
     new Bishop(Colors.BLACK, this.getCells(2, 0));
     new Bishop(Colors.BLACK, this.getCells(5, 0));
     new Bishop(Colors.WHITE, this.getCells(2, 7));
     new Bishop(Colors.WHITE, this.getCells(5, 7));
-  }
+  };
 
   private addKnights() {
     new Knight(Colors.BLACK, this.getCells(1, 0));
     new Knight(Colors.BLACK, this.getCells(6, 0));
     new Knight(Colors.WHITE, this.getCells(1, 7));
     new Knight(Colors.WHITE, this.getCells(6, 7));
-  }
+  };
 
   private addPawns() {
     for (let i = 0; i < 8; i++) {
       new Pawn(Colors.BLACK, this.getCells(i, 1));
       new Pawn(Colors.WHITE, this.getCells(i, 6));
     }
-  }
+  };
 
   // returns the coordinates of a cell
   public getCells(y: number, x: number) {
     return this.cells[x][y];
-  }
+  };
 
   public addPieces() {
     this.addKings();

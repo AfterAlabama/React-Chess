@@ -15,14 +15,12 @@ const BoardComponent: FC<Boardprops> = ({
   setSelectedCell
 }) => {
 
-  // highlights and moves pieces on click
-  function click(target: Cell) {
 
-    const {blackKingCheck, whiteKingCheck} = board.isKingUnderAttack()
+  function kingMovesOutOfCheck(target: Cell){
+    const {blackKingCheck, whiteKingCheck} = board.isKingUnderAttack();
 
-    const {blackKing, whiteKing} = board.findKings()
+    const {blackKing, whiteKing} = board.findKings();
 
-    //king moves out of check
     if (
       selectedCell &&
       selectedCell !== target &&
@@ -30,7 +28,10 @@ const BoardComponent: FC<Boardprops> = ({
     ) {     
 
 
-      if(selectedCell === blackKing && blackKingCheck && selectedCell.piece.canMove(target)){
+      if(
+        selectedCell === blackKing && blackKingCheck 
+        && selectedCell.piece.canMove(target))
+        {
         selectedCell.movePiece(target);
         setSelectedCell(null);
         swapPlayers();
@@ -55,7 +56,9 @@ const BoardComponent: FC<Boardprops> = ({
         }
       } else
 
-      if(selectedCell === whiteKing && whiteKingCheck && selectedCell.piece.canMove(target)){
+      if(selectedCell === whiteKing && whiteKingCheck && 
+        selectedCell.piece.canMove(target))
+        {
         selectedCell.movePiece(target);
         setSelectedCell(null);
         swapPlayers();
@@ -76,73 +79,123 @@ const BoardComponent: FC<Boardprops> = ({
               }
             }
           }
-        }
+        }}}};
 
 
-      } else 
+  function PawnPromotion(target:Cell){
 
-      if(selectedCell.piece.name === PieceNames.PAWN && selectedCell.piece.color === Colors.WHITE && target.x === 0){      
-        const whiteQueen = new Queen(Colors.WHITE, board.getCells(target.y, target.x));    
-        selectedCell.piece = null;
-        target.setPiece(whiteQueen.cell.piece!);
+    if(
+      selectedCell && 
+      selectedCell.piece && 
+      selectedCell.piece.name === PieceNames.PAWN && 
+      selectedCell.piece.color === Colors.WHITE && 
+      target.x === 0){      
+      const whiteQueen = new Queen(Colors.WHITE, board.getCells(target.y, target.x));    
+      selectedCell.piece = null;
+      target.setPiece(whiteQueen.cell.piece!);
+    }
+
+    if(
+      selectedCell && 
+      selectedCell.piece &&
+      selectedCell.piece?.name === PieceNames.PAWN && 
+      selectedCell.piece.color === Colors.BLACK 
+      && target.x === 7){
+      const blackQueen = new Queen(Colors.BLACK, board.getCells(target.y, target.x));
+      selectedCell.piece = null;
+      target.setPiece(blackQueen.cell.piece!)
+    }
+  };
+
+
+  function Castling(target: Cell){
+
+
+    const {blackKing, whiteKing} = board.findKings();
+
+
+    if(
+      selectedCell && 
+      selectedCell.piece && 
+      selectedCell.piece?.name === PieceNames.KING && 
+      selectedCell.piece.isFirstStep){
+      if(
+        selectedCell === whiteKing  && 
+        target.x === 7 && 
+        target.y === 2){
+        selectedCell.movePiece(target);
+        board.castling();
+        setSelectedCell(null);
+        swapPlayers();
       }
 
-      if(selectedCell.piece?.name === PieceNames.PAWN && selectedCell.piece.color === Colors.BLACK && target.x === 7){
-        const blackQueen = new Queen(Colors.BLACK, board.getCells(target.y, target.x));
-        selectedCell.piece = null;
-        target.setPiece(blackQueen.cell.piece!)
+      if(
+        selectedCell === whiteKing && 
+        target.x === 7 && 
+        target.y === 6){
+        selectedCell.movePiece(target);
+        board.castling()
+        setSelectedCell(null);
+        swapPlayers();
       }
 
-      if(selectedCell.piece?.name === PieceNames.KING && selectedCell.piece.isFirstStep){
-        if(selectedCell === whiteKing  && target.x === 7 && target.y === 2){
-          selectedCell.movePiece(target);
-          board.castling();
-          setSelectedCell(null);
-          swapPlayers();
-        }
-  
-        if(selectedCell === whiteKing && target.x === 7 && target.y === 6){
-          selectedCell.movePiece(target);
-          board.castling()
-          setSelectedCell(null);
-          swapPlayers();
-        }
-  
-        if(selectedCell === blackKing && target.x === 0 && target.y === 2){
-          selectedCell.movePiece(target);
-          board.castling()
-          setSelectedCell(null);
-          swapPlayers();
-        }
-  
-        if(selectedCell === blackKing && target.x === 0 && target.y === 6){
-          selectedCell.movePiece(target);
-          board.castling()
-          setSelectedCell(null);
-          swapPlayers();
-        }
-      } 
+      if(
+        selectedCell === blackKing && 
+        target.x === 0 && 
+        target.y === 2){
+        selectedCell.movePiece(target);
+        board.castling()
+        setSelectedCell(null);
+        swapPlayers();
+      }
 
+      if(
+        selectedCell === blackKing && 
+        target.x === 0 && 
+        target.y === 6){
+        selectedCell.movePiece(target);
+        board.castling()
+        setSelectedCell(null);
+        swapPlayers();
+      }
+    }
+  };
+
+        
+
+  // highlights and moves pieces on click
+  function click(target: Cell) { 
+    
+    if (
+      selectedCell &&
+      selectedCell !== target &&
+      selectedCell.piece?.canMove(target)
+    ) {  
+
+      kingMovesOutOfCheck(target);
+      PawnPromotion(target);
+      Castling(target); 
+      
       selectedCell.movePiece(target);
       setSelectedCell(null);
       swapPlayers();
 
-    }
-     else {
+    } else {
       setSelectedCell(target);
-    }
+    };
 
     if (selectedCell === target) {
       setSelectedCell(null);
-    }
+    };
+
     if (!target.piece) {
       setSelectedCell(null);
-    }
+    };
+
     if (target.piece?.color !== currentPlayer?.color) {
       setSelectedCell(null);
     }
-
-  }
+  };
 
   // displays cells on the board
   const showCells = board.cells.map((row, index) => (
@@ -168,14 +221,14 @@ const BoardComponent: FC<Boardprops> = ({
   const highlightCells = useCallback(() => {
     board.highlightCells(selectedCell, currentPlayer?.color);
     updateBoard();
-  }, [selectedCell, board, updateBoard]);
+  }, [selectedCell, board, updateBoard, currentPlayer?.color]);
 
   useEffect(() => {
     highlightCells();
-  }, [selectedCell]);
+  }, [highlightCells]);
 
 
-  if(board.isKingUnderAttack().blackKingCheck === true){
+  if(board.isKingUnderAttack().blackKingCheck){
     return (
       <div className = "check">
         <h1 id = "checkMessage">Black Checked!!</h1>
@@ -184,7 +237,7 @@ const BoardComponent: FC<Boardprops> = ({
     );
   }
   
-  if(board.isKingUnderAttack().whiteKingCheck === true){
+  if(board.isKingUnderAttack().whiteKingCheck){
     return (
       <div className = 'check'>
         <h1 id="checkMessage">White Checked!!</h1>
