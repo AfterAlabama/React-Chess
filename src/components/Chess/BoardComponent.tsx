@@ -218,7 +218,7 @@ const BoardComponent: FC<Boardprops> = ({
 
 
   useEffect(() => {
-    board.highlightCells(selectedCell);
+    board.highlightCells(selectedCell, currentPlayer?.color);
     updateBoard();
   }, [selectedCell]);
 

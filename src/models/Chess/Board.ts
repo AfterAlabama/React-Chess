@@ -99,7 +99,7 @@ export class Board {
 
 
 
-  public highlightCells(selectedCell: Cell | null) {
+  public highlightCells(selectedCell: Cell | null, currentColor: Colors | undefined) {
 
     
 
@@ -109,8 +109,14 @@ export class Board {
         const target = row[j];
 
         this.highlightCastling(selectedCell);
-      
-        target.available = !!selectedCell?.piece?.canMove(target);
+            
+
+        if(selectedCell?.piece?.name === PieceNames.KING &&
+          this.isCellUnderAttack(target, currentColor)){
+            target.available = false
+          } else 
+
+        target.available = !!selectedCell?.piece?.canMove(target); 
       }
     }
   };
@@ -312,6 +318,42 @@ export class Board {
       rightBlackRook.piece = null;
     }
   };
+
+
+  public isCellUnderAttack(target: Cell, currentPlayer: Colors | undefined){
+    let count:number = 0;
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const randomCell = row[j];
+        
+        if(
+          randomCell.piece &&
+          randomCell.piece.color !== currentPlayer &&
+          randomCell.piece.name !== PieceNames.PAWN &&
+          randomCell.piece.canMove(target)){
+            count += 1
+          }
+
+        if(
+          randomCell.piece &&
+          randomCell.piece.color !== currentPlayer &&
+          randomCell.piece.name === PieceNames.PAWN &&
+          (randomCell.piece.color === Colors.BLACK ? target.x === randomCell.x + 1 : target.x === randomCell.x - 1) &&
+          (target.y === randomCell.y + 1 || randomCell.y - 1)){
+            count += 1
+          }      
+      }
+      
+    }
+
+    if(count === 0){
+      return false
+    } else {
+      return true
+    }
+    
+  }
 
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));
