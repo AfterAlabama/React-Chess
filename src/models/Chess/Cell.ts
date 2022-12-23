@@ -37,15 +37,16 @@ export class Cell {
       this.y === target.y &&
       (target.x === this.x + direction ||
         (isFirstStep && 
-        target.x === this.x + firstStep
+        target.x === this.x + firstStep &&
+        (this.piece?.color === Colors.BLACK ? this.board.getCells(target.y, target.x - 1).isEmpty() : this.board.getCells(target.y, target.x + 1).isEmpty())
         )
         ) 
       &&
       this.board.getCells(target.y, target.x).isEmpty()
     ) {
-      return true;
+      return true
     }
-    return false;
+    return false
   };
 
   public isPawnAttack(target: Cell) {
