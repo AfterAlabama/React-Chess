@@ -165,6 +165,15 @@ const BoardComponent: FC<Boardprops> = ({
 
   // highlights and moves pieces on click
   function click(target: Cell) { 
+
+    if(
+      selectedCell &&
+      selectedCell !== target &&
+      selectedCell.piece?.name === PieceNames.KING &&
+      board.isCellUnderAttack(target, currentPlayer?.color)
+    ) {
+      setSelectedCell(null)
+    } else
     
     if (
       selectedCell &&

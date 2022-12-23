@@ -326,6 +326,7 @@ export class Board {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const randomCell = row[j];
+
         
         if(
           randomCell.piece &&
@@ -333,14 +334,13 @@ export class Board {
           randomCell.piece.name !== PieceNames.PAWN &&
           randomCell.piece.canMove(target)){
             count += 1
-          }
+          } else 
 
         if(
           randomCell.piece &&
           randomCell.piece.color !== currentPlayer &&
           randomCell.piece.name === PieceNames.PAWN &&
-          (randomCell.piece.color === Colors.BLACK ? target.x === randomCell.x + 1 : target.x === randomCell.x - 1) &&
-          (target.y === randomCell.y + 1 || randomCell.y - 1)){
+          randomCell.isPawnCellAttack(target)){
             count += 1
           }      
       }

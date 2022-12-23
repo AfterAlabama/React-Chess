@@ -63,6 +63,18 @@ export class Cell {
     }
   };
 
+  public isPawnCellAttack(target: Cell){
+    const direction = this.piece?.color === Colors.BLACK ? 1 : -1;
+
+    if (
+      target.x === this.x + direction 
+      &&
+      (target.y === this.y + 1 || target.y === this.y - 1) 
+    ) {
+      return true;
+    }
+  }
+
   public isEmpty() {
     return this.piece === null;
   };
@@ -145,6 +157,7 @@ export class Cell {
 
   // Moves a piece
   movePiece(target: Cell) {
+
     if (
       this.piece &&
       this.piece.name === PieceNames.PAWN &&

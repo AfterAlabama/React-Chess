@@ -29,6 +29,7 @@ export class Piece {
     return false;
   };
 
+
   public canMove(target: Cell) {
     if (this.color === target.piece?.color) {
       return false;

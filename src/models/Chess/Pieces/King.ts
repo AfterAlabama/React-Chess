@@ -12,10 +12,13 @@ export class King extends Piece {
     this.name = PieceNames.KING;
   }
 
+
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     };
+
+    
 
     if (this.isFirstStep && target.x === this.cell.x && target.available) {
       if (
