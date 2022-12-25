@@ -327,12 +327,12 @@ export class Board {
       for (let j = 0; j < row.length; j++) {
         const randomCell = row[j];
 
-        
         if(
           randomCell.piece &&
           randomCell.piece.color !== currentPlayer &&
           randomCell.piece.name !== PieceNames.PAWN &&
-          randomCell.piece.canMove(target)){
+          (randomCell.piece.canMove(target) ||
+          randomCell.piece.canProtect(target))){
             count += 1
           } else 
 

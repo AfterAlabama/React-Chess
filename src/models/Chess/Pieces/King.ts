@@ -50,6 +50,24 @@ export class King extends Piece {
     return false;
   };
 
+  public canProtect(target: Cell){
+    if (
+      target.piece 
+      &&
+      target.piece.color === this.color
+      &&
+      (target.x === this.cell.x + 1 ||
+        target.x === this.cell.x - 1 ||
+        target.x === this.cell.x) &&
+      (target.y === this.cell.y + 1 ||
+        target.y === this.cell.y - 1 ||
+        target.y === this.cell.y)
+    ) {
+      return true;
+    }
+    return false
+  }
+
   public movePiece(target: Cell): void {
     this.isFirstStep = false;
   }

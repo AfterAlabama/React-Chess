@@ -29,5 +29,25 @@ export class Knight extends Piece {
     }
 
     return false;
-  }
-}
+  };
+
+  public canProtect(target: Cell){
+    const dy = Math.abs(target.y - this.cell.y);
+
+    const dx = Math.abs(target.x - this.cell.x);
+
+    if (
+      target.piece
+      &&
+      target.piece.color === this.color
+      &&
+      (
+      (dx === 1 && dy === 2) || 
+      (dx === 2 && dy === 1)
+      )) {
+      return true;
+    }
+
+    return false;
+  }}
+

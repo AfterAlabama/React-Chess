@@ -3,7 +3,7 @@ import { PieceNames } from "../../../helpers/PieceNames";
 import logo from "../../../assets/black-bishop.png";
 import { Cell } from "../Cell";
 
-export class Piece {
+export abstract class Piece {
   color: Colors;
   name: PieceNames;
   logo: typeof logo | null;
@@ -38,9 +38,13 @@ export class Piece {
     return true;
   };
 
+  public canProtect(target: Cell){
+  };
+
   // checks if a piece already moved
   public movePiece(target: Cell) {
     this.isFirstStep = false;
     this.count = 1;
-  }
+  };
+
 }
