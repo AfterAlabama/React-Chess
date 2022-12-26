@@ -215,6 +215,10 @@ const BoardComponent: FC<Boardprops> = ({
           key={cell.id}
           selected={selectedCell?.x === cell.x && selectedCell?.y === cell.y}
           click={click}
+          selectedCell = {selectedCell}
+          setSelectedCell = {setSelectedCell}
+          currentPlayer = {currentPlayer}
+          swapPlayers = {swapPlayers}
         />
       ))}
     </React.Fragment>

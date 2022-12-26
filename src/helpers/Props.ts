@@ -16,6 +16,10 @@ export interface CellProps {
   cell: Cell
   selected: boolean
   click: (cell: Cell) => void
+  selectedCell: Cell | null
+  setSelectedCell: (cell: Cell | null) => void
+  currentPlayer: Player | null
+  swapPlayers: () => void
 }
 
 
