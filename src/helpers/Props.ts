@@ -19,7 +19,6 @@ export interface CellProps {
   selectedCell: Cell | null
   setSelectedCell: (cell: Cell | null) => void
   currentPlayer: Player | null
-  swapPlayers: () => void
 }
 
 

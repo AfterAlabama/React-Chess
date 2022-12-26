@@ -218,7 +218,6 @@ const BoardComponent: FC<Boardprops> = ({
           selectedCell = {selectedCell}
           setSelectedCell = {setSelectedCell}
           currentPlayer = {currentPlayer}
-          swapPlayers = {swapPlayers}
         />
       ))}
     </React.Fragment>
