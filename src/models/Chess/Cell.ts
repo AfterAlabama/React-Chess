@@ -155,6 +155,177 @@ export class Cell {
     }
   };
 
+  public doesCellBlockTheCheck(target: Cell){
+    const {blackKing, whiteKing} = this.board.findKings();
+
+    const {blackAttacker, whiteAttacker} = this.board.isKingUnderAttack()
+
+    if(target === whiteAttacker || target === blackAttacker){
+      return true
+    };
+
+    if(whiteAttacker?.piece?.name === PieceNames.BISHOP){
+      //white bishop
+      const absY = Math.abs(whiteKing.y - whiteAttacker.y);
+      const absX = Math.abs(whiteKing.x - whiteAttacker.x);
+
+      if(absX !== absY){
+        return false
+      }
+
+      const dy = whiteAttacker.y < whiteKing.y ? 1 : -1;
+      const dx = whiteAttacker.x < whiteKing.x ? 1 : -1;
+
+      for (let i = 1; i < absY; i++) {
+        if(this.piece?.canMove(target) && target === this.board.getCells(whiteAttacker.y + dy * i, whiteAttacker.x + dx * i)){
+          return true
+        }
+        
+      }
+
+    };
+    //black bishop
+    if(blackAttacker?.piece?.name === PieceNames.BISHOP){
+      const absY = Math.abs(blackKing.y - blackAttacker.y);
+      const absX = Math.abs(blackKing.x - blackAttacker.x);
+
+      if(absX !== absY){
+        return false
+      }
+
+      const dy = blackAttacker.y < blackKing.y ? 1 : -1;
+      const dx = blackAttacker.x < blackKing.x ? 1 : -1;
+
+      for (let i = 1; i < absY; i++) {
+        if(this.piece?.canMove(target) && target === this.board.getCells(blackAttacker.y + dy * i, blackAttacker.x + dx * i)){
+          return true
+        }
+        
+      }
+
+    };
+    //white rook
+    if(whiteAttacker?.piece?.name === PieceNames.ROOK){
+      
+  
+      const min = Math.min(whiteAttacker.x, whiteKing.x);
+      const max = Math.max(whiteAttacker.x, whiteKing.x);
+  
+      for (let x = min + 1; x < max; x++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(whiteAttacker.y, x)) {
+          return true;
+        }
+      };     
+  
+      const min1 = Math.min(whiteAttacker.y, whiteKing.y);
+      const max1 = Math.max(whiteAttacker.y, whiteKing.y);
+  
+      for (let y = min1 + 1; y < max1; y++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(y, whiteAttacker.x)) {
+          return true;
+        }
+      }
+    };
+
+    //black rook
+    if(blackAttacker?.piece?.name === PieceNames.ROOK){
+      
+  
+      const min = Math.min(blackAttacker.x, blackKing.x);
+      const max = Math.max(blackAttacker.x, blackKing.x);
+  
+      for (let x = min + 1; x < max; x++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(blackAttacker.y, x)) {
+          return true;
+        }
+      };     
+  
+      const min1 = Math.min(blackAttacker.y, blackKing.y);
+      const max1 = Math.max(blackAttacker.y, blackKing.y);
+  
+      for (let y = min1 + 1; y < max1; y++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(y, blackAttacker.x)) {
+          return true;
+        }
+      }
+    };
+    //white Queen
+    if(whiteAttacker?.piece?.name === PieceNames.QUEEN){
+      const absY = Math.abs(whiteKing.y - whiteAttacker.y);
+      const absX = Math.abs(whiteKing.x - whiteAttacker.x);
+
+
+      const dy = whiteAttacker.y < whiteKing.y ? 1 : -1;
+      const dx = whiteAttacker.x < whiteKing.x ? 1 : -1;
+      if(absX === absY){
+        for (let i = 1; i < absY; i++) {
+          if(this.piece?.canMove(target) && target === this.board.getCells(whiteAttacker.y + dy * i, whiteAttacker.x + dx * i)){
+            return true
+          }
+        };
+      } else {
+
+        const min = Math.min(whiteAttacker.x, whiteKing.x);
+        const max = Math.max(whiteAttacker.x, whiteKing.x);
+      
+        for (let x = min + 1; x < max; x++) {
+          if (this.piece?.canMove(target) && target === this.board.getCells(whiteAttacker.y, x)) {
+            return true;
+          }
+        };                  
+        const min1 = Math.min(whiteAttacker.y, whiteKing.y);
+        const max1 = Math.max(whiteAttacker.y, whiteKing.y);
+    
+        for (let y = min1 + 1; y < max1; y++) {
+          if (this.piece?.canMove(target) && target === this.board.getCells(y, whiteAttacker.x)) {
+            return true;
+          }
+    
+      }
+      }
+  };
+
+  //black Queen
+  if(blackAttacker?.piece?.name === PieceNames.QUEEN){
+    const absY = Math.abs(blackKing.y - blackAttacker.y);
+    const absX = Math.abs(blackKing.x - blackAttacker.x);
+
+
+    const dy = blackAttacker.y < blackKing.y ? 1 : -1;
+    const dx = blackAttacker.x < blackKing.x ? 1 : -1;
+    if(absX === absY){
+      for (let i = 1; i < absY; i++) {
+        if(this.piece?.canMove(target) && target === this.board.getCells(blackAttacker.y + dy * i, blackAttacker.x + dx * i)){
+          return true
+        }
+      };
+    } else {
+
+      const min = Math.min(blackAttacker.x, blackKing.x);
+      const max = Math.max(blackAttacker.x, blackKing.x);
+    
+      for (let x = min + 1; x < max; x++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(blackAttacker.y, x)) {
+          return true;
+        }
+      };                  
+      const min1 = Math.min(blackAttacker.y, blackKing.y);
+      const max1 = Math.max(blackAttacker.y, blackKing.y);
+  
+      for (let y = min1 + 1; y < max1; y++) {
+        if (this.piece?.canMove(target) && target === this.board.getCells(y, blackAttacker.x)) {
+          return true;
+        }
+  
+    }
+    }
+}
+
+  return false
+}
+
+
+
   // Moves a piece
   movePiece(target: Cell) {
 

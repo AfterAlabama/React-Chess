@@ -101,7 +101,9 @@ export class Board {
 
   public highlightCells(selectedCell: Cell | null, currentColor: Colors | undefined) {
 
-    
+    const {blackKing, whiteKing} = this.findKings()
+
+    const {blackKingCheck, whiteKingCheck} = this.isKingUnderAttack()
 
     for (let i = 0; i < this.cells.length; i++) {
       const row: Cell[] = this.cells[i];
@@ -109,14 +111,32 @@ export class Board {
         const target = row[j];
 
         this.highlightCastling(selectedCell);
-            
 
-        if(selectedCell?.piece?.name === PieceNames.KING &&
-          this.isCellUnderAttack(target, currentColor)){
+        if(selectedCell
+          &&
+          selectedCell.piece &&
+          selectedCell.piece.name !== PieceNames.KING
+          &&
+          ((selectedCell.piece.color === whiteKing.piece?.color 
+          &&
+          whiteKingCheck)
+          ||
+          (selectedCell.piece.color === blackKing.piece?.color && blackKingCheck)
+          )
+          &&
+          selectedCell.piece.canMove(target)
+          &&
+          !selectedCell.doesCellBlockTheCheck(target)){
             target.available = false
-          } else 
+          } else
 
-        target.available = !!selectedCell?.piece?.canMove(target); 
+        if(
+          selectedCell?.piece?.name  === PieceNames.KING &&
+          this.isCellUnderAttack(target, currentColor)){
+              target.available = false
+            }
+          else 
+          target.available = !!selectedCell?.piece?.canMove(target); 
       }
     }
   };
@@ -214,6 +234,8 @@ export class Board {
 
     let whiteKingCheck: boolean = false;
     let blackKingCheck: boolean = false;
+    let blackAttacker;
+    let whiteAttacker;
 
     //Black King cell returns original color after check
     if (!blackKingCheck) {
@@ -264,16 +286,18 @@ export class Board {
 
         if (target.piece && target.piece.attacksKing(blackKing)) {
           blackKingCheck = true;
+          blackAttacker = target
           blackKing.color = Colors.UNDERATTACK;
         }
 
         if (target.piece && target.piece.attacksKing(whiteKing)) {
           whiteKingCheck = true;
+          whiteAttacker = target;
           whiteKing.color = Colors.UNDERATTACK;
         }
       }
     }
-    return { blackKingCheck, whiteKingCheck };
+    return { blackKingCheck, whiteKingCheck, blackAttacker, whiteAttacker};
   };
 
   public castling() {

@@ -64,19 +64,13 @@ export class Rook extends Piece {
 
     if(
       (this.cell.y === target.y && countVertical === Math.abs(target.x - this.cell.x))
-      &&
-      target.piece 
-      &&
-      target.piece.color === this.color){
+ ){
       return true
     };
 
     if(
       (this.cell.x === target.x && countHorizontal === Math.abs(target.y - this.cell.y))
-      &&
-      target.piece 
-      &&
-      target.piece.color === this.color){
+ ){
       return true
     };
 

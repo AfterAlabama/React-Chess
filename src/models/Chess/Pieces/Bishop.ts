@@ -52,9 +52,7 @@ export class Bishop extends Piece {
 
     if ( 
       count === absY
-      &&    
-      this.cell.board.getCells(target.y, target.x).piece &&
-      this.cell.board.getCells(target.y , target.x).piece?.color === this.color) {
+     ) {
       return true
     }
 
