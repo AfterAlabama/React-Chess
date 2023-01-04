@@ -1,5 +1,5 @@
 import { Colors } from "../../../helpers/Colors";
-import { Cell } from "../Cell";
+import { Cell } from "../Cell/Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-king.png";
 import whiteLogo from "../../../assets/white-king.png";
@@ -12,13 +12,10 @@ export class King extends Piece {
     this.name = PieceNames.KING;
   }
 
-
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    };
-
-    
+    }
 
     if (this.isFirstStep && target.x === this.cell.x && target.available) {
       if (
@@ -26,7 +23,7 @@ export class King extends Piece {
         (target.y === this.cell.y + 2 || target.y === this.cell.y - 2)
       ) {
         return true;
-      };
+      }
 
       if (
         this.color === Colors.BLACK &&
@@ -34,7 +31,7 @@ export class King extends Piece {
       ) {
         return true;
       }
-    };
+    }
 
     if (
       (target.x === this.cell.x + 1 ||
@@ -48,14 +45,12 @@ export class King extends Piece {
     }
 
     return false;
-  };
+  }
 
-  public canProtect(target: Cell){
+  public canProtect(target: Cell) {
     if (
-      target.piece 
-      &&
-      target.piece.color === this.color
-      &&
+      target.piece &&
+      target.piece.color === this.color &&
       (target.x === this.cell.x + 1 ||
         target.x === this.cell.x - 1 ||
         target.x === this.cell.x) &&
@@ -65,7 +60,7 @@ export class King extends Piece {
     ) {
       return true;
     }
-    return false
+    return false;
   }
 
   public movePiece(target: Cell): void {

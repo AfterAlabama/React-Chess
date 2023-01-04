@@ -1,9 +1,9 @@
 import { Colors } from "../../../helpers/Colors";
 import { PieceNames } from "../../../helpers/PieceNames";
 import logo from "../../../assets/black-bishop.png";
-import { Cell } from "../Cell";
+import { Cell } from "../Cell/Cell";
 
-export abstract class Piece {
+export class Piece {
   color: Colors;
   name: PieceNames;
   logo: typeof logo | null;
@@ -27,8 +27,7 @@ export abstract class Piece {
       return true;
     }
     return false;
-  };
-
+  }
 
   public canMove(target: Cell) {
     if (this.color === target.piece?.color) {
@@ -36,15 +35,14 @@ export abstract class Piece {
     }
 
     return true;
-  };
+  }
 
   public canProtect(target: Cell){
-  };
+
+  }
 
   // checks if a piece already moved
-  public movePiece(target: Cell) {
-    this.isFirstStep = false;
-    this.count = 1;
-  };
+  public movePiece(target: Cell){
 
+  }
 }

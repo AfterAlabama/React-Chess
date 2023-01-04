@@ -1,0 +1,30 @@
+@import '../../helpers/utilities';
+
+.flex {
+  display: flex
+}
+
+.restartBtn {
+  @include btn-shared;
+  color: black;
+  background-color: #f3f3f3;
+  margin-bottom: 50px;
+}
+
+.turn {
+  margin-bottom: 40px;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white
+}
+
+.chess {
+  background: url('../../assets/chessOverlay.jpg');
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

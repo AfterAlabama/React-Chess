@@ -1,5 +1,6 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { RouteNames } from "../../helpers/RouteNames";
 import CheckersBoard from "../Checkers/CheckersBoard";
 import ChessBoard from "../Chess/ChessBoard";
 import MainPage from "./MainPage";
@@ -7,10 +8,18 @@ import MainPage from "./MainPage";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/chess" element={<ChessBoard />} />
-      <Route path="/checkers" element={<CheckersBoard />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route 
+        path = {RouteNames.DEFAULT}
+        element = {<MainPage />} 
+      />
+      <Route 
+        path = {RouteNames.CHESS} 
+        element = {<ChessBoard />} 
+      />
+      <Route 
+        path = {RouteNames.CHECKERS} 
+        element = {<CheckersBoard />} 
+      />
     </Routes>
   );
 };

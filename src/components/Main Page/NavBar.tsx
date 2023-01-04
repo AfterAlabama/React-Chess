@@ -1,20 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { RouteNames } from "../../helpers/RouteNames";
+import classes from './NavBar.module.scss';
 
 const NavBar = () => {
   return (
-    <div id="nav">
-      <Link to="/" id="logo">
-        <span className="coral">Chess</span>zardo
+    <div className = {classes.nav}>
+      <Link 
+        to = {RouteNames.DEFAULT} 
+        className = {classes.logo}
+        >
+        <span className = {classes.coral}>Chess</span>zardo
       </Link>
       <div>
-        <Link id="link" to="/">
+        <Link className ={classes.link} to= {RouteNames.DEFAULT}>
           Main Page
         </Link>
-        <Link id="link" to="/chess">
+        <Link className ={classes.link} to= {RouteNames.CHESS}>
           Chess
         </Link>
-        <Link id="link" to="/checkers">
+        <Link className ={classes.link} to= {RouteNames.CHECKERS}>
           Checkers
         </Link>
       </div>

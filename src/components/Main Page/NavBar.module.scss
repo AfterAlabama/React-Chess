@@ -1,0 +1,35 @@
+
+
+.nav {
+  position: sticky;
+  top:0;
+  z-index: 90;
+  padding: 0 30px;
+  background-color: black;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .logo {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+  };
+
+  .link {
+    color: white;
+    padding: 0 25px;
+    text-decoration: none;
+    font-size: 16px;
+
+    &:hover {
+      color: coral
+    }
+  }
+}
+
+.coral {
+  color: coral
+}

@@ -1,5 +1,5 @@
 import { Colors } from "../../../helpers/Colors";
-import { Cell } from "../Cell";
+import { Cell } from "../Cell/Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-bishop.png";
 import whiteLogo from "../../../assets/white-bishop.png";
@@ -15,16 +15,16 @@ export class Bishop extends Piece {
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    };
+    }
 
     if (this.cell.isEmptyDiagonal(target)) {
       return true;
-    };
-    
-    return false;
-  };
+    }
 
-  public canProtect(target: Cell): boolean{
+    return false;
+  }
+
+  public canProtect(target: Cell): boolean {
     let count: number = 1;
 
     const absY = Math.abs(this.cell.y - target.y);
@@ -32,31 +32,32 @@ export class Bishop extends Piece {
 
     if (absY !== absX) {
       return false;
-    };
+    }
 
     const dy = this.cell.y < target.y ? 1 : -1;
     const dx = this.cell.x < target.x ? 1 : -1;
 
     for (let i = 1; i < absY; i++) {
-
       if (
-        (this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).isEmpty())
-        ||
-        (!this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).isEmpty() && 
-        this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).piece?.name === PieceNames.KING && 
-        this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).piece?.color !== this.color)
-        ) {
+        this.cell.board
+          .getCells(this.cell.y + dy * i, this.cell.x + dx * i)
+          .isEmpty() ||
+        (!this.cell.board
+          .getCells(this.cell.y + dy * i, this.cell.x + dx * i)
+          .isEmpty() &&
+          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i)
+            .piece?.name === PieceNames.KING &&
+          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i)
+            .piece?.color !== this.color)
+      ) {
         count += 1;
-      }      
-    };
-
-    if ( 
-      count === absY
-     ) {
-      return true
+      }
     }
 
+    if (count === absY) {
+      return true;
+    }
 
-    return false
+    return false;
   }
 }

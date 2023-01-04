@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Colors } from "../../helpers/Colors";
-import { Board } from "../../models/Chess/Board";
-import { Cell } from "../../models/Chess/Cell";
-import { Player } from "../../models/Chess/Player";
+import { Board } from "../../models/Chess/Board/Board";
+import { Cell } from "../../models/Chess/Cell/Cell";
+import { Player } from "../../models/Chess/Player/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
+import classes from './ChessBoard.module.scss'
 
 const ChessBoard = () => {
   const [board, setBoard] = useState(new Board());
@@ -38,12 +39,16 @@ const ChessBoard = () => {
   }
 
   return (
-    <div className="chess">
-      <div className="turn">{currentPlayer?.color} to move</div>
-      <button className="restartBtn" onClick={() => restart()}>
-        Restart
+    <div className= {classes.chess}>
+      <div className= {classes.turn}>
+        {currentPlayer?.color} to move
+      </div>
+      <button 
+        className= {classes.restartBtn} 
+        onClick={restart}
+        >Restart
       </button>
-      <div className = 'flex'>
+      <div className= {classes.flex}>
         <BoardComponent
           board={board}
           setBoard={setBoard}

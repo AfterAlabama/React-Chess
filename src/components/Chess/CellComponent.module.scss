@@ -1,0 +1,38 @@
+$underAttack : radial-gradient(red, burlywood);
+
+:export {
+  underAttack: $underAttack
+};
+
+.available {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: forestgreen;
+}
+
+.cell {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    width: 48px;
+    height: 48px;
+
+    &:hover {
+      cursor: grab
+    };
+
+    &:active {
+      cursor: grabbing
+    }
+  }
+}
+
+.selected {
+  background: radial-gradient(green, burlywood)
+}
+

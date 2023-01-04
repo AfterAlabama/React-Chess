@@ -1,5 +1,5 @@
 import { Colors } from "../../../helpers/Colors";
-import { Cell } from "../Cell";
+import { Cell } from "../Cell/Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-knight.png";
 import whiteLogo from "../../../assets/white-knight.png";
@@ -21,33 +21,26 @@ export class Knight extends Piece {
 
     const dx = Math.abs(target.x - this.cell.x);
 
-    if (
-      (dx === 1 && dy === 2) || 
-      (dx === 2 && dy === 1)
-      ) {
+    if ((dx === 1 && dy === 2) || (dx === 2 && dy === 1)) {
       return true;
     }
 
     return false;
-  };
+  }
 
-  public canProtect(target: Cell){
+  public canProtect(target: Cell) {
     const dy = Math.abs(target.y - this.cell.y);
 
     const dx = Math.abs(target.x - this.cell.x);
 
     if (
-      target.piece
-      &&
-      target.piece.color === this.color
-      &&
-      (
-      (dx === 1 && dy === 2) || 
-      (dx === 2 && dy === 1)
-      )) {
+      target.piece &&
+      target.piece.color === this.color &&
+      ((dx === 1 && dy === 2) || (dx === 2 && dy === 1))
+    ) {
       return true;
     }
 
     return false;
-  }}
-
+  }
+}
