@@ -6,6 +6,9 @@ import { Cell } from "../../models/Chess/Cell/Cell";
 import { Queen } from "../../models/Chess/Pieces/Queen";
 import CellComponent from "./CellComponent";
 import classes from './BoardComponent.module.scss';
+import useSound from "use-sound";
+import moveSound from '../../assets/6a897efd83627af.mp3';
+
 
 const BoardComponent: FC<Boardprops> = ({
   board,
@@ -15,6 +18,8 @@ const BoardComponent: FC<Boardprops> = ({
   selectedCell,
   setSelectedCell,
 }) => {
+
+  const [play] = useSound(moveSound);
 
   function kingMovesOutOfCheck(target: Cell) {
     const { blackKingCheck, whiteKingCheck } = board.isKingUnderAttack();
@@ -176,7 +181,9 @@ const BoardComponent: FC<Boardprops> = ({
 
       selectedCell.movePiece(target);
       setSelectedCell(null);
+      play()
       swapPlayers();
+
     } else 
     if (
       !selectedCell ||
@@ -223,6 +230,7 @@ const BoardComponent: FC<Boardprops> = ({
     updateBoard();
   }, [selectedCell]);
 
+  
 
   if (board.isKingUnderAttack().blackKingCheck) {
     return (
