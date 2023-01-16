@@ -8,7 +8,7 @@ const Header: FC<HeaderProps> = ({ clickHandler }) => {
       <div 
         className = {classes.headerImage}
       ></div>
-      <div className= {classes.headerContent}>
+      <div className = {classes.headerContent}>
         <h1>Games For Everyone!</h1>
         <p>Wish to play a game? Choose which:</p>
         <button 

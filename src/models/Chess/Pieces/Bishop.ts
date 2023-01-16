@@ -15,14 +15,14 @@ export class Bishop extends Piece {
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    }
+    };
 
     if (this.cell.isEmptyDiagonal(target)) {
       return true;
     }
 
     return false;
-  }
+  };
 
   public canProtect(target: Cell): boolean {
     let count: number = 1;

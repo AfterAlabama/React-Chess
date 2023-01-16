@@ -11,8 +11,8 @@ const MainPage = () => {
 
   return (
     <div>
-      <Header clickHandler={clickHandler} />
-      <GamesSection ref={divRef} />
+      <Header clickHandler = {clickHandler} />
+      <GamesSection ref = {divRef} />
     </div>
   );
 };

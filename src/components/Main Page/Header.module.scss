@@ -1,27 +1,119 @@
 @import '../../helpers/utilities';
 
-.header {
- 
-  .headerImage {
-    width: 100%;
-    height: 100vh;
-    background: url('../../assets/tablegame1.jpg') center center/cover no-repeat;
-  };
+//wide Screen
+@media only screen and (min-width: 1201px){
+  .header {
+    position: relative;
 
-  .headerContent {
-    @include overlay-shared;
-
-    h1 {
-      font-size: 60px
+    .headerImage {
+      width: 100vw;
+      height: 100vh;
+      background: url('../../assets/tablegame1.jpg') center center/cover no-repeat;
+    };
+  
+    .headerContent {
+      @include overlay-shared;
+  
+      h1 {
+        font-size: 60px
+      }
+  
+      p {
+        margin: 30px 0;
+        font-size: 25px;
+      }
     }
-
-    p {
-      margin: 30px 0;
-      font-size: 25px;
-    }
+  }
+  
+  .btn {
+    @include btn-shared; 
   }
 }
 
-.btn {
-  @include btn-shared; 
+//normal Size
+@media only screen and (min-width: 769px) and (max-width: 1200px){
+  .header {
+    position: relative;
+    .headerImage {
+      width: 100%;
+      height: 100vh;
+      background: url('../../assets/tablegame1.jpg') center center/cover no-repeat;
+    };
+  
+    .headerContent {
+      @include overlay-shared;
+  
+      h1 {
+        font-size: 60px
+      }
+  
+      p {
+        margin: 30px 0;
+        font-size: 25px;
+      }
+    }
+  }
+  
+  .btn {
+    @include btn-shared; 
+  }
+}
+
+//tablets
+@media only screen and (min-width: 501px) and (max-width: 768px){
+  .header {
+    position: relative;
+    .headerImage {
+      width: 100%;
+      height: 100vh;
+      background: url('../../assets/tablegame1.jpg') center center/cover no-repeat;
+    };
+  
+    .headerContent {
+      @include overlay-shared;
+  
+      h1 {
+        font-size: 40px
+      }
+  
+      p {
+        margin: 30px 0;
+        font-size: 25px;
+      }
+    }
+  }
+  
+  .btn {
+    @include btn-shared; 
+  }
+}
+
+//smartphones
+
+@media only screen and (min-width: 325px) and (max-width: 500px){
+  .header {
+    position: relative;
+    .headerImage {
+      width: 100%;
+      height: 100vh;
+      background: url('../../assets/tablegame1.jpg') center center/cover no-repeat;
+    };
+  
+    .headerContent {
+      @include overlay-shared;
+  
+      h1 {
+        font-size: 30px
+      }
+  
+      p {
+        margin: 30px 15px;
+        font-size: 18px;
+      }
+    }
+  }
+  
+  .btn {
+    @include btn-shared; 
+  }
 }

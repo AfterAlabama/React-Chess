@@ -5,11 +5,12 @@ import classes from './GameSection.module.scss';
 
 const GamesSection = forwardRef<HTMLDivElement>((_, divRef) => {
   return (
-    <section className= {classes.section} >
+    <section className = {classes.section} >
       <div 
-        ref={divRef} 
+        ref = {divRef} 
         className = {classes.sectionImage}
-      ></div>
+      >
+      </div>
       <div 
         className = {classes.sectionContent}
         >
@@ -19,13 +20,11 @@ const GamesSection = forwardRef<HTMLDivElement>((_, divRef) => {
             <div 
               className = {classes.chessImage}
             ></div>
-            <div className = {classes.text} >
-              <Link 
-                className = {classes.bigBtn} to = {RouteNames.CHESS}>
-                Play
-              </Link>
+            <Link 
+              className = {classes.bigBtn} to = {RouteNames.CHESS}>
+              Play
+            </Link>
             </div>
-          </div>
           <div className = {classes.game} >
             <div 
               className = {classes.checkersImage} 

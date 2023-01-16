@@ -13,13 +13,19 @@ const NavBar = () => {
         <span className = {classes.coral}>Chess</span>zardo
       </Link>
       <div>
-        <Link className ={classes.link} to= {RouteNames.DEFAULT}>
+        <Link 
+          className = {classes.link} 
+          to = {RouteNames.DEFAULT}>
           Main Page
         </Link>
-        <Link className ={classes.link} to= {RouteNames.CHESS}>
-          Chess
+        <Link 
+          className = {classes.link} 
+          to = {RouteNames.CHESS}>
+            Chess
         </Link>
-        <Link className ={classes.link} to= {RouteNames.CHECKERS}>
+        <Link 
+          className = {classes.link} 
+          to = {RouteNames.CHECKERS}>
           Checkers
         </Link>
       </div>

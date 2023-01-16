@@ -39,32 +39,34 @@ const ChessBoard = () => {
   }
 
   return (
-    <div className= {classes.chess}>
-      <div className= {classes.turn}>
+    <div className = {classes.chess}>
+      <div className = {classes.turn}>
         {currentPlayer?.color} to move
       </div>
       <button 
-        className= {classes.restartBtn} 
-        onClick={restart}
+        className = {classes.restartBtn} 
+        onClick = {restart}
         >Restart
       </button>
-      <div className= {classes.flex}>
+      <div className = {classes.flex}>
         <BoardComponent
-          board={board}
-          setBoard={setBoard}
-          currentPlayer={currentPlayer}
-          swapPlayers={swapPlayers}
-          selectedCell={selectedCell}
-          setSelectedCell={setSelectedCell}
+          board = {board}
+          setBoard = {setBoard}
+          currentPlayer = {currentPlayer}
+          swapPlayers = {swapPlayers}
+          selectedCell = {selectedCell}
+          setSelectedCell = {setSelectedCell}
         />
-        <LostPieces 
-          title="Black Pieces" 
-          pieces={board.lostBlackPieces} 
-        />
-        <LostPieces 
-          title="White Pieces" 
-          pieces={board.lostWhitePieces} 
-        />
+        <div className={classes.columns}>
+          <LostPieces 
+            title = "Black Pieces" 
+            pieces = {board.lostBlackPieces} 
+          />
+          <LostPieces 
+            title = "White Pieces" 
+            pieces = {board.lostWhitePieces} 
+          />
+        </div>
       </div>
     </div>
   );

@@ -391,7 +391,7 @@ export class Cell {
       }
     }
     return false
-  }
+  };
 
 
 

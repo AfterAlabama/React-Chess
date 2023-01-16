@@ -234,18 +234,18 @@ const BoardComponent: FC<Boardprops> = ({
 
   if (board.isKingUnderAttack().blackKingCheck) {
     return (
-      <div className= {classes.check}>
-        <h1 className = {classes.checkMessage}>{} Checked!!</h1>
-        <div className= {classes.board} >{showCells}</div>
+      <div className = {classes.check}>
+        <h1 className = {classes.checkMessage}>Black Checked!!</h1>
+        <div className = {classes.board} >{showCells}</div>
       </div>
     );
   };
 
   if (board.isKingUnderAttack().whiteKingCheck) {
     return (
-      <div className= {classes.check} >
+      <div className = {classes.check} >
         <h1 className = {classes.checkMessage} >White Checked!!</h1>
-        <div className= {classes.board} >{showCells}</div>
+        <div className = {classes.board} >{showCells}</div>
       </div>
     );
   };
@@ -254,7 +254,7 @@ const BoardComponent: FC<Boardprops> = ({
 
   return (
     <>
-      <div className= {classes.board} >{showCells}</div>
+      <div className = {classes.board} >{showCells}</div>
     </>
   );
 };

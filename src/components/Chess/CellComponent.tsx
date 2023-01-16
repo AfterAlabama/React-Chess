@@ -16,26 +16,26 @@ const CellComponent: FC<CellProps> = ({
 
   const showPieces = cell.piece?.logo ? (
     <img
-      draggable={false}
-      alt=""
-      src={cell.piece.logo}
+      draggable = {false}
+      alt = ""
+      src = {cell.piece.logo}
     ></img>
   ) : null;
 
   const showPiecesDraggable = cell.piece?.logo ? (
     <img
       draggable
-      onDragStart={() => dragStartHandler(cell)}
-      onDragOver={(e) => dragOverHandler(e)}
-      onDrop={(e) => dropHandler(e, cell)}
-      alt=""
-      src={cell.piece.logo}
+      onDragStart = {() => dragStartHandler(cell)}
+      onDragOver = {(e) => dragOverHandler(e)}
+      onDrop = {(e) => dropHandler(e, cell)}
+      alt = ""
+      src = {cell.piece.logo}
     ></img>
   ) : null;
 
   const availableDots =
     cell.available && !cell.piece ? 
-    <div className= {classes.available}></div> : "";
+    <div className = {classes.available}></div> : "";
 
   const PieceUnderAttack = {
     background:
