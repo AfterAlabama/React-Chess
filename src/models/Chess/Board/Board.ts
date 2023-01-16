@@ -28,7 +28,7 @@ export class Board {
     }
   };
 
-  private highlightCastling(selectedCell: Cell | null) {
+  private highlightCastling(selectedCell: Cell | null, currentColor: Colors | undefined) {
     const { blackKing, whiteKing } = this.findKings();
 
     const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
@@ -38,13 +38,25 @@ export class Board {
 
     //left white castling
     if (
-      whiteKing.x === leftWhiteRook.x &&
-      !whiteKingCheck &&
-      whiteKing.piece?.isFirstStep &&
-      leftWhiteRook.piece?.isFirstStep &&
-      this.getCells(1, 7).isEmpty() &&
-      this.getCells(2, 7).isEmpty() &&
-      this.getCells(3, 7).isEmpty()
+      whiteKing.x === leftWhiteRook.x 
+      &&
+      !whiteKingCheck 
+      &&
+      whiteKing.piece?.isFirstStep 
+      &&
+      leftWhiteRook.piece?.isFirstStep 
+      &&
+      this.getCells(1, 7).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(1, 7), currentColor) 
+      &&
+      this.getCells(2, 7).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(2, 7), currentColor) 
+      &&
+      this.getCells(3, 7).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(3, 7), currentColor)
     ) {
       if (selectedCell === whiteKing) {
         this.getCells(2, 7).available = true;
@@ -53,12 +65,21 @@ export class Board {
 
     //right white castling
     if (
-      whiteKing.x === rightWhiteRook.x &&
-      !whiteKingCheck &&
-      whiteKing.piece?.isFirstStep &&
-      rightWhiteRook.piece?.isFirstStep &&
-      this.getCells(6, 7).isEmpty() &&
-      this.getCells(5, 7).isEmpty()
+      whiteKing.x === rightWhiteRook.x 
+      &&
+      !whiteKingCheck 
+      &&
+      whiteKing.piece?.isFirstStep 
+      &&
+      rightWhiteRook.piece?.isFirstStep 
+      &&
+      this.getCells(6, 7).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(6, 7), currentColor)
+      &&
+      this.getCells(5, 7).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(5, 7), currentColor)
     ) {
       if (selectedCell === whiteKing) {
         this.getCells(6, 7).available = true;
@@ -67,13 +88,24 @@ export class Board {
 
     //left black castling
     if (
-      blackKing.x === leftBlackRook.x &&
-      !blackKingCheck &&
-      blackKing.piece?.isFirstStep &&
-      leftBlackRook.piece?.isFirstStep &&
-      this.getCells(1, 0).isEmpty() &&
+      blackKing.x === leftBlackRook.x 
+      &&
+      !blackKingCheck 
+      &&
+      blackKing.piece?.isFirstStep 
+      &&
+      leftBlackRook.piece?.isFirstStep 
+      &&
+      this.getCells(1, 0).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(1, 0), currentColor) 
+      &&
       this.getCells(2, 0).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(2, 0), currentColor) 
+      &&
       this.getCells(3, 0).isEmpty()
+      &&
+      !this.isCellUnderAttack(this.getCells(3, 0), currentColor)
     ) {
       if (selectedCell === blackKing) {
         this.getCells(2, 0).available = true;
@@ -82,12 +114,21 @@ export class Board {
 
     //right black castling
     if (
-      blackKing.x === rightBlackRook.x &&
-      !blackKingCheck &&
-      blackKing.piece?.isFirstStep &&
-      rightBlackRook.piece?.isFirstStep &&
-      this.getCells(5, 0).isEmpty() &&
+      blackKing.x === rightBlackRook.x 
+      &&
+      !blackKingCheck 
+      &&
+      blackKing.piece?.isFirstStep 
+      &&
+      rightBlackRook.piece?.isFirstStep 
+      &&
+      this.getCells(5, 0).isEmpty() 
+      &&
+      !this.isCellUnderAttack(this.getCells(5, 0), currentColor)
+      &&
       this.getCells(6, 0).isEmpty()
+      &&
+      !this.isCellUnderAttack(this.getCells(6, 0), currentColor)
     ) {
       if (selectedCell === blackKing) {
         this.getCells(6, 0).available = true;
@@ -108,7 +149,7 @@ export class Board {
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
 
-        this.highlightCastling(selectedCell);
+        this.highlightCastling(selectedCell, currentColor);
 
         if(selectedCell && selectedCell.doesPieceBlockTheCheck(target)){
           target.available = false
