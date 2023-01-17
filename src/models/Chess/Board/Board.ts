@@ -138,7 +138,7 @@ export class Board {
 
   public highlightCells(
     selectedCell: Cell | null,
-    currentColor: Colors | undefined
+    currentColor: Colors
   ) {
     const { blackKing, whiteKing } = this.findKings();
 

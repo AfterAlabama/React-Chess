@@ -5,7 +5,7 @@ import classes from './NavBar.module.scss';
 
 const NavBar = () => {
   return (
-    <div className = {classes.nav}>
+    <nav className = {classes.nav}>
       <Link 
         to = {RouteNames.DEFAULT} 
         className = {classes.logo}
@@ -29,7 +29,7 @@ const NavBar = () => {
           Checkers
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
 

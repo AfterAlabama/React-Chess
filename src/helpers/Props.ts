@@ -6,7 +6,7 @@ import { Player } from "../models/Chess/Player/Player";
 export interface Boardprops {
   board: Board;
   setBoard: (board: Board) => void;
-  currentPlayer: Player | null;
+  currentPlayer: Player;
   swapPlayers: () => void;
   selectedCell: Cell | null;
   setSelectedCell: (cell: Cell | null) => void;
@@ -18,7 +18,7 @@ export interface CellProps {
   click: (cell: Cell) => void;
   selectedCell: Cell | null;
   setSelectedCell: (cell: Cell | null) => void;
-  currentPlayer: Player | null;
+  currentPlayer: Player;
 }
 
 export interface HeaderProps {

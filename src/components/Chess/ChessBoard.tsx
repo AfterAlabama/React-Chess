@@ -14,11 +14,11 @@ const ChessBoard = () => {
 
   const [blackPlayer] = useState(new Player(Colors.BLACK));
 
-  const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
 
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
-  // Creates and updates the board
+  // updates the board
   const restart = useCallback(() => {
     const newBoard = new Board();
     newBoard.initCells();
@@ -29,14 +29,18 @@ const ChessBoard = () => {
   }, [whitePlayer]);
 
   useEffect(() => {
-    restart();
-  }, [restart]);
+    const newBoard = new Board();
+    newBoard.initCells();
+    newBoard.addPieces();
+    setBoard(newBoard);
+  }, []);
 
-  function swapPlayers() {
+  const swapPlayers = useCallback(() => {
     setCurrentPlayer(
       currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
     );
-  }
+  }, [currentPlayer]);
+
 
   return (
     <div className = {classes.chess}>

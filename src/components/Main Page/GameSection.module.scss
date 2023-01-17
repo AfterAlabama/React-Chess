@@ -1,6 +1,15 @@
 @import '../../helpers/utilities';
 
 
+.chessImage, .checkersImage {
+  transition: all 0.3s ease-in-out
+};
+
+.chessImage:hover, .checkersImage:hover {
+  transform: scale(1.1)
+}
+
+
 //Wide Screen
 @media only screen and (min-width: 1201px){
   .section {
@@ -42,6 +51,8 @@
     width: 15vw;
     background: url('../../assets/chesspic.jpg') center center/cover no-repeat;
   };
+
+
   
   .checkersImage {
     @include circularImage;
@@ -49,6 +60,7 @@
     width: 15vw;
     background: url('../../assets/checkers.jpg') center center/cover no-repeat;
   }
+
   
   .bigBtn {
     @include btn-shared;
@@ -96,6 +108,8 @@
     width: 20vw;
     background: url('../../assets/chesspic.jpg') center center/cover no-repeat;
   };
+
+
   
   .checkersImage {
     @include circularImage;
@@ -218,5 +232,4 @@
     font-size: 40px;
   }
 }
-
 
