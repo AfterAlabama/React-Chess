@@ -1,6 +1,14 @@
 @import '../../helpers/utilities';
 
 
+.flex {
+  display: flex
+}
+
+.columns {
+  display: flex
+}
+
 //widescreen 
 
 @media only screen and (min-width: 1201px){
@@ -27,15 +35,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
-  .flex {
-    display: flex
-  }
-
-  .columns {
-    display: flex
-  }
-  
+  } 
 }
 
 //normal size
@@ -64,12 +64,6 @@
     justify-content: center;
     flex-direction: column;
   }
-  .flex {
-    display: flex
-  }
-  .columns {
-    display: flex
-  }
 }
 
 //tablets
@@ -92,19 +86,17 @@
   
   .chess {
     background: url('../../assets/chessOverlay.jpg');
-    height: 110vh;
+    height: 140vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
   .flex {
-    display: flex;
     flex-direction: column;
   }
 
   .columns {
-    display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
@@ -132,19 +124,17 @@
   
   .chess {
     background: url('../../assets/chessOverlay.jpg');
-    height: 110vh;
+    height: 140vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
   .flex {
-    display: flex;
     flex-direction: column;
   }
 
   .columns {
-    display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;

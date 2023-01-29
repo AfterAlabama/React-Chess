@@ -6,12 +6,11 @@ import classes from './NavBar.module.scss';
 const NavBar = () => {
   return (
     <nav className = {classes.nav}>
-      <Link 
-        to = {RouteNames.DEFAULT} 
+      <div 
         className = {classes.logo}
         >
         <span className = {classes.coral}>Chess</span>zardo
-      </Link>
+      </div>
       <div>
         <Link 
           className = {classes.link} 

@@ -45,7 +45,7 @@ const ChessBoard = () => {
   return (
     <div className = {classes.chess}>
       <div className = {classes.turn}>
-        {currentPlayer?.color} to move
+        {currentPlayer.color} to move
       </div>
       <button 
         className = {classes.restartBtn} 
