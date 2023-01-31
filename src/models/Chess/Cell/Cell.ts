@@ -400,9 +400,22 @@ export class Cell {
 
     const { blackAttacker, whiteAttacker } = this.board.isKingUnderAttack();
 
-    if (target === whiteAttacker || target === blackAttacker) {
-      return true;
+    for (let i = 0; i < this.board.cells.length; i++) {
+      const row = this.board.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const randomCell = row[j];
+        if(target === whiteAttacker && randomCell !== whiteKing && randomCell.piece?.canMove(target)){
+          return true
+        }
+        if(target === blackAttacker && randomCell !== blackKing && randomCell.piece?.canMove(target)){
+          return true
+        }
+      }
     }
+
+    // if (target === whiteAttacker || target === blackAttacker) {
+    //   return true;
+    // }
 
     if (whiteAttacker?.piece?.name === PieceNames.BISHOP) {
       //black bishop

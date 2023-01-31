@@ -9,7 +9,6 @@ import classes from './BoardComponent.module.scss';
 import useSound from "use-sound";
 import moveSound from '../../assets/6a897efd83627af.mp3';
 
-
 const BoardComponent: FC<Boardprops> = ({
   board,
   setBoard,
@@ -233,6 +232,16 @@ const BoardComponent: FC<Boardprops> = ({
   
 
   if (board.isKingUnderAttack().blackKingCheck) {
+
+    if(board.Mate(currentPlayer.color)){
+      return (
+        <div className = {classes.check} >
+        <h1 className = {classes.checkMessage} >Black Mated!!</h1>
+        <div className = {classes.board} >{showCells}</div>
+      </div>
+      )
+    }
+
     return (
       <div className = {classes.check}>
         <h1 className = {classes.checkMessage}>Black Checked!!</h1>
@@ -242,6 +251,17 @@ const BoardComponent: FC<Boardprops> = ({
   };
 
   if (board.isKingUnderAttack().whiteKingCheck) {
+
+    if(board.Mate(currentPlayer.color)){
+      return (
+        <div className = {classes.check} >
+        <h1 className = {classes.checkMessage} >White Mated!!</h1>
+        <div className = {classes.board} >{showCells}</div>
+      </div>
+      )
+    }
+
+
     return (
       <div className = {classes.check} >
         <h1 className = {classes.checkMessage} >White Checked!!</h1>

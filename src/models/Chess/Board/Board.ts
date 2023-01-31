@@ -415,6 +415,55 @@ export class Board {
     }
   };
 
+
+  public Mate( currentColor: Colors){
+    let count = 0;
+    const {blackKing, whiteKing} = this.findKings();
+
+    const {whiteKingCheck, blackKingCheck} = this.isKingUnderAttack();
+
+    if(whiteKingCheck || blackKingCheck){
+      for (let i = 0; i < this.cells.length; i++) {
+        const row = this.cells[i];
+        for (let j = 0; j < row.length; j++) {
+          const target = row[j];
+
+          for (let x = 0; x < this.cells.length; x++) {
+            const row2 = this.cells[x];
+            for (let z = 0; z < row2.length; z++) {
+              const target2 = row2[z];
+
+              if(
+                ((
+                whiteKing.piece!.canMove(target) && 
+                !this.isCellUnderAttack(target, currentColor)
+                )
+                ||
+                (target2.piece?.color === whiteKing.piece!.color && target2.piece?.canMove(target) && 
+                target2.doesCellBlockTheCheck(target)))
+                ||
+                ((
+                  blackKing.piece!.canMove(target) && !this.isCellUnderAttack(target, currentColor)
+                  )
+                  ||
+                  (target2.piece?.color === blackKing.piece!.color && target2.piece?.canMove(target) && 
+                  target2.doesCellBlockTheCheck(target)))){
+                count += 1
+              }
+
+              
+            }
+          }        
+        }     
+      }
+      if(count > 0){
+        return false
+      } else{
+        return true
+      }
+    }
+  }
+
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));
     new King(Colors.WHITE, this.getCells(4, 7));
