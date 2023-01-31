@@ -1,9 +1,15 @@
 import { Colors } from "../../../helpers/Colors";
 import { PieceNames } from "../../../helpers/PieceNames";
 import logo from "../../../assets/black-bishop.png";
-import { Cell } from "../Cell/Cell";
+import { Cell } from "../Cell";
 
-export class Piece {
+export interface Piece {
+  canMove(target: Cell): boolean;
+  canProtect?(target: Cell): boolean;
+  movePiece?(target: Cell): void;
+}
+
+export abstract class Piece {
   color: Colors;
   name: PieceNames;
   logo: typeof logo | null;
@@ -35,14 +41,5 @@ export class Piece {
     }
 
     return true;
-  }
-
-  public canProtect(target: Cell){
-
-  }
-
-  // checks if a piece already moved
-  public movePiece(target: Cell){
-
   }
 }

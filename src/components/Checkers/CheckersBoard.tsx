@@ -1,9 +1,10 @@
 import React from 'react'
+import CheckersBoardComponent from './CheckersBoardComponent';
 
 const CheckersBoard = () => {
   return (
     <div>
-      <h1>Checkers</h1>
+      <CheckersBoardComponent/>
     </div>
   )
 }

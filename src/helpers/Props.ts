@@ -1,7 +1,7 @@
-import { Board } from "../models/Chess/Board/Board";
-import { Cell } from "../models/Chess/Cell/Cell";
+import { Board } from "../models/Chess/Board";
+import { Cell } from "../models/Chess/Cell";
 import { Piece } from "../models/Chess/Pieces/Piece";
-import { Player } from "../models/Chess/Player/Player";
+import { Player } from "../models/Chess/Player";
 
 export interface Boardprops {
   board: Board;

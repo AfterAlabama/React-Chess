@@ -2,12 +2,12 @@ import React, { FC, useCallback, useEffect } from "react";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { Boardprops } from "../../helpers/Props";
-import { Cell } from "../../models/Chess/Cell/Cell";
+import { Cell } from "../../models/Chess/Cell";
 import { Queen } from "../../models/Chess/Pieces/Queen";
 import CellComponent from "./CellComponent";
-import classes from './BoardComponent.module.scss';
+import classes from "./BoardComponent.module.scss";
 import useSound from "use-sound";
-import moveSound from '../../assets/6a897efd83627af.mp3';
+import moveSound from "../../assets/6a897efd83627af.mp3";
 
 const BoardComponent: FC<Boardprops> = ({
   board,
@@ -17,7 +17,6 @@ const BoardComponent: FC<Boardprops> = ({
   selectedCell,
   setSelectedCell,
 }) => {
-
   const [play] = useSound(moveSound);
 
   function kingMovesOutOfCheck(target: Cell) {
@@ -84,7 +83,7 @@ const BoardComponent: FC<Boardprops> = ({
         }
       }
     }
-  };
+  }
 
   function PawnPromotion(target: Cell) {
     if (
@@ -92,115 +91,86 @@ const BoardComponent: FC<Boardprops> = ({
       selectedCell.piece &&
       selectedCell.piece.name === PieceNames.PAWN
     ) {
-      if(target.x === 0){
+      if (target.x === 0) {
         const whiteQueen = new Queen(
           Colors.WHITE,
           board.getCells(target.y, target.x)
         );
         selectedCell.piece = null;
-        target.setPiece(whiteQueen.cell.piece!)
-      };
+        target.setPiece(whiteQueen.cell.piece!);
+      }
 
-      if(target.x === 7){
+      if (target.x === 7) {
         const blackQueen = new Queen(
           Colors.BLACK,
           board.getCells(target.y, target.x)
         );
         selectedCell.piece = null;
-        target.setPiece(blackQueen.cell.piece!)
+        target.setPiece(blackQueen.cell.piece!);
       }
     }
-  };
+  }
 
   function Castling(target: Cell) {
     const { blackKing, whiteKing } = board.findKings();
 
-    if (
-      selectedCell &&
-      selectedCell.piece &&
-      selectedCell.piece.isFirstStep
-    ) {
-      if (
-        selectedCell === whiteKing && 
-        target.x === 7 && 
-        target.y === 2
-        ) {
+    if (selectedCell && selectedCell.piece && selectedCell.piece.isFirstStep) {
+      if (selectedCell === whiteKing && target.x === 7 && target.y === 2) {
         selectedCell.movePiece(target);
         board.castling();
         setSelectedCell(null);
         swapPlayers();
-      };
+      }
 
-      if (
-        selectedCell === whiteKing && 
-        target.x === 7 && 
-        target.y === 6
-        ) {
+      if (selectedCell === whiteKing && target.x === 7 && target.y === 6) {
         selectedCell.movePiece(target);
         board.castling();
         setSelectedCell(null);
         swapPlayers();
-      };
+      }
 
-      if (
-        selectedCell === blackKing && 
-        target.x === 0 && 
-        target.y === 2
-        ) {
+      if (selectedCell === blackKing && target.x === 0 && target.y === 2) {
         selectedCell.movePiece(target);
         board.castling();
         setSelectedCell(null);
         swapPlayers();
-      };
+      }
 
-      if (
-        selectedCell === blackKing && 
-        target.x === 0 && 
-        target.y === 6
-        ) {
+      if (selectedCell === blackKing && target.x === 0 && target.y === 6) {
         selectedCell.movePiece(target);
         board.castling();
         setSelectedCell(null);
         swapPlayers();
       }
     }
-  };
+  }
 
   // highlights and moves pieces on click
   function click(target: Cell) {
-
-  if (
-      selectedCell &&
-      selectedCell !== target &&
-      target.available === true
-    ) {
+    if (selectedCell && selectedCell !== target && target.available === true) {
       kingMovesOutOfCheck(target);
       PawnPromotion(target);
       Castling(target);
 
       selectedCell.movePiece(target);
       setSelectedCell(null);
-      play()
+      play();
       swapPlayers();
-
-    } else 
-    if (
+    } else if (
       !selectedCell ||
       target.piece?.color === selectedCell?.piece?.color
-      ) {
-        setSelectedCell(target);
-      };
+    ) {
+      setSelectedCell(target);
+    }
 
     if (
       selectedCell === target ||
       !target.piece ||
       target.piece?.color !== currentPlayer?.color
-      ) {
+    ) {
       setSelectedCell(null);
     }
-
-  };
-
+  }
 
   // displays cells on the board
   const showCells = board.cells.map((row, index) => (
@@ -229,52 +199,45 @@ const BoardComponent: FC<Boardprops> = ({
     updateBoard();
   }, [selectedCell]);
 
-  
-
   if (board.isKingUnderAttack().blackKingCheck) {
-
-    if(board.Mate(currentPlayer.color)){
+    if (board.Mate(currentPlayer.color)) {
       return (
-        <div className = {classes.check} >
-        <h1 className = {classes.checkMessage} >Black Mated!!</h1>
-        <div className = {classes.board} >{showCells}</div>
-      </div>
-      )
+        <div className={classes.check}>
+          <h1 className={classes.checkMessage}>Black Mated!!</h1>
+          <div className={classes.board}>{showCells}</div>
+        </div>
+      );
     }
 
     return (
-      <div className = {classes.check}>
-        <h1 className = {classes.checkMessage}>Black Checked!!</h1>
-        <div className = {classes.board} >{showCells}</div>
+      <div className={classes.check}>
+        <h1 className={classes.checkMessage}>Black Checked!!</h1>
+        <div className={classes.board}>{showCells}</div>
       </div>
     );
-  };
+  }
 
   if (board.isKingUnderAttack().whiteKingCheck) {
-
-    if(board.Mate(currentPlayer.color)){
+    if (board.Mate(currentPlayer.color)) {
       return (
-        <div className = {classes.check} >
-        <h1 className = {classes.checkMessage} >White Mated!!</h1>
-        <div className = {classes.board} >{showCells}</div>
-      </div>
-      )
+        <div className={classes.check}>
+          <h1 className={classes.checkMessage}>White Mated!!</h1>
+          <div className={classes.board}>{showCells}</div>
+        </div>
+      );
     }
 
-
     return (
-      <div className = {classes.check} >
-        <h1 className = {classes.checkMessage} >White Checked!!</h1>
-        <div className = {classes.board} >{showCells}</div>
+      <div className={classes.check}>
+        <h1 className={classes.checkMessage}>White Checked!!</h1>
+        <div className={classes.board}>{showCells}</div>
       </div>
     );
-  };
-
-
+  }
 
   return (
     <>
-      <div className = {classes.board} >{showCells}</div>
+      <div className={classes.board}>{showCells}</div>
     </>
   );
 };

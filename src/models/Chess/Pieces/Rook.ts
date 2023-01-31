@@ -1,5 +1,5 @@
 import { Colors } from "../../../helpers/Colors";
-import { Cell } from "../Cell/Cell";
+import { Cell } from "../Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-rook.png";
 import whiteLogo from "../../../assets/white-rook.png";
@@ -79,7 +79,7 @@ export class Rook extends Piece {
     return false;
   }
 
-  public movePiece(target: Cell): void {
+  public movePiece(target: Cell) {
     this.isFirstStep = false;
   }
 }

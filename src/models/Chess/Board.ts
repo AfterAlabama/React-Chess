@@ -1,13 +1,13 @@
-import { Colors } from "../../../helpers/Colors";
-import { PieceNames } from "../../../helpers/PieceNames";
-import { Cell } from "../Cell/Cell";
-import { Bishop } from "../Pieces/Bishop";
-import { King } from "../Pieces/King";
-import { Knight } from "../Pieces/Knight";
-import { Pawn } from "../Pieces/Pawn";
-import { Piece } from "../Pieces/Piece";
-import { Queen } from "../Pieces/Queen";
-import { Rook } from "../Pieces/Rook";
+import { Colors } from "../../helpers/Colors";
+import { PieceNames } from "../../helpers/PieceNames";
+import { Cell } from "./Cell";
+import { Bishop } from "./Pieces/Bishop";
+import { King } from "./Pieces/King";
+import { Knight } from "./Pieces/Knight";
+import { Pawn } from "./Pieces/Pawn";
+import { Piece } from "./Pieces/Piece";
+import { Queen } from "./Pieces/Queen";
+import { Rook } from "./Pieces/Rook";
 
 export class Board {
   cells: Cell[][] = [];
@@ -26,9 +26,12 @@ export class Board {
       }
       this.cells.push(row);
     }
-  };
+  }
 
-  private highlightCastling(selectedCell: Cell | null, currentColor: Colors | undefined) {
+  private highlightCastling(
+    selectedCell: Cell | null,
+    currentColor: Colors | undefined
+  ) {
     const { blackKing, whiteKing } = this.findKings();
 
     const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
@@ -38,24 +41,15 @@ export class Board {
 
     //left white castling
     if (
-      whiteKing.x === leftWhiteRook.x 
-      &&
-      !whiteKingCheck 
-      &&
-      whiteKing.piece?.isFirstStep 
-      &&
-      leftWhiteRook.piece?.isFirstStep 
-      &&
-      this.getCells(1, 7).isEmpty() 
-      &&
-      !this.isCellUnderAttack(this.getCells(1, 7), currentColor) 
-      &&
-      this.getCells(2, 7).isEmpty() 
-      &&
-      !this.isCellUnderAttack(this.getCells(2, 7), currentColor) 
-      &&
-      this.getCells(3, 7).isEmpty() 
-      &&
+      whiteKing.x === leftWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      leftWhiteRook.piece?.isFirstStep &&
+      this.getCells(1, 7).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(1, 7), currentColor) &&
+      this.getCells(2, 7).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(2, 7), currentColor) &&
+      this.getCells(3, 7).isEmpty() &&
       !this.isCellUnderAttack(this.getCells(3, 7), currentColor)
     ) {
       if (selectedCell === whiteKing) {
@@ -65,20 +59,13 @@ export class Board {
 
     //right white castling
     if (
-      whiteKing.x === rightWhiteRook.x 
-      &&
-      !whiteKingCheck 
-      &&
-      whiteKing.piece?.isFirstStep 
-      &&
-      rightWhiteRook.piece?.isFirstStep 
-      &&
-      this.getCells(6, 7).isEmpty() 
-      &&
-      !this.isCellUnderAttack(this.getCells(6, 7), currentColor)
-      &&
-      this.getCells(5, 7).isEmpty() 
-      &&
+      whiteKing.x === rightWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      rightWhiteRook.piece?.isFirstStep &&
+      this.getCells(6, 7).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(6, 7), currentColor) &&
+      this.getCells(5, 7).isEmpty() &&
       !this.isCellUnderAttack(this.getCells(5, 7), currentColor)
     ) {
       if (selectedCell === whiteKing) {
@@ -88,23 +75,15 @@ export class Board {
 
     //left black castling
     if (
-      blackKing.x === leftBlackRook.x 
-      &&
-      !blackKingCheck 
-      &&
-      blackKing.piece?.isFirstStep 
-      &&
-      leftBlackRook.piece?.isFirstStep 
-      &&
-      this.getCells(1, 0).isEmpty() 
-      &&
-      !this.isCellUnderAttack(this.getCells(1, 0), currentColor) 
-      &&
+      blackKing.x === leftBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      leftBlackRook.piece?.isFirstStep &&
+      this.getCells(1, 0).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(1, 0), currentColor) &&
       this.getCells(2, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(2, 0), currentColor) 
-      &&
-      this.getCells(3, 0).isEmpty()
-      &&
+      !this.isCellUnderAttack(this.getCells(2, 0), currentColor) &&
+      this.getCells(3, 0).isEmpty() &&
       !this.isCellUnderAttack(this.getCells(3, 0), currentColor)
     ) {
       if (selectedCell === blackKing) {
@@ -114,32 +93,22 @@ export class Board {
 
     //right black castling
     if (
-      blackKing.x === rightBlackRook.x 
-      &&
-      !blackKingCheck 
-      &&
-      blackKing.piece?.isFirstStep 
-      &&
-      rightBlackRook.piece?.isFirstStep 
-      &&
-      this.getCells(5, 0).isEmpty() 
-      &&
-      !this.isCellUnderAttack(this.getCells(5, 0), currentColor)
-      &&
-      this.getCells(6, 0).isEmpty()
-      &&
+      blackKing.x === rightBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      rightBlackRook.piece?.isFirstStep &&
+      this.getCells(5, 0).isEmpty() &&
+      !this.isCellUnderAttack(this.getCells(5, 0), currentColor) &&
+      this.getCells(6, 0).isEmpty() &&
       !this.isCellUnderAttack(this.getCells(6, 0), currentColor)
     ) {
       if (selectedCell === blackKing) {
         this.getCells(6, 0).available = true;
       }
     }
-  };
+  }
 
-  public highlightCells(
-    selectedCell: Cell | null,
-    currentColor: Colors
-  ) {
+  public highlightCells(selectedCell: Cell | null, currentColor: Colors) {
     const { blackKing, whiteKing } = this.findKings();
 
     const { blackKingCheck, whiteKingCheck } = this.isKingUnderAttack();
@@ -151,11 +120,9 @@ export class Board {
 
         this.highlightCastling(selectedCell, currentColor);
 
-        if(selectedCell && selectedCell.doesPieceBlockTheCheck(target)){
-          target.available = false
-        } else
-
-        if (
+        if (selectedCell && selectedCell.doesPieceBlockTheCheck(target)) {
+          target.available = false;
+        } else if (
           selectedCell &&
           selectedCell.piece &&
           selectedCell.piece.name !== PieceNames.KING &&
@@ -166,17 +133,15 @@ export class Board {
           !selectedCell.doesCellBlockTheCheck(target)
         ) {
           target.available = false;
-        } else
-         if (
+        } else if (
           selectedCell?.piece?.name === PieceNames.KING &&
           this.isCellUnderAttack(target, currentColor)
         ) {
           target.available = false;
-        } else 
-          target.available = !!selectedCell?.piece?.canMove(target);
+        } else target.available = !!selectedCell?.piece?.canMove(target);
       }
     }
-  };
+  }
 
   public getCopyBoard() {
     const newBoard = new Board();
@@ -184,9 +149,8 @@ export class Board {
     newBoard.lostBlackPieces = this.lostBlackPieces;
     newBoard.lostWhitePieces = this.lostWhitePieces;
     return newBoard;
-  };
+  }
 
-  //looks for kings
   public findKings() {
     let blackKing = new Cell(0, 0, Colors.BLACK, this, null);
 
@@ -197,7 +161,7 @@ export class Board {
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
         if (
-          target.piece &&        
+          target.piece &&
           target.piece.name === PieceNames.KING &&
           target.piece.color === Colors.BLACK
         ) {
@@ -213,7 +177,7 @@ export class Board {
       }
     }
     return { whiteKing, blackKing };
-  };
+  }
 
   protected findRooks() {
     let leftBlackRook = new Cell(0, 0, Colors.BLACK, this, null);
@@ -266,7 +230,7 @@ export class Board {
       }
     }
     return { leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook };
-  };
+  }
 
   public isKingUnderAttack() {
     let { blackKing, whiteKing } = this.findKings();
@@ -337,7 +301,7 @@ export class Board {
       }
     }
     return { blackKingCheck, whiteKingCheck, blackAttacker, whiteAttacker };
-  };
+  }
 
   public castling() {
     const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
@@ -380,7 +344,7 @@ export class Board {
       this.getCells(5, 0).setPiece(rightBlackRook.piece!);
       rightBlackRook.piece = null;
     }
-  };
+  }
 
   public isCellUnderAttack(target: Cell, currentPlayer: Colors | undefined) {
     let count: number = 0;
@@ -394,7 +358,7 @@ export class Board {
           randomCell.piece.color !== currentPlayer &&
           randomCell.piece.name !== PieceNames.PAWN &&
           (randomCell.piece.canMove(target) ||
-            randomCell.piece.canProtect(target))
+            randomCell.piece.canProtect!(target))
         ) {
           count += 1;
         } else if (
@@ -413,16 +377,15 @@ export class Board {
     } else {
       return true;
     }
-  };
+  }
 
-
-  public Mate( currentColor: Colors){
+  public Mate(currentColor: Colors) {
     let count = 0;
-    const {blackKing, whiteKing} = this.findKings();
+    const { blackKing, whiteKing } = this.findKings();
 
-    const {whiteKingCheck, blackKingCheck} = this.isKingUnderAttack();
+    const { whiteKingCheck, blackKingCheck } = this.isKingUnderAttack();
 
-    if(whiteKingCheck || blackKingCheck){
+    if (whiteKingCheck || blackKingCheck) {
       for (let i = 0; i < this.cells.length; i++) {
         const row = this.cells[i];
         for (let j = 0; j < row.length; j++) {
@@ -433,33 +396,28 @@ export class Board {
             for (let z = 0; z < row2.length; z++) {
               const target2 = row2[z];
 
-              if(
-                ((
-                whiteKing.piece!.canMove(target) && 
-                !this.isCellUnderAttack(target, currentColor)
-                )
-                ||
-                (target2.piece?.color === whiteKing.piece!.color && target2.piece?.canMove(target) && 
-                target2.doesCellBlockTheCheck(target)))
-                ||
-                ((
-                  blackKing.piece!.canMove(target) && !this.isCellUnderAttack(target, currentColor)
-                  )
-                  ||
-                  (target2.piece?.color === blackKing.piece!.color && target2.piece?.canMove(target) && 
-                  target2.doesCellBlockTheCheck(target)))){
-                count += 1
+              if (
+                (whiteKing.piece!.canMove(target) &&
+                  !this.isCellUnderAttack(target, currentColor)) ||
+                (target2.piece?.color === whiteKing.piece!.color &&
+                  target2.piece?.canMove(target) &&
+                  target2.doesCellBlockTheCheck(target)) ||
+                (blackKing.piece!.canMove(target) &&
+                  !this.isCellUnderAttack(target, currentColor)) ||
+                (target2.piece?.color === blackKing.piece!.color &&
+                  target2.piece?.canMove(target) &&
+                  target2.doesCellBlockTheCheck(target))
+              ) {
+                count += 1;
               }
-
-              
             }
-          }        
-        }     
+          }
+        }
       }
-      if(count > 0){
-        return false
-      } else{
-        return true
+      if (count > 0) {
+        return false;
+      } else {
+        return true;
       }
     }
   }
@@ -467,45 +425,45 @@ export class Board {
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));
     new King(Colors.WHITE, this.getCells(4, 7));
-  };
+  }
 
   private addQueens() {
     new Queen(Colors.BLACK, this.getCells(3, 0));
     new Queen(Colors.WHITE, this.getCells(3, 7));
-  };
+  }
 
   private addRooks() {
     new Rook(Colors.BLACK, this.getCells(0, 0));
     new Rook(Colors.BLACK, this.getCells(7, 0));
     new Rook(Colors.WHITE, this.getCells(0, 7));
     new Rook(Colors.WHITE, this.getCells(7, 7));
-  };
+  }
 
   private addBishops() {
     new Bishop(Colors.BLACK, this.getCells(2, 0));
     new Bishop(Colors.BLACK, this.getCells(5, 0));
     new Bishop(Colors.WHITE, this.getCells(2, 7));
     new Bishop(Colors.WHITE, this.getCells(5, 7));
-  };
+  }
 
   private addKnights() {
     new Knight(Colors.BLACK, this.getCells(1, 0));
     new Knight(Colors.BLACK, this.getCells(6, 0));
     new Knight(Colors.WHITE, this.getCells(1, 7));
     new Knight(Colors.WHITE, this.getCells(6, 7));
-  };
+  }
 
   private addPawns() {
     for (let i = 0; i < 8; i++) {
       new Pawn(Colors.BLACK, this.getCells(i, 1));
       new Pawn(Colors.WHITE, this.getCells(i, 6));
     }
-  };
+  }
 
   // returns the coordinates of a cell
   public getCells(y: number, x: number) {
     return this.cells[x][y];
-  };
+  }
 
   public addPieces() {
     this.addKings();

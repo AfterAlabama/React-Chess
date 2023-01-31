@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Colors } from "../../helpers/Colors";
-import { Board } from "../../models/Chess/Board/Board";
-import { Cell } from "../../models/Chess/Cell/Cell";
-import { Player } from "../../models/Chess/Player/Player";
+import { Board } from "../../models/Chess/Board";
+import { Cell } from "../../models/Chess/Cell";
+import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
-import classes from './ChessBoard.module.scss'
+import classes from "./ChessBoard.module.scss";
 
 const ChessBoard = () => {
   const [board, setBoard] = useState(new Board());
@@ -41,35 +41,51 @@ const ChessBoard = () => {
     );
   }, [currentPlayer]);
 
+  if (board.Mate(currentPlayer.color)) {
+    return (
+      <div className={classes.chess}>
+        <div className={classes.mateMessage}>
+          Ready for another Game? Press restart
+        </div>
+        <button className={classes.restartBtn} onClick={restart}>
+          Restart
+        </button>
+        <div className={classes.flex}>
+          <BoardComponent
+            board={board}
+            setBoard={setBoard}
+            currentPlayer={currentPlayer}
+            swapPlayers={swapPlayers}
+            selectedCell={selectedCell}
+            setSelectedCell={setSelectedCell}
+          />
+          <div className={classes.columns}>
+            <LostPieces title="Black Pieces" pieces={board.lostBlackPieces} />
+            <LostPieces title="White Pieces" pieces={board.lostWhitePieces} />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className = {classes.chess}>
-      <div className = {classes.turn}>
-        {currentPlayer.color} to move
-      </div>
-      <button 
-        className = {classes.restartBtn} 
-        onClick = {restart}
-        >Restart
+    <div className={classes.chess}>
+      <div className={classes.turn}>{currentPlayer.color} to move</div>
+      <button className={classes.restartBtn} onClick={restart}>
+        Restart
       </button>
-      <div className = {classes.flex}>
+      <div className={classes.flex}>
         <BoardComponent
-          board = {board}
-          setBoard = {setBoard}
-          currentPlayer = {currentPlayer}
-          swapPlayers = {swapPlayers}
-          selectedCell = {selectedCell}
-          setSelectedCell = {setSelectedCell}
+          board={board}
+          setBoard={setBoard}
+          currentPlayer={currentPlayer}
+          swapPlayers={swapPlayers}
+          selectedCell={selectedCell}
+          setSelectedCell={setSelectedCell}
         />
         <div className={classes.columns}>
-          <LostPieces 
-            title = "Black Pieces" 
-            pieces = {board.lostBlackPieces} 
-          />
-          <LostPieces 
-            title = "White Pieces" 
-            pieces = {board.lostWhitePieces} 
-          />
+          <LostPieces title="Black Pieces" pieces={board.lostBlackPieces} />
+          <LostPieces title="White Pieces" pieces={board.lostWhitePieces} />
         </div>
       </div>
     </div>

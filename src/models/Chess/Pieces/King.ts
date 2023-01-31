@@ -1,5 +1,5 @@
 import { Colors } from "../../../helpers/Colors";
-import { Cell } from "../Cell/Cell";
+import { Cell } from "../Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-king.png";
 import whiteLogo from "../../../assets/white-king.png";
