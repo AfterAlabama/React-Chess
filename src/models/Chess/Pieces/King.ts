@@ -10,12 +10,12 @@ export class King extends Piece {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = PieceNames.KING;
-  }
+  };
 
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    }
+    };
 
     if (this.isFirstStep && target.x === this.cell.x && target.available) {
       if (
@@ -23,7 +23,7 @@ export class King extends Piece {
         (target.y === this.cell.y + 2 || target.y === this.cell.y - 2)
       ) {
         return true;
-      }
+      };
 
       if (
         this.color === Colors.BLACK &&
@@ -31,7 +31,7 @@ export class King extends Piece {
       ) {
         return true;
       }
-    }
+    };
 
     if (
       (target.x === this.cell.x + 1 ||
@@ -42,10 +42,10 @@ export class King extends Piece {
         target.y === this.cell.y)
     ) {
       return true;
-    }
+    };
 
     return false;
-  }
+  };
 
   public canProtect(target: Cell) {
     if (
@@ -61,7 +61,7 @@ export class King extends Piece {
       return true;
     }
     return false;
-  }
+  };
 
   public movePiece(target: Cell): void {
     this.isFirstStep = false;

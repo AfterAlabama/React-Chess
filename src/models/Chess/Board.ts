@@ -1,6 +1,10 @@
+import { checkForColor } from "../../components/Chess/logic/checkForColor";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
+import { FindPiece } from "./boardMethods/FindPiece";
+import { Highlight } from "./boardMethods/Highlight";
 import { Cell } from "./Cell";
+import { BlockCheck } from "./cellMethods/BlockCheck";
 import { Bishop } from "./Pieces/Bishop";
 import { King } from "./Pieces/King";
 import { Knight } from "./Pieces/Knight";
@@ -23,125 +27,34 @@ export class Board {
         } else {
           row.push(new Cell(i, j, Colors.WHITE, this, null));
         }
-      }
+      };
       this.cells.push(row);
     }
-  }
+  };
 
-  private highlightCastling(
-    selectedCell: Cell | null,
-    currentColor: Colors | undefined
-  ) {
-    const { blackKing, whiteKing } = this.findKings();
-
-    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
-      this.findRooks();
-
-    const { blackKingCheck, whiteKingCheck } = this.isKingUnderAttack();
-
-    //left white castling
-    if (
-      whiteKing.x === leftWhiteRook.x &&
-      !whiteKingCheck &&
-      whiteKing.piece?.isFirstStep &&
-      leftWhiteRook.piece?.isFirstStep &&
-      this.getCells(1, 7).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(1, 7), currentColor) &&
-      this.getCells(2, 7).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(2, 7), currentColor) &&
-      this.getCells(3, 7).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(3, 7), currentColor)
-    ) {
-      if (selectedCell === whiteKing) {
-        this.getCells(2, 7).available = true;
-      }
-    }
-
-    //right white castling
-    if (
-      whiteKing.x === rightWhiteRook.x &&
-      !whiteKingCheck &&
-      whiteKing.piece?.isFirstStep &&
-      rightWhiteRook.piece?.isFirstStep &&
-      this.getCells(6, 7).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(6, 7), currentColor) &&
-      this.getCells(5, 7).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(5, 7), currentColor)
-    ) {
-      if (selectedCell === whiteKing) {
-        this.getCells(6, 7).available = true;
-      }
-    }
-
-    //left black castling
-    if (
-      blackKing.x === leftBlackRook.x &&
-      !blackKingCheck &&
-      blackKing.piece?.isFirstStep &&
-      leftBlackRook.piece?.isFirstStep &&
-      this.getCells(1, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(1, 0), currentColor) &&
-      this.getCells(2, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(2, 0), currentColor) &&
-      this.getCells(3, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(3, 0), currentColor)
-    ) {
-      if (selectedCell === blackKing) {
-        this.getCells(2, 0).available = true;
-      }
-    }
-
-    //right black castling
-    if (
-      blackKing.x === rightBlackRook.x &&
-      !blackKingCheck &&
-      blackKing.piece?.isFirstStep &&
-      rightBlackRook.piece?.isFirstStep &&
-      this.getCells(5, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(5, 0), currentColor) &&
-      this.getCells(6, 0).isEmpty() &&
-      !this.isCellUnderAttack(this.getCells(6, 0), currentColor)
-    ) {
-      if (selectedCell === blackKing) {
-        this.getCells(6, 0).available = true;
-      }
-    }
-  }
 
   public highlightCells(selectedCell: Cell | null, currentColor: Colors) {
-    const { blackKing, whiteKing } = this.findKings();
-
-    const { blackKingCheck, whiteKingCheck } = this.isKingUnderAttack();
 
     for (let i = 0; i < this.cells.length; i++) {
       const row: Cell[] = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
 
-        this.highlightCastling(selectedCell, currentColor);
+        Highlight.highlightCastling(selectedCell, currentColor, this);
 
-        if (selectedCell && selectedCell.doesPieceBlockTheCheck(target)) {
-          target.available = false;
-        } else if (
-          selectedCell &&
-          selectedCell.piece &&
-          selectedCell.piece.name !== PieceNames.KING &&
-          ((selectedCell.piece.color === whiteKing.piece?.color &&
-            whiteKingCheck) ||
-            (selectedCell.piece.color === blackKing.piece?.color &&
-              blackKingCheck)) &&
-          !selectedCell.doesCellBlockTheCheck(target)
-        ) {
-          target.available = false;
-        } else if (
-          selectedCell?.piece?.name === PieceNames.KING &&
-          this.isCellUnderAttack(target, currentColor)
-        ) {
-          target.available = false;
-        } else target.available = !!selectedCell?.piece?.canMove(target);
+        if(!Highlight.pieceStandingInCheck(selectedCell, target, this)){
+
+          if(!Highlight.pieceMovingInCheck(selectedCell, this, target)){
+
+            if(!Highlight.kingEscaping(selectedCell, this, target, currentColor)){
+
+              target.available = !!selectedCell?.piece?.canMove(target);
+            }
+          }        
+        }   
       }
     }
-  }
+  };
 
   public getCopyBoard() {
     const newBoard = new Board();
@@ -149,138 +62,25 @@ export class Board {
     newBoard.lostBlackPieces = this.lostBlackPieces;
     newBoard.lostWhitePieces = this.lostWhitePieces;
     return newBoard;
-  }
+  };
 
-  public findKings() {
-    let blackKing = new Cell(0, 0, Colors.BLACK, this, null);
 
-    let whiteKing = new Cell(0, 0, Colors.WHITE, this, null);
-
-    for (let i = 0; i < this.cells.length; i++) {
-      const row = this.cells[i];
-      for (let j = 0; j < row.length; j++) {
-        const target = row[j];
-        if (
-          target.piece &&
-          target.piece.name === PieceNames.KING &&
-          target.piece.color === Colors.BLACK
-        ) {
-          blackKing = target;
-        }
-        if (
-          target.piece &&
-          target.piece.name === PieceNames.KING &&
-          target.piece.color === Colors.WHITE
-        ) {
-          whiteKing = target;
-        }
-      }
-    }
-    return { whiteKing, blackKing };
-  }
-
-  protected findRooks() {
-    let leftBlackRook = new Cell(0, 0, Colors.BLACK, this, null);
-
-    let rightBlackRook = new Cell(0, 7, Colors.WHITE, this, null);
-
-    let leftWhiteRook = new Cell(7, 0, Colors.BLACK, this, null);
-
-    let rightWhiteRook = new Cell(7, 7, Colors.WHITE, this, null);
-
-    for (let i = 0; i < this.cells.length; i++) {
-      const row = this.cells[i];
-      for (let j = 0; j < row.length; j++) {
-        const target = row[j];
-        if (
-          target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.BLACK &&
-          target.x === 0 &&
-          target.y === 0
-        ) {
-          leftBlackRook = target;
-        }
-
-        if (
-          target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.BLACK &&
-          target.y === 7 &&
-          target.x === 0
-        ) {
-          rightBlackRook = target;
-        }
-
-        if (
-          target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.WHITE &&
-          target.y === 0 &&
-          target.x === 7
-        ) {
-          leftWhiteRook = target;
-        }
-
-        if (
-          target.piece?.name === PieceNames.ROOK &&
-          target.piece.color === Colors.WHITE &&
-          target.y === 7 &&
-          target.x === 7
-        ) {
-          rightWhiteRook = target;
-        }
-      }
-    }
-    return { leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook };
-  }
 
   public isKingUnderAttack() {
-    let { blackKing, whiteKing } = this.findKings();
+    let { blackKing, whiteKing } = FindPiece.findKings(this);
 
     let whiteKingCheck: boolean = false;
     let blackKingCheck: boolean = false;
     let blackAttacker;
     let whiteAttacker;
 
-    //Black King cell returns original color after check
     if (!blackKingCheck) {
-      for (let i = 0; i < this.cells.length; i++) {
-        const row = this.cells[i];
-        for (let j = 0; j < row.length; j++) {
-          const target = row[j];
-          if (
-            (target.x === blackKing.x + 1 && target.y === blackKing.y) ||
-            (target.x === blackKing.x && target.y === blackKing.y + 1)
-          ) {
-            if (target.color === Colors.BLACK) {
-              blackKing.color = Colors.WHITE;
-            }
-            if (target.color === Colors.WHITE) {
-              blackKing.color = Colors.BLACK;
-            }
-          }
-        }
-      }
-    }
+      checkForColor(this, blackKing)
+    };
 
-    //white king cell return original color
     if (!whiteKingCheck) {
-      for (let i = 0; i < this.cells.length; i++) {
-        const row = this.cells[i];
-        for (let j = 0; j < row.length; j++) {
-          const target = row[j];
-          if (
-            (target.x === whiteKing.x - 1 && target.y === whiteKing.y) ||
-            (target.x === whiteKing.x && target.y === whiteKing.y - 1)
-          ) {
-            if (target.color === Colors.BLACK) {
-              whiteKing.color = Colors.WHITE;
-            }
-            if (target.color === Colors.WHITE) {
-              whiteKing.color = Colors.BLACK;
-            }
-          }
-        }
-      }
-    }
+      checkForColor(this, whiteKing)
+    };
 
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
@@ -291,7 +91,7 @@ export class Board {
           blackKingCheck = true;
           blackAttacker = target;
           blackKing.color = Colors.UNDERATTACK;
-        }
+        };
 
         if (target.piece && target.piece.attacksKing(whiteKing)) {
           whiteKingCheck = true;
@@ -301,13 +101,13 @@ export class Board {
       }
     }
     return { blackKingCheck, whiteKingCheck, blackAttacker, whiteAttacker };
-  }
+  };
+
 
   public castling() {
-    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
-      this.findRooks();
+    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } = FindPiece.findRooks(this);
 
-    const { blackKing, whiteKing } = this.findKings();
+    const { blackKing, whiteKing } = FindPiece.findKings(this);
 
     if (
       whiteKing.x === 7 &&
@@ -316,7 +116,7 @@ export class Board {
     ) {
       this.getCells(3, 7).setPiece(leftWhiteRook.piece!);
       leftWhiteRook.piece = null;
-    }
+    };
 
     if (
       whiteKing.x === 7 &&
@@ -325,7 +125,7 @@ export class Board {
     ) {
       this.getCells(5, 7).setPiece(rightWhiteRook.piece!);
       rightWhiteRook.piece = null;
-    }
+    };
 
     if (
       blackKing.x === 0 &&
@@ -334,7 +134,7 @@ export class Board {
     ) {
       this.getCells(3, 0).setPiece(leftBlackRook.piece!);
       leftBlackRook.piece = null;
-    }
+    };
 
     if (
       blackKing.x === 0 &&
@@ -344,7 +144,7 @@ export class Board {
       this.getCells(5, 0).setPiece(rightBlackRook.piece!);
       rightBlackRook.piece = null;
     }
-  }
+  };
 
   public isCellUnderAttack(target: Cell, currentPlayer: Colors | undefined) {
     let count: number = 0;
@@ -370,18 +170,18 @@ export class Board {
           count += 1;
         }
       }
-    }
+    };
 
     if (count === 0) {
       return false;
     } else {
       return true;
     }
-  }
+  };
 
   public Mate(currentColor: Colors) {
     let count = 0;
-    const { blackKing, whiteKing } = this.findKings();
+    const { blackKing, whiteKing } = FindPiece.findKings(this);
 
     const { whiteKingCheck, blackKingCheck } = this.isKingUnderAttack();
 
@@ -397,73 +197,85 @@ export class Board {
               const target2 = row2[z];
 
               if (
-                (whiteKing.piece!.canMove(target) &&
-                  !this.isCellUnderAttack(target, currentColor)) ||
-                (target2.piece?.color === whiteKing.piece!.color &&
-                  target2.piece?.canMove(target) &&
-                  target2.doesCellBlockTheCheck(target)) ||
-                (blackKing.piece!.canMove(target) &&
-                  !this.isCellUnderAttack(target, currentColor)) ||
-                (target2.piece?.color === blackKing.piece!.color &&
-                  target2.piece?.canMove(target) &&
-                  target2.doesCellBlockTheCheck(target))
+                (whiteKing.piece!.canMove(target) 
+                &&
+                !this.isCellUnderAttack(target, currentColor)
+                ) 
+                ||
+                (target2.piece?.color === whiteKing.piece!.color 
+                &&
+                target2.piece?.canMove(target) 
+                &&
+                BlockCheck.doesCellBlockTheCheck(target, this, target2)
+                ) 
+                ||
+                (blackKing.piece!.canMove(target) 
+                &&
+                !this.isCellUnderAttack(target, currentColor)
+                ) 
+                ||
+                (target2.piece?.color === blackKing.piece!.color 
+                &&
+                target2.piece?.canMove(target) 
+                &&
+                BlockCheck.doesCellBlockTheCheck(target, this, target2)
+                )
               ) {
                 count += 1;
               }
             }
           }
         }
-      }
+      };
       if (count > 0) {
         return false;
       } else {
         return true;
       }
     }
-  }
+  };
 
   private addKings() {
     new King(Colors.BLACK, this.getCells(4, 0));
     new King(Colors.WHITE, this.getCells(4, 7));
-  }
+  };
 
   private addQueens() {
     new Queen(Colors.BLACK, this.getCells(3, 0));
     new Queen(Colors.WHITE, this.getCells(3, 7));
-  }
+  };
 
   private addRooks() {
     new Rook(Colors.BLACK, this.getCells(0, 0));
     new Rook(Colors.BLACK, this.getCells(7, 0));
     new Rook(Colors.WHITE, this.getCells(0, 7));
     new Rook(Colors.WHITE, this.getCells(7, 7));
-  }
+  };
 
   private addBishops() {
     new Bishop(Colors.BLACK, this.getCells(2, 0));
     new Bishop(Colors.BLACK, this.getCells(5, 0));
     new Bishop(Colors.WHITE, this.getCells(2, 7));
     new Bishop(Colors.WHITE, this.getCells(5, 7));
-  }
+  };
 
   private addKnights() {
     new Knight(Colors.BLACK, this.getCells(1, 0));
     new Knight(Colors.BLACK, this.getCells(6, 0));
     new Knight(Colors.WHITE, this.getCells(1, 7));
     new Knight(Colors.WHITE, this.getCells(6, 7));
-  }
+  };
 
   private addPawns() {
     for (let i = 0; i < 8; i++) {
       new Pawn(Colors.BLACK, this.getCells(i, 1));
       new Pawn(Colors.WHITE, this.getCells(i, 6));
     }
-  }
-
-  // returns the coordinates of a cell
+  };
+  
   public getCells(y: number, x: number) {
     return this.cells[x][y];
-  }
+  };
 
   public addPieces() {
     this.addKings();

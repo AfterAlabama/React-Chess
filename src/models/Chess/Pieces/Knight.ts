@@ -10,12 +10,12 @@ export class Knight extends Piece {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = PieceNames.KNIGHT;
-  }
+  };
 
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    }
+    };
 
     const dy = Math.abs(target.y - this.cell.y);
 
@@ -23,10 +23,10 @@ export class Knight extends Piece {
 
     if ((dx === 1 && dy === 2) || (dx === 2 && dy === 1)) {
       return true;
-    }
+    };
 
     return false;
-  }
+  };
 
   public canProtect(target: Cell) {
     const dy = Math.abs(target.y - this.cell.y);
@@ -35,11 +35,12 @@ export class Knight extends Piece {
 
     if (
       target.piece &&
-      target.piece.color === this.color &&
+      target.piece.color === this.color 
+      &&
       ((dx === 1 && dy === 2) || (dx === 2 && dy === 1))
     ) {
       return true;
-    }
+    };
 
     return false;
   }

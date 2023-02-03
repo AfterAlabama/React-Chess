@@ -1,4 +1,3 @@
-import React from 'react'
 import CheckersBoardComponent from './CheckersBoardComponent';
 
 const CheckersBoard = () => {

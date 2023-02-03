@@ -29,3 +29,8 @@ export interface lostprops {
   title: string;
   pieces: Piece[];
 }
+
+export interface lostGraphProps {
+  pieces: Piece[];
+  classes: any
+}

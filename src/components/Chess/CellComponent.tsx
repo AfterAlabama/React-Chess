@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { CellProps } from "../../helpers/Props";
 import { Cell } from "../../models/Chess/Cell";
 import classes from "./CellComponent.module.scss";
@@ -11,6 +11,7 @@ const CellComponent: FC<CellProps> = ({
   selectedCell,
   currentPlayer,
 }) => {
+
   const cellStyle = [
     classes.cell,
     cell.color,
@@ -18,7 +19,11 @@ const CellComponent: FC<CellProps> = ({
   ].join(" ");
 
   const showPieces = cell.piece?.logo ? (
-    <img draggable={false} alt="" src={cell.piece.logo}></img>
+    <img 
+      draggable = {false} 
+      alt = "" 
+      src = {cell.piece.logo}
+    ></img>
   ) : null;
 
   const showPiecesDraggable = cell.piece?.logo ? (
@@ -45,21 +50,23 @@ const CellComponent: FC<CellProps> = ({
 
   function dragStartHandler(cell: Cell) {
     setSelectedCell(cell);
-  }
+  };
 
   function dragOverHandler(e: any) {
     e.preventDefault();
-  }
+  };
 
   function dropHandler(e: any, cell: Cell) {
     e.preventDefault();
     if (selectedCell && selectedCell.piece && cell.available) {
       click(cell);
     }
-  }
+  };
 
-  if (cell.piece && cell.piece.color === currentPlayer!.color) {
-    return (
+  return (
+    <>
+      {cell.piece && cell.piece.color === currentPlayer!.color 
+      ?
       <div
         className={cellStyle}
         onClick={() => click(cell)}
@@ -68,9 +75,7 @@ const CellComponent: FC<CellProps> = ({
         {showPiecesDraggable}
         {availableDots}
       </div>
-    );
-  } else
-    return (
+      :
       <div
         onDragStart={() => dragStartHandler(cell)}
         onDragOver={(e) => dragOverHandler(e)}
@@ -81,8 +86,10 @@ const CellComponent: FC<CellProps> = ({
       >
         {showPieces}
         {availableDots}
-      </div>
-    );
+      </div> 
+      }
+    </>
+  )
 };
 
 export default CellComponent;

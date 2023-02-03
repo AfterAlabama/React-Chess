@@ -6,8 +6,8 @@ import { Cell } from "../Cell";
 export interface Piece {
   canMove(target: Cell): boolean;
   canProtect?(target: Cell): boolean;
-  movePiece?(target: Cell): void;
-}
+  movePiece(target: Cell): void;
+};
 
 export abstract class Piece {
   color: Colors;
@@ -22,7 +22,7 @@ export abstract class Piece {
     this.name = PieceNames.PIECE;
     this.cell = cell;
     this.cell.piece = this;
-  }
+  };
 
   public attacksKing(target: Cell) {
     if (
@@ -31,15 +31,19 @@ export abstract class Piece {
       this.canMove(target)
     ) {
       return true;
-    }
+    };
     return false;
-  }
+  };
 
   public canMove(target: Cell) {
     if (this.color === target.piece?.color) {
       return false;
-    }
+    };
 
     return true;
+  };
+
+  public movePiece(target: Cell){
+
   }
 }

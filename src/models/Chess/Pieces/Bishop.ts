@@ -10,19 +10,19 @@ export class Bishop extends Piece {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = PieceNames.BISHOP;
-  }
+  };
 
   public canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
-    }
+    };
 
     if (this.cell.isEmptyDiagonal(target)) {
       return true;
-    }
+    };
 
     return false;
-  }
+  };
 
   public canProtect(target: Cell): boolean {
     let count: number = 1;
@@ -32,7 +32,7 @@ export class Bishop extends Piece {
 
     if (absY !== absX) {
       return false;
-    }
+    };
 
     const dy = this.cell.y < target.y ? 1 : -1;
     const dx = this.cell.x < target.x ? 1 : -1;
@@ -41,23 +41,25 @@ export class Bishop extends Piece {
       if (
         this.cell.board
           .getCells(this.cell.y + dy * i, this.cell.x + dx * i)
-          .isEmpty() ||
-        (!this.cell.board
+          .isEmpty() 
+          ||
+          (!this.cell.board
           .getCells(this.cell.y + dy * i, this.cell.x + dx * i)
-          .isEmpty() &&
-          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i)
-            .piece?.name === PieceNames.KING &&
-          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i)
-            .piece?.color !== this.color)
+          .isEmpty() 
+          &&
+          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).piece?.name === PieceNames.KING 
+          &&
+          this.cell.board.getCells(this.cell.y + dy * i, this.cell.x + dx * i).piece?.color !== this.color)
       ) {
         count += 1;
       }
-    }
+    };
 
     if (count === absY) {
       return true;
-    }
+    };
 
     return false;
-  }
+  };
+  
 }
