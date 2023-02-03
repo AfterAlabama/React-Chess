@@ -66,10 +66,14 @@ const ChessBoard = () => {
           <LostPieces 
             title = "Black Pieces" 
             pieces = {board.lostBlackPieces} 
+            board = {board}
+            currentPlayer = {currentPlayer}
           />
           <LostPieces   
             title = "White Pieces" 
             pieces = {board.lostWhitePieces} 
+            board = {board}
+            currentPlayer = {currentPlayer}
           />
         </div>
       </div>

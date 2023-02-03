@@ -28,6 +28,8 @@ export interface HeaderProps {
 export interface lostprops {
   title: string;
   pieces: Piece[];
+  board: Board;
+  currentPlayer: Player
 }
 
 export interface lostGraphProps {

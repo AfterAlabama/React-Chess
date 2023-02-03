@@ -16,6 +16,22 @@
       margin-bottom: 10px;
     }
   }
+
+  .lostChecked {
+    font-weight: bold;
+    height: calc((64px * 8) + 120px);
+    padding: 30px;
+    margin-left: 50px;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: start;
+  
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
   
   .pieceImg {
     width: 20px;
@@ -28,6 +44,24 @@
   .lost {
     font-weight: bold;
     height: calc((46px * 8) + 40px);
+    width: 17vw;
+    padding: 20px;
+    margin: 0 10px 10px 15px;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: start;
+  
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .lostChecked {
+    font-weight: bold;
+    height: calc((46px * 8) + 80px);
     width: 17vw;
     padding: 20px;
     margin: 0 10px 10px 15px;
@@ -73,6 +107,24 @@
     }
   }
 
+  .lostChecked {
+    font-weight: bold;
+    height: 40vh;
+    width: 150px;
+    padding: 20px;
+    margin: 0 10px 10px 15px;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: start;
+  
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+
   .pieceText {
     font-size: 12px;
   }
@@ -86,6 +138,24 @@
 //smartphones 
 @media only screen and (min-width: 325px) and (max-width: 500px){
   .lost {
+    font-weight: bold;
+    height: 40vh;
+    width: 30vw;
+    padding: 20px;
+    margin: 0 10px 10px 15px;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: start;
+  
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .lostChecked {
     font-weight: bold;
     height: 40vh;
     width: 30vw;
