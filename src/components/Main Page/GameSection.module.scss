@@ -9,6 +9,12 @@
   transform: scale(1.1)
 }
 
+.sectionContent {
+  h1 {
+    cursor: default
+  }
+}
+
 
 //Wide Screen
 @media only screen and (min-width: 1201px){

@@ -1,13 +1,16 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { navProps } from "../../helpers/Props";
 import { RouteNames } from "../../helpers/RouteNames";
 import classes from './NavBar.module.scss';
 
-const NavBar = () => {
+
+
+const NavBar = ({setVisible}: navProps) => {
   return (
     <nav className = {classes.nav}>
       <div 
         className = {classes.logo}
+        onClick = {() => setVisible(true)}
         >
         <span className = {classes.coral}>Chess</span>zardo
       </div>

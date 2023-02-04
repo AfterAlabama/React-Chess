@@ -36,3 +36,17 @@ export interface lostGraphProps {
   pieces: Piece[];
   classes: any
 }
+
+export interface modalProps {
+  visible: boolean;
+  setVisible: (el: boolean) => void;
+  children: any
+}
+
+export interface navProps {
+  setVisible: (el: boolean) => void
+}
+
+export interface modalContentProps {
+  setVisible: (el: boolean) => void
+}

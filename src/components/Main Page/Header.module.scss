@@ -1,8 +1,13 @@
 @import '../../helpers/utilities';
 
-html {
-  visibility: hidden;
-  opacity: 0
+.headerContent {
+  h1 {
+    cursor:default
+  }
+
+  p {
+    cursor: default
+  }
 }
 
 //wide Screen
@@ -49,7 +54,7 @@ html {
       @include overlay-shared;
   
       h1 {
-        font-size: 60px
+        font-size: 60px;
       }
   
       p {
@@ -121,11 +126,4 @@ html {
   .btn {
     @include btn-shared; 
   }
-}
-
-
-
-html {
-  visibility: visible;
-  opacity: 1
 }
