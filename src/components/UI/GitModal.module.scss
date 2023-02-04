@@ -1,6 +1,7 @@
 @import '../../helpers/utilities';
 
 
+
 .modal {
   position: fixed;
   top: 0;
@@ -21,6 +22,7 @@
   color: black;
   display: flex;
   flex-direction: column;
+  cursor: default;
 
   a {
     @include btn-shared;
@@ -30,13 +32,6 @@
     text-decoration: none;
     display: flex;
     justify-content: center
-  }
-
-  button {
-    @include btn-shared;
-    background: rgba(168, 161, 161, 0.4);
-    margin-top: 2rem;
-    color: black;
   }
 }
 

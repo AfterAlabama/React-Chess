@@ -3,7 +3,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family:Arial, Helvetica, sans-serif
+  font-family:Arial, Helvetica, sans-serif; 
+  ::selection {
+    background-color: transparent;
+  };
 }
 
 .black {
@@ -13,8 +16,6 @@
 .white {
   background-color: burlywood;
 }
-
-
 
 .underAttack {
   background: radial-gradient(red, burlywood);
