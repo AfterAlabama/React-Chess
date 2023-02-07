@@ -74,13 +74,6 @@ export class Board {
     let blackAttacker;
     let whiteAttacker;
 
-    if (!blackKingCheck) {
-      checkForColor(this, blackKing)
-    };
-
-    if (!whiteKingCheck) {
-      checkForColor(this, whiteKing)
-    };
 
     for (let i = 0; i < this.cells.length; i++) {
       const row = this.cells[i];
@@ -97,6 +90,13 @@ export class Board {
           whiteKingCheck = true;
           whiteAttacker = target;
           whiteKing.color = Colors.UNDERATTACK;
+        };
+
+        if(!whiteKingCheck){
+          checkForColor(this, whiteKing)
+        };
+        if(!blackKingCheck){
+          checkForColor(this, blackKing)
         }
       }
     }

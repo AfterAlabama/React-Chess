@@ -23,26 +23,22 @@ export function kingMovesOutOfCheck(
   ) {
     if (
       selectedCell === blackKing &&
-      blackKingCheck &&
-      selectedCell.piece.canMove(target)
+      blackKingCheck
     ) {
       selectedCell.movePiece(target);
+      checkForColor(board, blackKing);
       setSelectedCell(null);
       swapPlayers();
-
-      checkForColor(board, blackKing)
     };
 
     if (
       selectedCell === whiteKing &&
-      whiteKingCheck &&
-      selectedCell.piece.canMove(target)
+      whiteKingCheck
     ) {
       selectedCell.movePiece(target);
+      checkForColor(board, whiteKing);
       setSelectedCell(null);
       swapPlayers();
-
-      checkForColor(board, whiteKing)
     }
   }
 }
