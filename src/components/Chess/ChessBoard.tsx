@@ -6,7 +6,7 @@ import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
 import classes from "./ChessBoard.module.scss";
-import { CreateBoard } from "../../models/Chess/boardMethods/CreateBoard";
+import { CreateBoard } from "../../models/Chess/BoardMethods/CreateBoard";
 
 
 const ChessBoard = () => {

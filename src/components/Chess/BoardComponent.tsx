@@ -5,10 +5,10 @@ import CellComponent from "./CellComponent";
 import classes from "./BoardComponent.module.scss";
 import useSound from "use-sound";
 import moveSound from "../../assets/6a897efd83627af.mp3";
-import { PawnPromotion } from "../../models/Chess/boardMethods/PawnPromotion";
-import { KingMovesOutOfCheck } from "../../models/Chess/boardMethods/KingMovesOutOfCheck";
-import { Castling } from "../../models/Chess/boardMethods/Castling";
-import { OtherMoves } from "../../models/Chess/boardMethods/OtherMoves";
+import { PawnPromotion } from "../../models/Chess/BoardMethods/PawnPromotion";
+import { KingMovesOutOfCheck } from "../../models/Chess/BoardMethods/KingMovesOutOfCheck";
+import { Castling } from "../../models/Chess/BoardMethods/Castling";
+import { OtherMoves } from "../../models/Chess/BoardMethods/OtherMoves";
 
 
 const BoardComponent: FC<Boardprops> = ({

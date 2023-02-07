@@ -27,7 +27,7 @@ export function Castling(
       )        
       ) {
       selectedCell.movePiece(target);
-      board.castling();
+      RookMovesOnCastling(board);
       setSelectedCell(null);
       swapPlayers();
     };   
@@ -42,9 +42,54 @@ export function Castling(
       )
       ) {
       selectedCell.movePiece(target);
-      board.castling();
+      RookMovesOnCastling(board);
       setSelectedCell(null);
       swapPlayers();
     }
   }
 }
+
+
+function RookMovesOnCastling(
+  board: Board
+) {
+  const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } = FindPiece.findRooks(board);
+
+  const { blackKing, whiteKing } = FindPiece.findKings(board);
+
+  if (
+    whiteKing.x === 7 &&
+    whiteKing.y === 2 &&
+    leftWhiteRook.piece?.isFirstStep
+  ) {
+    board.getCells(3, 7).setPiece(leftWhiteRook.piece!);
+    leftWhiteRook.piece = null;
+  };
+
+  if (
+    whiteKing.x === 7 &&
+    whiteKing.y === 6 &&
+    rightWhiteRook.piece?.isFirstStep
+  ) {
+    board.getCells(5, 7).setPiece(rightWhiteRook.piece!);
+    rightWhiteRook.piece = null;
+  };
+
+  if (
+    blackKing.x === 0 &&
+    blackKing.y === 2 &&
+    leftBlackRook.piece?.isFirstStep
+  ) {
+    board.getCells(3, 0).setPiece(leftBlackRook.piece!);
+    leftBlackRook.piece = null;
+  };
+
+  if (
+    blackKing.x === 0 &&
+    blackKing.y === 6 &&
+    rightBlackRook.piece?.isFirstStep
+  ) {
+    board.getCells(5, 0).setPiece(rightBlackRook.piece!);
+    rightBlackRook.piece = null;
+  }
+};

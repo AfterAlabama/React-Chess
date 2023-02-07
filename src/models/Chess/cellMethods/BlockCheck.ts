@@ -1,6 +1,6 @@
 import { PieceNames } from "../../../helpers/PieceNames";
 import { Board } from "../Board";
-import { FindPiece } from "../boardMethods/FindPiece";
+import { FindPiece } from "../BoardMethods/FindPiece";
 import { Cell } from "../Cell";
 
 export class BlockCheck {

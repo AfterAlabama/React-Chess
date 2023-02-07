@@ -2,7 +2,7 @@ import { Colors } from "../../../helpers/Colors";
 import { PieceNames } from "../../../helpers/PieceNames";
 import { Board } from "../Board";
 import { Cell } from "../Cell";
-import { BlockCheck } from "../cellMethods/BlockCheck";
+import { BlockCheck } from "../CellMethods/BlockCheck";
 import { FindPiece } from "./FindPiece";
 
 export class Highlight {

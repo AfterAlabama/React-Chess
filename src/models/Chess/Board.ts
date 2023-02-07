@@ -1,10 +1,10 @@
-import { CheckForColor } from "./boardMethods/CheckForColor";
+import { CheckForColor } from "./BoardMethods/CheckForColor";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
-import { FindPiece } from "./boardMethods/FindPiece";
-import { Highlight } from "./boardMethods/Highlight";
+import { FindPiece } from "./BoardMethods/FindPiece";
+import { Highlight } from "./BoardMethods/Highlight";
 import { Cell } from "./Cell";
-import { BlockCheck } from "./cellMethods/BlockCheck";
+import { BlockCheck } from "./CellMethods/BlockCheck";
 import { Bishop } from "./Pieces/Bishop";
 import { King } from "./Pieces/King";
 import { Knight } from "./Pieces/Knight";
@@ -104,47 +104,6 @@ export class Board {
   };
 
 
-  public castling() {
-    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } = FindPiece.findRooks(this);
-
-    const { blackKing, whiteKing } = FindPiece.findKings(this);
-
-    if (
-      whiteKing.x === 7 &&
-      whiteKing.y === 2 &&
-      leftWhiteRook.piece?.isFirstStep
-    ) {
-      this.getCells(3, 7).setPiece(leftWhiteRook.piece!);
-      leftWhiteRook.piece = null;
-    };
-
-    if (
-      whiteKing.x === 7 &&
-      whiteKing.y === 6 &&
-      rightWhiteRook.piece?.isFirstStep
-    ) {
-      this.getCells(5, 7).setPiece(rightWhiteRook.piece!);
-      rightWhiteRook.piece = null;
-    };
-
-    if (
-      blackKing.x === 0 &&
-      blackKing.y === 2 &&
-      leftBlackRook.piece?.isFirstStep
-    ) {
-      this.getCells(3, 0).setPiece(leftBlackRook.piece!);
-      leftBlackRook.piece = null;
-    };
-
-    if (
-      blackKing.x === 0 &&
-      blackKing.y === 6 &&
-      rightBlackRook.piece?.isFirstStep
-    ) {
-      this.getCells(5, 0).setPiece(rightBlackRook.piece!);
-      rightBlackRook.piece = null;
-    }
-  };
 
   public isCellUnderAttack(target: Cell, currentPlayer: Colors | undefined) {
     let count: number = 0;

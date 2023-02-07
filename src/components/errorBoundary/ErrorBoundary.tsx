@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import cl from './errorB.module.scss';
+import cl from './ErrorB.module.scss';
 
 interface ErrorBoundaryProps {
   children: ReactNode
