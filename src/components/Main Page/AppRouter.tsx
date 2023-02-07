@@ -1,9 +1,11 @@
-import React from "react";
+
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { RouteNames } from "../../helpers/RouteNames";
 import CheckersBoard from "../Checkers/CheckersBoard";
-import ChessBoard from "../Chess/ChessBoard";
 import MainPage from "./MainPage";
+
+const ChessBoard = lazy(() => import("../Chess/ChessBoard"));
 
 const AppRouter = () => {
   return (
@@ -14,7 +16,10 @@ const AppRouter = () => {
       />
       <Route 
         path = {RouteNames.CHESS} 
-        element = {<ChessBoard />} 
+        element = {
+        <Suspense>
+          <ChessBoard />
+        </Suspense>}
       />
       <Route 
         path = {RouteNames.CHECKERS} 
