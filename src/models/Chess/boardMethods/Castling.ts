@@ -1,8 +1,8 @@
-import { Board } from "../../../models/Chess/Board";
-import { FindPiece } from "../../../models/Chess/boardMethods/FindPiece";
-import { Cell } from "../../../models/Chess/Cell";
+import { Board } from "../Board";
+import { FindPiece } from "./FindPiece";
+import { Cell } from "../Cell";
 
-export function castling(
+export function Castling(
   target: Cell,
   selectedCell: Cell | null,
   board: Board,

@@ -1,11 +1,11 @@
 import { Colors } from "../../../helpers/Colors";
 import { PieceNames } from "../../../helpers/PieceNames";
-import { Board } from "../../../models/Chess/Board";
-import { Cell } from "../../../models/Chess/Cell";
-import { Queen } from "../../../models/Chess/Pieces/Queen";
+import { Board } from "../Board";
+import { Cell } from "../Cell";
+import { Queen } from "../Pieces/Queen";
 
 
-export function pawnPromotion(
+export function PawnPromotion(
   target: Cell,
   selectedCell: Cell | null,
   board: Board

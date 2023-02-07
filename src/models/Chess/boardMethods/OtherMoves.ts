@@ -1,7 +1,7 @@
-import { Cell } from "../../../models/Chess/Cell";
-import { Player } from "../../../models/Chess/Player";
+import { Cell } from "../Cell";
+import { Player } from "../Player";
 
-export function otherMoves (
+export function OtherMoves (
   selectedCell: Cell | null,
   target: Cell,
   setSelectedCell: (cell: Cell | null) => void,

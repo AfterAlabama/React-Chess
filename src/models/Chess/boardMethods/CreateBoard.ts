@@ -1,6 +1,6 @@
-import { Board } from "../../../models/Chess/Board";
+import { Board } from "../Board";
 
-export function createBoard(
+export function CreateBoard(
   setBoard: (board: Board) => void
   ){
   const newBoard = new Board();

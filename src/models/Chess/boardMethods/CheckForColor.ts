@@ -1,8 +1,8 @@
 import { Colors } from "../../../helpers/Colors";
-import { Board } from "../../../models/Chess/Board";
-import { Cell } from "../../../models/Chess/Cell";
+import { Board } from "../Board";
+import { Cell } from "../Cell";
 
-export function checkForColor (
+export function CheckForColor (
   board: Board,
   king: Cell
 ){

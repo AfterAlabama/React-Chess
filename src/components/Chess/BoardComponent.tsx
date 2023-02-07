@@ -5,10 +5,10 @@ import CellComponent from "./CellComponent";
 import classes from "./BoardComponent.module.scss";
 import useSound from "use-sound";
 import moveSound from "../../assets/6a897efd83627af.mp3";
-import { pawnPromotion } from "./logic/pawnPromotion";
-import { kingMovesOutOfCheck } from "./logic/kingMovesOutOfCheck";
-import { castling } from "./logic/castling";
-import { otherMoves } from "./logic/otherMoves";
+import { PawnPromotion } from "../../models/Chess/boardMethods/PawnPromotion";
+import { KingMovesOutOfCheck } from "../../models/Chess/boardMethods/KingMovesOutOfCheck";
+import { Castling } from "../../models/Chess/boardMethods/Castling";
+import { OtherMoves } from "../../models/Chess/boardMethods/OtherMoves";
 
 
 const BoardComponent: FC<Boardprops> = ({
@@ -28,19 +28,19 @@ const BoardComponent: FC<Boardprops> = ({
       selectedCell !== target && 
       target.available === true
       ) {
-      kingMovesOutOfCheck(
+      KingMovesOutOfCheck(
         target, 
         board, 
         selectedCell, 
         setSelectedCell, 
         swapPlayers
       );
-      pawnPromotion(
+      PawnPromotion(
         target, 
         selectedCell, 
         board
       );
-      castling(
+      Castling(
         target, 
         selectedCell, 
         board, 
@@ -52,7 +52,7 @@ const BoardComponent: FC<Boardprops> = ({
       play();
       swapPlayers();
     };
-     otherMoves(
+     OtherMoves(
       selectedCell,
       target,
       setSelectedCell,

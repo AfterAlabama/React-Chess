@@ -6,7 +6,7 @@ import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
 import classes from "./ChessBoard.module.scss";
-import { createBoard } from "./logic/createBoard";
+import { CreateBoard } from "../../models/Chess/boardMethods/CreateBoard";
 
 
 const ChessBoard = () => {
@@ -22,14 +22,14 @@ const ChessBoard = () => {
 
   
   const restart = useCallback(() => {
-    createBoard(setBoard)
+    CreateBoard(setBoard)
     setSelectedCell(null);
     setCurrentPlayer(whitePlayer);
   }, [whitePlayer]);
 
 
   useEffect(() => {
-    createBoard(setBoard)
+    CreateBoard(setBoard)
   }, []);
 
   const swapPlayers = useCallback(() => {

@@ -1,10 +1,10 @@
-import { Board } from "../../../models/Chess/Board";
-import { FindPiece } from "../../../models/Chess/boardMethods/FindPiece";
-import { Cell } from "../../../models/Chess/Cell";
-import { checkForColor } from "./checkForColor";
+import { Board } from "../Board";
+import { FindPiece } from "./FindPiece";
+import { Cell } from "../Cell";
+import { CheckForColor } from "./CheckForColor";
 
 
-export function kingMovesOutOfCheck(
+export function KingMovesOutOfCheck(
   target: Cell,
   board: Board,
   selectedCell: Cell | null,
@@ -26,7 +26,7 @@ export function kingMovesOutOfCheck(
       blackKingCheck
     ) {
       selectedCell.movePiece(target);
-      checkForColor(board, blackKing);
+      CheckForColor(board, blackKing);
       setSelectedCell(null);
       swapPlayers();
     };
@@ -36,7 +36,7 @@ export function kingMovesOutOfCheck(
       whiteKingCheck
     ) {
       selectedCell.movePiece(target);
-      checkForColor(board, whiteKing);
+      CheckForColor(board, whiteKing);
       setSelectedCell(null);
       swapPlayers();
     }

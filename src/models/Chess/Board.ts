@@ -1,4 +1,4 @@
-import { checkForColor } from "../../components/Chess/logic/checkForColor";
+import { CheckForColor } from "./boardMethods/CheckForColor";
 import { Colors } from "../../helpers/Colors";
 import { PieceNames } from "../../helpers/PieceNames";
 import { FindPiece } from "./boardMethods/FindPiece";
@@ -93,10 +93,10 @@ export class Board {
         };
 
         if(!whiteKingCheck){
-          checkForColor(this, whiteKing)
+          CheckForColor(this, whiteKing)
         };
         if(!blackKingCheck){
-          checkForColor(this, blackKing)
+          CheckForColor(this, blackKing)
         }
       }
     }
