@@ -1,17 +1,17 @@
 import { Colors } from "../../helpers/Colors";
-import { Cell } from "./Cell";
+import { ChCell } from "./ChCell";
 
-export class Board {
-  cells: Cell[][] = [];
+export class ChBoard {
+  cells: ChCell[][] = [];
 
   public initCheckersCells(){
     for (let i = 0; i < 8; i++) {
-      const row: Cell[] = [];
+      const row: ChCell[] = [];
       for (let j = 0; j < 8; j++) {
         if((i + j) % 2 !== 0){
-          row.push(new Cell(i, j, Colors.BLACK, this, null))
+          row.push(new ChCell(i, j, Colors.BLACK, this, null))
         } else {
-          row.push(new Cell(i, j, Colors.WHITE, this, null))
+          row.push(new ChCell(i, j, Colors.WHITE, this, null))
         }
         
       }

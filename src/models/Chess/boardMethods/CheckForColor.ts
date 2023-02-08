@@ -8,16 +8,34 @@ export function CheckForColor (
 ){
 
   if(board.getCells(
-    (king.y + 1) || (king.y - 1), 
-    king.x
-    ).color === Colors.BLACK){
-      king.color = Colors.WHITE
-  }
+    king.y + 1, 
+    king.x)){
+      if(board.getCells(
+        king.y + 1, 
+        king.x).color === Colors.BLACK){
+          king.color = Colors.WHITE
+        };
+      if(board.getCells(
+        king.y + 1, 
+        king.x).color === Colors.WHITE){
+          king.color = Colors.BLACK
+        }
+    };
 
-  if(board.getCells(
-    (king.y + 1) || (king.y - 1), 
-    king.x
-    ).color === Colors.WHITE){
-      king.color = Colors.BLACK
-  };
+    if(!board.getCells(
+      king.y + 1, 
+      king.x)){
+        if(board.getCells(
+          king.y - 1, 
+          king.x).color === Colors.BLACK){
+            king.color = Colors.WHITE
+          };
+          if(board.getCells(
+            king.y - 1, 
+            king.x).color === Colors.WHITE){
+              king.color = Colors.BLACK
+            }
+      };
+
+  
 }
