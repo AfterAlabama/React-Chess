@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import cl from './ErrorB.module.scss';
+import Loader from "../UI/Loader";
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -22,11 +22,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render() {
     if(this.state.hasError){
       return (
-        <div className= {cl.container}>
+        <Loader>
           <h1>Something went wrong!</h1>
           <p>Fixing the issue...</p>
-          <div className = {cl.loader}></div>
-        </div>
+        </Loader>
       )
     }
 
