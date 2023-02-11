@@ -55,9 +55,13 @@ export interface modalContentProps {
 
 export interface ChBoardProps {
   chBoard: ChBoard;
-  setChBoard: (chBoard: ChBoard) => void
+  setChBoard: (chBoard: ChBoard) => void;
+  selectedChCell: ChCell | null
+  setSelectedChCell: (cell: ChCell | null) => void
 }
 
 export interface ChCellProps {
   cell: ChCell;
+  selected: boolean;
+  click: (target: ChCell) => void
 }
