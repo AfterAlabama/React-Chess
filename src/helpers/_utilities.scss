@@ -33,3 +33,10 @@
   border-radius: 50%;
   border: none;
 }
+
+@mixin boardProperties {
+  box-sizing: content-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: rgb(187, 121, 0) ridge 20px
+}

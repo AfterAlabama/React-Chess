@@ -1,3 +1,5 @@
+import { ChBoard } from "../models/Checkers/ChBoard";
+import { ChCell } from "../models/Checkers/ChCell";
 import { Board } from "../models/Chess/Board";
 import { Cell } from "../models/Chess/Cell";
 import { Piece } from "../models/Chess/Pieces/Piece";
@@ -49,4 +51,13 @@ export interface navProps {
 
 export interface modalContentProps {
   setVisible: (el: boolean) => void
+}
+
+export interface ChBoardProps {
+  chBoard: ChBoard;
+  setChBoard: (chBoard: ChBoard) => void
+}
+
+export interface ChCellProps {
+  cell: ChCell;
 }

@@ -1,5 +1,6 @@
 import { Colors } from "../../helpers/Colors";
 import { ChCell } from "./ChCell";
+import { Checker } from "./Pieces/Checker";
 
 export class ChBoard {
   cells: ChCell[][] = [];
@@ -17,5 +18,25 @@ export class ChBoard {
       }
       this.cells.push(row)
     }
+  };
+
+  private addCheckers(){
+    for (let i = 0; i < 8; i++) {
+      new Checker(Colors.BLACK, this.getCells(i, 0));
+      new Checker(Colors.BLACK, this.getCells(i, 1));
+      new Checker(Colors.BLACK, this.getCells(i, 2));
+
+      new Checker(Colors.WHITE, this.getCells(i, 5));
+      new Checker(Colors.WHITE, this.getCells(i, 6));
+      new Checker(Colors.WHITE, this.getCells(i, 7));
+    }
+  };
+
+  public getCells(y: number, x: number) {
+    return this.cells[x][y];
+  };
+
+  public addChPieces(){
+    this.addCheckers()
   }
 }

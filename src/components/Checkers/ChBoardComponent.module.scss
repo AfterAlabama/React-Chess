@@ -1,18 +1,5 @@
 @import '../../helpers/utilities';
 
-.check {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.checkMessage {
-  color: white;
-  margin-bottom: 5px;
-  cursor: default
-}
-
-
 //widescreen
 
 @media only screen and (min-width: 1201px){
@@ -39,10 +26,6 @@
 //tablets
 @media only screen and (min-width: 501px) and (max-width: 768px){
   
-  .checkMessage {
-    font-size: 25px;
-  }
-  
   .board {
     @include boardProperties;
     width: calc(46px * 8);
@@ -52,11 +35,6 @@
 
 //smartphones 
 @media only screen and (min-width: 325px) and (max-width: 500px){
-  
-  .checkMessage {
-    font-size: 25px;
-  }
-  
   .board {
     @include boardProperties;
     width: calc(34px * 8);
@@ -64,4 +42,3 @@
     border: rgb(187, 121, 0) ridge 10px
   }
 }
-

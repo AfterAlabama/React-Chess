@@ -1,12 +1,12 @@
 import { Colors } from "../../helpers/Colors";
 import { ChBoard } from "./ChBoard";
-import { Piece } from "./Pieces/Piece";
+import { ChPiece } from "./Pieces/ChPiece";
 
 export class ChCell {
   x: number;
   y: number;
   color: Colors;
-  piece: Piece | null;
+  piece: ChPiece | null;
   board: ChBoard;
   available: boolean;
   id: number;
@@ -16,7 +16,7 @@ export class ChCell {
     y: number,
     color: Colors,
     board: ChBoard,
-    piece: Piece | null
+    piece: ChPiece | null
   ) {
     this.x = x;
     this.y = y;
