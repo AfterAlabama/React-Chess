@@ -20,6 +20,23 @@ export class ChBoard {
     }
   };
 
+  public highlightChCells(selectedChCell: ChCell | null){
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const target = row[j];
+        
+        target.available = !!selectedChCell?.piece?.canMove(target)
+      }
+    }
+  };
+
+  public getCopyBoard(){
+    const newBoard = new ChBoard();
+    newBoard.cells = this.cells;
+    return newBoard
+  };
+
   private addCheckers(){
     for (let i = 0; i < 8; i++) {
       new Checker(Colors.BLACK, this.getCells(i, 0));

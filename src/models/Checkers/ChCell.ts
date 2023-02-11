@@ -25,5 +25,19 @@ export class ChCell {
     this.board = board;
     this.available = false;
     this.id = Math.random();
+  };
+
+  public setPiece(piece: ChPiece) {
+    this.piece = piece;
+    this.piece.cell = this;
+  };
+
+
+  public movePiece(target: ChCell){
+    if(this.piece && this.piece.canMove(target)){
+      target.setPiece(this.piece)
+      this.piece = null
+    }
+
   }
 }

@@ -1,3 +1,9 @@
+$underAttack : radial-gradient(red, burlywood);
+
+:export {
+  underAttack: $underAttack
+};
+
 
 .selected {
   background: radial-gradient(green, burlywood)
