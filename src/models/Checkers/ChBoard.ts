@@ -38,7 +38,7 @@ export class ChBoard {
   };
 
   private addCheckers(){
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < this.cells.length; i++) {
       new Checker(Colors.BLACK, this.getCells(i, 0));
       new Checker(Colors.BLACK, this.getCells(i, 1));
       new Checker(Colors.BLACK, this.getCells(i, 2));

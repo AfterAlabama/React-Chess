@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Colors } from '../../helpers/Colors';
-import { CreateChBoard } from '../../models/Checkers/BoardMethods/createChBoard';
+import { CreateChBoard } from '../../models/Checkers/BoardMethods/CreateChBoard';
 import { ChBoard } from '../../models/Checkers/ChBoard';
 import { Player } from '../../models/Chess/Player';
 import CheckersBoardComponent from './CheckersBoardComponent';

@@ -1,5 +1,7 @@
 import { FC, Fragment, useCallback, useEffect } from 'react';
+import { Colors } from '../../helpers/Colors';
 import { ChBoardProps } from '../../helpers/Props';
+import { CheckerAttack } from '../../models/Checkers/BoardMethods/CheckerAttack';
 import { ChCell } from '../../models/Checkers/ChCell';
 import cl from './ChBoardComponent.module.scss'
 import CheckersCellComponent from './CheckersCellComponent';
@@ -8,16 +10,52 @@ import CheckersCellComponent from './CheckersCellComponent';
 const CheckersBoardComponent: FC<ChBoardProps> = ({chBoard, setChBoard, selectedChCell, setSelectedChCell}) => {
 
   const click = (target: ChCell) => {
-    if(selectedChCell && target === selectedChCell){
-      setSelectedChCell(null)
-    } else
-    if(selectedChCell && selectedChCell !== target && selectedChCell.piece?.canMove(target)){
-      selectedChCell.movePiece(target)
-      setSelectedChCell(null)
-    } else {
+
+    //attack logic
+    if(selectedChCell?.piece?.canMove(target) && 
+    (selectedChCell.x === target.x + 2 && 
+    selectedChCell.y === target.y - 2)){
+      chBoard.getCells(target.y - 1, target.x + 1).piece = null
+    };
+
+    if(selectedChCell?.piece?.canMove(target) && 
+    (selectedChCell.x === target.x + 2 && 
+    selectedChCell.y === target.y + 2)){
+      chBoard.getCells(target.y + 1, target.x + 1).piece = null
+    };
+
+    if(selectedChCell?.piece?.canMove(target) && 
+    (selectedChCell.x === target.x - 2 && 
+    selectedChCell.y === target.y + 2)){
+      chBoard.getCells(target.y + 1, target.x - 1).piece = null
+    };
+
+    if(selectedChCell?.piece?.canMove(target) && 
+    (selectedChCell.x === target.x - 2 && 
+    selectedChCell.y === target.y - 2)){
+      chBoard.getCells(target.y - 1, target.x - 1).piece = null
+    };
+
+
+    if(target.piece && !selectedChCell){
+      setSelectedChCell(target)
+    };
+    
+    if(selectedChCell && target.piece?.color === selectedChCell.piece?.color){
       setSelectedChCell(target)
     }
 
+    if(selectedChCell && selectedChCell.piece?.canMove(target)){
+      selectedChCell.movePiece(target)
+      setSelectedChCell(null)
+    }
+
+    if(selectedChCell && selectedChCell === target){
+      setSelectedChCell(null)
+    }
+    if(!target.piece || target.color === Colors.WHITE){
+      setSelectedChCell(null)
+    }
   };
 
 

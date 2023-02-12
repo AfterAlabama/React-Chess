@@ -17,8 +17,10 @@ export abstract class ChPiece {
   };
 
   public canMove(target: ChCell) {
-
-    return true;
+    if(this.color === target.piece?.color){
+      return false
+    }
+    return true
   };
 
 }
