@@ -12,13 +12,15 @@
   cursor: default
 }
 
+.board {
+  @include boardProperties;
+}
 
 //widescreen
 
 @media only screen and (min-width: 1201px){
   
   .board {
-    @include boardProperties;
     width: calc(64px * 8);
     height: calc(64px * 8);
   }
@@ -29,7 +31,6 @@
 @media only screen and (min-width: 769px) and (max-width: 1200px){
   
   .board {
-    @include boardProperties;
     width: calc(46px * 8);
     height: calc(46px * 8);
   }
@@ -44,7 +45,6 @@
   }
   
   .board {
-    @include boardProperties;
     width: calc(46px * 8);
     height: calc(46px * 8);
   }
@@ -58,7 +58,6 @@
   }
   
   .board {
-    @include boardProperties;
     width: calc(34px * 8);
     height: calc(34px * 8);
     border: rgb(187, 121, 0) ridge 10px

@@ -19,21 +19,27 @@ img{
   }
 }
 
+.available {
+  border-radius: 50%;
+  background-color: forestgreen;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 //widescreen
 @media only screen and (min-width: 1201px){
   .available {
     width: 12px;
     height: 12px;
-    border-radius: 50%;
-    background-color: forestgreen;
   }
   
   .cell {
     width: 64px;
     height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   
     img{
       width: 48px;
@@ -47,16 +53,11 @@ img{
   .available {
     width: 10px;
     height: 10px;
-    border-radius: 50%;
-    background-color: forestgreen;
   }
   
   .cell {
     width: 46px;
     height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   
     img{
       width: 34px;
@@ -70,16 +71,11 @@ img{
   .available {
     width: 10px;
     height: 10px;
-    border-radius: 50%;
-    background-color: forestgreen;
   }
   
   .cell {
     width: 46px;
     height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   
     img{
       width: 34px;
@@ -94,16 +90,11 @@ img{
   .available {
     width: 7px;
     height: 7px;
-    border-radius: 50%;
-    background-color: forestgreen;
   }
   
   .cell {
     width: 34px;
     height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   
     img{
       width: 22px;

@@ -30,6 +30,11 @@ const CheckersBoard = () => {
     <div
       className = {cl.checkers}
     >
+      <button 
+        className = {cl.restartBtn} 
+        onClick = {restart}
+        >Restart
+      </button>
       <CheckersBoardComponent
         chBoard = {chBoard}
         setChBoard = {setChBoard}
