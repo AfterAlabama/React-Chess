@@ -1,7 +1,6 @@
 import { FC, Fragment, useCallback, useEffect } from 'react';
 import { Colors } from '../../helpers/Colors';
 import { ChBoardProps } from '../../helpers/Props';
-import { CheckerAttack } from '../../models/Checkers/BoardMethods/CheckerAttack';
 import { ChCell } from '../../models/Checkers/ChCell';
 import cl from './ChBoardComponent.module.scss'
 import CheckersCellComponent from './CheckersCellComponent';
@@ -40,8 +39,9 @@ const CheckersBoardComponent: FC<ChBoardProps> = ({chBoard, setChBoard, selected
     if(target.piece && !selectedChCell){
       setSelectedChCell(target)
     };
-    
+
     if(selectedChCell && target.piece?.color === selectedChCell.piece?.color){
+      setSelectedChCell(null)
       setSelectedChCell(target)
     }
 

@@ -1,4 +1,5 @@
 import { Colors } from "../../helpers/Colors";
+import { CheckerAttack } from "./BoardMethods/CheckerAttack";
 import { ChCell } from "./ChCell";
 import { Checker } from "./Pieces/Checker";
 
@@ -25,6 +26,8 @@ export class ChBoard {
       const row = this.cells[i];
       for (let j = 0; j < row.length; j++) {
         const target = row[j];
+
+        CheckerAttack(selectedChCell, target, this)
         
         target.available = !!selectedChCell?.piece?.canMove(target)
       }

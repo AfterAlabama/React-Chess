@@ -41,8 +41,6 @@ export class Checker extends ChPiece {
         return true
       }
 
-      CheckerAttack(this.cell, target, this.cell.board)
-
     return false
   }
 }

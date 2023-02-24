@@ -13,7 +13,8 @@ export function CheckerAttack(
     selectedChCell &&
     selectedChCell.piece &&
     selectedChCell.piece.color === Colors.WHITE &&
-    selectedChCell.x !== 0
+    selectedChCell.x !== 0 &&
+    selectedChCell.x !== 1
      ){
       if(
         board.getCells(selectedChCell.y + 2, selectedChCell.x - 2)
@@ -51,7 +52,8 @@ export function CheckerAttack(
     selectedChCell &&
     selectedChCell.piece &&
     selectedChCell.piece.color === Colors.BLACK &&
-    selectedChCell.x !== 7
+    selectedChCell.x !== 7 &&
+    selectedChCell.x !== 6
      ){
       if(
         board.getCells(selectedChCell.y + 2, selectedChCell.x + 2)
