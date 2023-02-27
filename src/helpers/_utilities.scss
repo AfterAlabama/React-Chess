@@ -1,4 +1,3 @@
-
 @mixin btn-shared {
   text-decoration: none;
   font-size: 20px;
@@ -10,23 +9,23 @@
 
   &:hover {
     background: coral;
-    color:black;
-    cursor:pointer
+    color: black;
+    cursor: pointer;
   }
 }
 
 @mixin overlay-shared {
   position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    color: white;
-    background: rgba(0,0,0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin circularImage {
@@ -38,5 +37,5 @@
   box-sizing: content-box;
   display: flex;
   flex-wrap: wrap;
-  border: rgb(187, 121, 0) ridge 20px
+  border: rgb(187, 121, 0) ridge 20px;
 }

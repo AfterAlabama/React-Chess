@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Colors } from '../../helpers/Colors';
 import { CreateChBoard } from '../../models/Checkers/BoardMethods/CreateChBoard';
 import { ChBoard } from '../../models/Checkers/ChBoard';
 import { Player } from '../../models/Chess/Player';
 import CheckersBoardComponent from './CheckersBoardComponent';
-import cl from './ChBoard.module.scss'
+import cl from './ChBoard.module.scss';
 import { ChCell } from '../../models/Checkers/ChCell';
 
 const CheckersBoard = () => {
@@ -16,33 +16,34 @@ const CheckersBoard = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
 
-  const [selectedChSell, setSelectedChCell] = useState<ChCell | null>(null)
+  const [selectedChSell, setSelectedChCell] = useState<ChCell | null>(null);
 
   useEffect(() => {
-    CreateChBoard(setChBoard)
+    CreateChBoard(setChBoard);
   }, []);
 
-  const restart = useCallback(() => {
-    CreateChBoard(setChBoard)
-  }, [whitePlayer]);
+  const restart = () => {
+    CreateChBoard(setChBoard);
+    setSelectedChCell(null);
+  };
 
   return (
     <div
-      className = {cl.checkers}
+      className={cl.checkers}
     >
-      <button 
-        className = {cl.restartBtn} 
-        onClick = {restart}
-        >Restart
+      <button
+        className={cl.restartBtn}
+        onClick={restart}
+      >Restart
       </button>
       <CheckersBoardComponent
-        chBoard = {chBoard}
-        setChBoard = {setChBoard}
-        selectedChCell = {selectedChSell}
-        setSelectedChCell = {setSelectedChCell}
+        chBoard={chBoard}
+        setChBoard={setChBoard}
+        selectedChCell={selectedChSell}
+        setSelectedChCell={setSelectedChCell}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CheckersBoard
+export default CheckersBoard;

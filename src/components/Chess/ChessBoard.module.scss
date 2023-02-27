@@ -1,11 +1,11 @@
-@import '../../helpers/utilities';
+@import "../../helpers/utilities";
 
 .flex {
-  display: flex
+  display: flex;
 }
 
 .columns {
-  display: flex
+  display: flex;
 }
 
 .turn {
@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  cursor: default
+  cursor: default;
 }
 
 .mateMessage {
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  cursor: default
+  cursor: default;
 }
 
 .restartBtn {
@@ -34,16 +34,15 @@
 }
 
 .chess {
-  background: url('../../assets/chessOverlay.jpg');
+  background: url("../../assets/chessOverlay.jpg");
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-//widescreen 
-@media only screen and (min-width: 1201px){
-  
+//widescreen
+@media only screen and (min-width: 1201px) {
   .turn {
     font-size: 80px;
   }
@@ -51,15 +50,14 @@
   .mateMessage {
     font-size: 40px;
   }
-  
+
   .chess {
     height: 110vh;
-  } 
+  }
 }
 
 //normal size
-@media only screen and (min-width: 769px) and (max-width: 1200px){
-  
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
   .turn {
     font-size: 80px;
   }
@@ -67,15 +65,14 @@
   .mateMessage {
     font-size: 40px;
   }
-  
+
   .chess {
     height: 110vh;
   }
 }
 
 //tablets
-@media only screen and (min-width: 501px) and (max-width: 768px){
-
+@media only screen and (min-width: 501px) and (max-width: 768px) {
   .turn {
     font-size: 50px;
   }
@@ -83,7 +80,7 @@
   .mateMessage {
     font-size: 30px;
   }
-  
+
   .chess {
     height: 140vh;
   }
@@ -96,12 +93,10 @@
     justify-content: center;
     margin-top: 10px;
   }
-  
 }
 
 //smartphones
-@media only screen and (min-width: 325px) and (max-width: 500px){
-  
+@media only screen and (min-width: 325px) and (max-width: 500px) {
   .turn {
     font-size: 40px;
   }
@@ -109,7 +104,7 @@
   .mateMessage {
     font-size: 20px;
   }
-  
+
   .chess {
     height: 140vh;
   }
@@ -123,7 +118,3 @@
     margin-top: 10px;
   }
 }
-
-
-
-

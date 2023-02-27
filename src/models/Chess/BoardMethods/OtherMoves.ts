@@ -1,18 +1,15 @@
 import { Cell } from "../Cell";
 import { Player } from "../Player";
 
-export function OtherMoves (
+export function OtherMoves(
   selectedCell: Cell | null,
   target: Cell,
   setSelectedCell: (cell: Cell | null) => void,
   currentPlayer: Player
-){
-  if (
-    !selectedCell ||
-    target.piece?.color === selectedCell?.piece?.color
-  ) {
+) {
+  if (!selectedCell || target.piece?.color === selectedCell?.piece?.color) {
     setSelectedCell(target);
-  };
+  }
 
   if (
     selectedCell === target ||

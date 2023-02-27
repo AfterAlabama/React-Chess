@@ -3,10 +3,12 @@ import { PieceNames } from "../../../helpers/PieceNames";
 import { Board } from "../Board";
 import { Cell } from "../Cell";
 import { BlockCheck } from "../CellMethods/BlockCheck";
+import { IsCellUnderAttack } from "../CellMethods/IsCellUnderAttack";
+import { IsEmpty } from "../CellMethods/IsEmpty";
+import { KingMethods } from "../PieceMethods/KingMethods";
 import { FindPiece } from "./FindPiece";
 
 export class Highlight {
-
   static highlightCastling(
     selectedCell: Cell | null,
     currentColor: Colors | undefined,
@@ -14,9 +16,11 @@ export class Highlight {
   ) {
     const { blackKing, whiteKing } = FindPiece.findKings(board);
 
-    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } = FindPiece.findRooks(board);
+    const { leftBlackRook, leftWhiteRook, rightBlackRook, rightWhiteRook } =
+      FindPiece.findRooks(board);
 
-    const { blackKingCheck, whiteKingCheck } = board.isKingUnderAttack();
+    const { blackKingCheck, whiteKingCheck } =
+      KingMethods.isKingUnderAttack(board);
 
     //left white castling
     if (
@@ -28,22 +32,22 @@ export class Highlight {
       &&
       leftWhiteRook.piece?.isFirstStep 
       &&
-      board.getCells(1, 7).isEmpty() 
+      IsEmpty.Cell(board.getCells(1, 7)) 
       &&
-      !board.isCellUnderAttack(board.getCells(1, 7), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(1, 7)) 
       &&
-      board.getCells(2, 7).isEmpty() 
+      IsEmpty.Cell(board.getCells(2, 7)) 
       &&
-      !board.isCellUnderAttack(board.getCells(2, 7), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(2, 7)) 
       &&
-      board.getCells(3, 7).isEmpty() 
+      IsEmpty.Cell(board.getCells(3, 7)) 
       &&
-      !board.isCellUnderAttack(board.getCells(3, 7), currentColor)
+      !IsCellUnderAttack(board, currentColor, board.getCells(3, 7))
     ) {
       if (selectedCell === whiteKing) {
         board.getCells(2, 7).available = true;
       }
-    };
+    }
 
     //right white castling
     if (
@@ -55,18 +59,18 @@ export class Highlight {
       &&
       rightWhiteRook.piece?.isFirstStep 
       &&
-      board.getCells(6, 7).isEmpty() 
+      IsEmpty.Cell(board.getCells(6, 7)) 
       &&
-      !board.isCellUnderAttack(board.getCells(6, 7), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(6, 7)) 
       &&
-      board.getCells(5, 7).isEmpty() 
+      IsEmpty.Cell(board.getCells(5, 7)) 
       &&
-      !board.isCellUnderAttack(board.getCells(5, 7), currentColor)
+      !IsCellUnderAttack(board, currentColor, board.getCells(5, 7))
     ) {
       if (selectedCell === whiteKing) {
         board.getCells(6, 7).available = true;
       }
-    };
+    }
 
     //left black castling
     if (
@@ -78,22 +82,22 @@ export class Highlight {
       &&
       leftBlackRook.piece?.isFirstStep 
       &&
-      board.getCells(1, 0).isEmpty() 
+      IsEmpty.Cell(board.getCells(1, 0)) 
       &&
-      !board.isCellUnderAttack(board.getCells(1, 0), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(1, 0)) 
       &&
-      board.getCells(2, 0).isEmpty() 
+      IsEmpty.Cell(board.getCells(2, 0)) 
       &&
-      !board.isCellUnderAttack(board.getCells(2, 0), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(2, 0)) 
       &&
-      board.getCells(3, 0).isEmpty() 
+      IsEmpty.Cell(board.getCells(3, 0)) 
       &&
-      !board.isCellUnderAttack(board.getCells(3, 0), currentColor)
+      !IsCellUnderAttack(board, currentColor, board.getCells(3, 0))
     ) {
       if (selectedCell === blackKing) {
         board.getCells(2, 0).available = true;
       }
-    };
+    }
 
     //right black castling
     if (
@@ -105,39 +109,43 @@ export class Highlight {
       &&
       rightBlackRook.piece?.isFirstStep 
       &&
-      board.getCells(5, 0).isEmpty() 
+      IsEmpty.Cell(board.getCells(5, 0)) 
       &&
-      !board.isCellUnderAttack(board.getCells(5, 0), currentColor) 
+      !IsCellUnderAttack(board, currentColor, board.getCells(5, 0)) 
       &&
-      board.getCells(6, 0).isEmpty() 
+      IsEmpty.Cell(board.getCells(6, 0)) 
       &&
-      !board.isCellUnderAttack(board.getCells(6, 0), currentColor)
+      !IsCellUnderAttack(board, currentColor, board.getCells(6, 0))
     ) {
       if (selectedCell === blackKing) {
         board.getCells(6, 0).available = true;
       }
     }
-  };
+  }
 
   static pieceStandingInCheck(
     selectedCell: Cell | null,
     target: Cell,
     board: Board
-  ){
-    if (selectedCell && BlockCheck.doesPieceBlockTheCheck(target, board, selectedCell)) {
+  ) {
+    if (
+      selectedCell &&
+      BlockCheck.doesPieceBlockTheCheck(target, board, selectedCell)
+    ) {
       target.available = false;
-      return true
+      return true;
     }
-  };
+  }
 
   static pieceMovingInCheck(
     selectedCell: Cell | null,
     board: Board,
     target: Cell
-  ){
-    const {whiteKing, blackKing} = FindPiece.findKings(board);
+  ) {
+    const { whiteKing, blackKing } = FindPiece.findKings(board);
 
-    const {whiteKingCheck, blackKingCheck} = board.isKingUnderAttack();
+    const { whiteKingCheck, blackKingCheck } =
+      KingMethods.isKingUnderAttack(board);
 
     if (
       selectedCell &&
@@ -150,22 +158,22 @@ export class Highlight {
       !BlockCheck.doesCellBlockTheCheck(target, board, selectedCell)
     ) {
       target.available = false;
-      return true
+      return true;
     }
-  };
+  }
 
   static kingEscaping(
     selectedCell: Cell | null,
     board: Board,
     target: Cell,
     currentColor: Colors
-  ){
+  ) {
     if (
       selectedCell?.piece?.name === PieceNames.KING &&
-      board.isCellUnderAttack(target, currentColor)
+      IsCellUnderAttack(board, currentColor, target)
     ) {
       target.available = false;
-      return true
-    } 
+      return true;
+    }
   }
 }

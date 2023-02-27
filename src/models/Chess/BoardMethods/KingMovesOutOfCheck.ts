@@ -2,7 +2,7 @@ import { Board } from "../Board";
 import { FindPiece } from "./FindPiece";
 import { Cell } from "../Cell";
 import { CheckForColor } from "./CheckForColor";
-
+import { KingMethods } from "../PieceMethods/KingMethods";
 
 export function KingMovesOutOfCheck(
   target: Cell,
@@ -10,9 +10,9 @@ export function KingMovesOutOfCheck(
   selectedCell: Cell | null,
   setSelectedCell: (cell: Cell | null) => void,
   swapPlayers: () => void
-  ) {
-    
-  const { blackKingCheck, whiteKingCheck } = board.isKingUnderAttack();
+) {
+  const { blackKingCheck, whiteKingCheck } =
+    KingMethods.isKingUnderAttack(board);
 
   const { blackKing, whiteKing } = FindPiece.findKings(board);
 
@@ -21,20 +21,14 @@ export function KingMovesOutOfCheck(
     selectedCell !== target &&
     selectedCell.piece?.canMove(target)
   ) {
-    if (
-      selectedCell === blackKing &&
-      blackKingCheck
-    ) {
+    if (selectedCell === blackKing && blackKingCheck) {
       selectedCell.movePiece(target);
       CheckForColor(board, blackKing);
       setSelectedCell(null);
       swapPlayers();
-    };
+    }
 
-    if (
-      selectedCell === whiteKing &&
-      whiteKingCheck
-    ) {
+    if (selectedCell === whiteKing && whiteKingCheck) {
       selectedCell.movePiece(target);
       CheckForColor(board, whiteKing);
       setSelectedCell(null);

@@ -19,10 +19,10 @@ const CellComponent: FC<CellProps> = ({
   ].join(" ");
 
   const showPieces = cell.piece?.logo ? (
-    <img 
-      draggable = {false} 
-      alt = "" 
-      src = {cell.piece.logo}
+    <img
+      draggable={false}
+      alt=""
+      src={cell.piece.logo}
     ></img>
   ) : null;
 
@@ -65,31 +65,31 @@ const CellComponent: FC<CellProps> = ({
 
   return (
     <>
-      {cell.piece && cell.piece.color === currentPlayer!.color 
-      ?
-      <div
-        className={cellStyle}
-        onClick={() => click(cell)}
-        style={PieceUnderAttack}
-      >
-        {showPiecesDraggable}
-        {availableDots}
-      </div>
-      :
-      <div
-        onDragStart={() => dragStartHandler(cell)}
-        onDragOver={(e) => dragOverHandler(e)}
-        onDrop={(e) => dropHandler(e, cell)}
-        className={cellStyle}
-        onClick={() => click(cell)}
-        style={PieceUnderAttack}
-      >
-        {showPieces}
-        {availableDots}
-      </div> 
+      {cell.piece && cell.piece.color === currentPlayer.color
+        ?
+        <div
+          className={cellStyle}
+          onClick={() => click(cell)}
+          style={PieceUnderAttack}
+        >
+          {showPiecesDraggable}
+          {availableDots}
+        </div>
+        :
+        <div
+          onDragStart={() => dragStartHandler(cell)}
+          onDragOver={(e) => dragOverHandler(e)}
+          onDrop={(e) => dropHandler(e, cell)}
+          className={cellStyle}
+          onClick={() => click(cell)}
+          style={PieceUnderAttack}
+        >
+          {showPieces}
+          {availableDots}
+        </div>
       }
     </>
-  )
+  );
 };
 
 export default CellComponent;

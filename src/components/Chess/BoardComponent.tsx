@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { Boardprops } from "../../helpers/Props";
 import { Cell } from "../../models/Chess/Cell";
 import CellComponent from "./CellComponent";
@@ -9,6 +9,7 @@ import { PawnPromotion } from "../../models/Chess/BoardMethods/PawnPromotion";
 import { KingMovesOutOfCheck } from "../../models/Chess/BoardMethods/KingMovesOutOfCheck";
 import { Castling } from "../../models/Chess/BoardMethods/Castling";
 import { OtherMoves } from "../../models/Chess/BoardMethods/OtherMoves";
+import { KingMethods } from "../../models/Chess/PieceMethods/KingMethods";
 
 
 const BoardComponent: FC<Boardprops> = ({
@@ -24,27 +25,27 @@ const BoardComponent: FC<Boardprops> = ({
 
   function click(target: Cell) {
     if (
-      selectedCell && 
-      selectedCell !== target && 
+      selectedCell &&
+      selectedCell !== target &&
       target.available === true
-      ) {
+    ) {
       KingMovesOutOfCheck(
-        target, 
-        board, 
-        selectedCell, 
-        setSelectedCell, 
+        target,
+        board,
+        selectedCell,
+        setSelectedCell,
         swapPlayers
       );
       PawnPromotion(
-        target, 
-        selectedCell, 
+        target,
+        selectedCell,
         board
       );
-      Castling(
-        target, 
-        selectedCell, 
-        board, 
-        setSelectedCell, 
+      Castling.KingMovesWhileCastling(
+        target,
+        selectedCell,
+        board,
+        setSelectedCell,
         swapPlayers
       );
       selectedCell.movePiece(target);
@@ -52,12 +53,12 @@ const BoardComponent: FC<Boardprops> = ({
       play();
       swapPlayers();
     };
-     OtherMoves(
+    OtherMoves(
       selectedCell,
       target,
       setSelectedCell,
       currentPlayer
-    )
+    );
   };
 
   const showCells = board.cells.map((row, index) => (
@@ -76,40 +77,40 @@ const BoardComponent: FC<Boardprops> = ({
     </React.Fragment>
   ));
 
-  const updateBoard = useCallback(() => {
+  const updateBoard = () => {
     const newBoard = board.getCopyBoard();
     setBoard(newBoard);
-  }, [board, setBoard]);
+  };
 
 
   useEffect(() => {
     board.highlightCells(selectedCell, currentPlayer.color);
-    updateBoard()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    updateBoard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCell, currentPlayer.color]);
 
-  if (board.isKingUnderAttack().blackKingCheck) {
+  if (KingMethods.isKingUnderAttack(board).blackKingCheck) {
     return (
       <div className={classes.check}>
-        {board.Mate(currentPlayer.color)
-        ?         
-        <h1 className={classes.checkMessage}>Black Mated!!</h1>
-        :
-        <h1 className={classes.checkMessage}>Black Checked!!</h1>
+        {KingMethods.Mate(board, currentPlayer.color)
+          ?
+          <h1 className={classes.checkMessage}>Black Mated!!</h1>
+          :
+          <h1 className={classes.checkMessage}>Black Checked!!</h1>
         }
         <div className={classes.board}>{showCells}</div>
       </div>
-    )
+    );
   };
 
-  if (board.isKingUnderAttack().whiteKingCheck) {
+  if (KingMethods.isKingUnderAttack(board).whiteKingCheck) {
     return (
       <div className={classes.check}>
-        {board.Mate(currentPlayer.color)
-        ?
-        <h1 className={classes.checkMessage}>White Mated!!</h1>
-        :
-        <h1 className={classes.checkMessage}>White Checked!!</h1>
+        {KingMethods.Mate(board, currentPlayer.color)
+          ?
+          <h1 className={classes.checkMessage}>White Mated!!</h1>
+          :
+          <h1 className={classes.checkMessage}>White Checked!!</h1>
         }
         <div className={classes.board}>{showCells}</div>
       </div>
@@ -120,7 +121,7 @@ const BoardComponent: FC<Boardprops> = ({
     <>
       <div className={classes.board}>{showCells}</div>
     </>
-  )
+  );
 };
 
 export default BoardComponent;

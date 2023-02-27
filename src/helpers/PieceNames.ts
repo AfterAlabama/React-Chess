@@ -6,6 +6,6 @@ export enum PieceNames {
   ROOK = "ROOK",
   PIECE = "PIECE",
   BISHOP = "BISHOP",
-  CH_PIECE = 'CH_PIECE',
-  CH_QUEEN = 'CH_QUEEN'
+  CH_PIECE = "CH_PIECE",
+  CH_QUEEN = "CH_QUEEN",
 }

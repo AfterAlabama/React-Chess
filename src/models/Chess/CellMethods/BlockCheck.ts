@@ -2,6 +2,7 @@ import { PieceNames } from "../../../helpers/PieceNames";
 import { Board } from "../Board";
 import { FindPiece } from "../BoardMethods/FindPiece";
 import { Cell } from "../Cell";
+import { KingMethods } from "../PieceMethods/KingMethods";
 
 export class BlockCheck {
   static doesPieceBlockTheCheck(
@@ -320,7 +321,7 @@ export class BlockCheck {
     ) {
     const { blackKing, whiteKing } = FindPiece.findKings(board);
 
-    const { blackAttacker, whiteAttacker } = board.isKingUnderAttack();
+    const { blackAttacker, whiteAttacker } = KingMethods.isKingUnderAttack(board);
 
     for (let i = 0; i < board.cells.length; i++) {
       const row = board.cells[i];

@@ -1,7 +1,7 @@
 import { Colors } from "../../../helpers/Colors";
 import { PieceNames } from "../../../helpers/PieceNames";
 import { ChCell } from "../ChCell";
-import logo from '../../../assets/black attempt 1.png'
+import logo from "../../../assets/black attempt 1.png";
 
 export abstract class ChPiece {
   color: Colors;
@@ -14,13 +14,18 @@ export abstract class ChPiece {
     this.name = PieceNames.CH_PIECE;
     this.cell = cell;
     this.cell.piece = this;
-  };
+    this.logo = null;
+  }
 
   public canMove(target: ChCell) {
-    if(target.piece){
-      return false
+    if (target.piece) {
+      return false;
     }
-    return true
-  };
+    if (target.color !== Colors.BLACK) {
+      return false;
+    }
+    return true;
+  }
 
+  public movePiece(target: ChCell) {}
 }

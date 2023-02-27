@@ -5,29 +5,29 @@ import classes from './NavBar.module.scss';
 
 
 
-const NavBar = ({setVisible}: navProps) => {
+const NavBar = ({ setVisible }: navProps) => {
   return (
-    <nav className = {classes.nav}>
-      <div 
-        className = {classes.logo}
-        onClick = {() => setVisible(true)}
-        >
-        <span className = {classes.coral}>Chess</span>zardo
+    <nav className={classes.nav}>
+      <div
+        className={classes.logo}
+        onClick={() => setVisible(true)}
+      >
+        <span className={classes.coral}>Chess</span>zardo
       </div>
       <div>
-        <Link 
-          className = {classes.link} 
-          to = {RouteNames.DEFAULT}>
+        <Link
+          className={classes.link}
+          to={RouteNames.DEFAULT}>
           Main Page
         </Link>
-        <Link 
-          className = {classes.link} 
-          to = {RouteNames.CHESS}>
-            Chess
+        <Link
+          className={classes.link}
+          to={RouteNames.CHESS}>
+          Chess
         </Link>
-        <Link 
-          className = {classes.link} 
-          to = {RouteNames.CHECKERS}>
+        <Link
+          className={classes.link}
+          to={RouteNames.CHECKERS}>
           Checkers
         </Link>
       </div>

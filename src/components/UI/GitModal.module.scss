@@ -1,13 +1,11 @@
-@import '../../helpers/utilities';
-
-
+@import "../../helpers/utilities";
 
 .modal {
   position: fixed;
   top: 0;
-  left:0;
-  right:0;
-  bottom:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: none;
   background: rgba(0, 0, 0, 0.699);
   z-index: 100;
@@ -15,7 +13,7 @@
 
 .modalContent {
   padding: 25px;
-  background:white;
+  background: white;
   min-width: 250px;
   border-radius: 16px;
   box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.699);
@@ -31,7 +29,7 @@
     color: black;
     text-decoration: none;
     display: flex;
-    justify-content: center
+    justify-content: center;
   }
 }
 
@@ -39,8 +37,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.button {
-  color:red
 }

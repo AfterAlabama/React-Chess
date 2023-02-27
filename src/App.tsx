@@ -15,30 +15,30 @@ function App() {
 
   const [visible, setVisible] = useState(false);
 
-  const {imagesPreloaded} = useImagePreloader([logo1, logo2])
+  const { imagesPreloaded } = useImagePreloader([logo1, logo2]);
 
 
   return (
     <>
-      {imagesPreloaded 
-      &&
-      <>     
-        <GitHubModal
-          visible = {visible}
-          setVisible = {setVisible}
+      {imagesPreloaded
+        &&
+        <>
+          <GitHubModal
+            visible={visible}
+            setVisible={setVisible}
           >
             <GitModalContent
-              setVisible = {setVisible}
+              setVisible={setVisible}
             />
-        </GitHubModal>
-        <NavBar
-          setVisible = {setVisible}
+          </GitHubModal>
+          <NavBar
+            setVisible={setVisible}
           />
-        <AppRouter/>
-      </>     
+          <AppRouter />
+        </>
       }
     </>
-  )
+  );
 }
 
 export default App;

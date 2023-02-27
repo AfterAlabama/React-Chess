@@ -7,6 +7,7 @@ import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
 import classes from "./ChessBoard.module.scss";
 import { CreateBoard } from "../../models/Chess/BoardMethods/CreateBoard";
+import { KingMethods } from "../../models/Chess/PieceMethods/KingMethods";
 
 
 const ChessBoard = () => {
@@ -20,16 +21,16 @@ const ChessBoard = () => {
 
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
-  
-  const restart = useCallback(() => {
-    CreateBoard(setBoard)
+
+  const restart = () => {
+    CreateBoard(setBoard);
     setSelectedCell(null);
     setCurrentPlayer(whitePlayer);
-  }, [whitePlayer]);
+  };
 
 
   useEffect(() => {
-    CreateBoard(setBoard)
+    CreateBoard(setBoard);
   }, []);
 
   const swapPlayers = useCallback(() => {
@@ -41,17 +42,17 @@ const ChessBoard = () => {
 
   return (
     <div className={classes.chess}>
-      {board.Mate(currentPlayer.color)
-      ?
-      <div className={classes.mateMessage}>
+      {KingMethods.Mate(board, currentPlayer.color)
+        ?
+        <div className={classes.mateMessage}>
           Ready for another Game? Press restart
-      </div>
-      :
-      <div className={classes.turn}>{currentPlayer.color} to move
-      </div>}  
-      <button 
-        className = {classes.restartBtn} onClick = {restart}
-        >Restart
+        </div>
+        :
+        <div className={classes.turn}>{currentPlayer.color} to move
+        </div>}
+      <button
+        className={classes.restartBtn} onClick={restart}
+      >Restart
       </button>
       <div className={classes.flex}>
         <BoardComponent
@@ -63,17 +64,17 @@ const ChessBoard = () => {
           setSelectedCell={setSelectedCell}
         />
         <div className={classes.columns}>
-          <LostPieces 
-            title = "Black Pieces" 
-            pieces = {board.lostBlackPieces} 
-            board = {board}
-            currentPlayer = {currentPlayer}
+          <LostPieces
+            title="Black Pieces"
+            pieces={board.lostBlackPieces}
+            board={board}
+            currentPlayer={currentPlayer}
           />
-          <LostPieces   
-            title = "White Pieces" 
-            pieces = {board.lostWhitePieces} 
-            board = {board}
-            currentPlayer = {currentPlayer}
+          <LostPieces
+            title="White Pieces"
+            pieces={board.lostWhitePieces}
+            board={board}
+            currentPlayer={currentPlayer}
           />
         </div>
       </div>

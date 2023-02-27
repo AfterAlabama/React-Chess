@@ -31,37 +31,37 @@ export interface lostprops {
   title: string;
   pieces: Piece[];
   board: Board;
-  currentPlayer: Player
+  currentPlayer: Player;
 }
 
 export interface lostGraphProps {
   pieces: Piece[];
-  classes: any
+  classes: any;
 }
 
 export interface modalProps {
   visible: boolean;
   setVisible: (el: boolean) => void;
-  children: any
+  children: any;
 }
 
 export interface navProps {
-  setVisible: (el: boolean) => void
+  setVisible: (el: boolean) => void;
 }
 
 export interface modalContentProps {
-  setVisible: (el: boolean) => void
+  setVisible: (el: boolean) => void;
 }
 
 export interface ChBoardProps {
   chBoard: ChBoard;
   setChBoard: (chBoard: ChBoard) => void;
-  selectedChCell: ChCell | null
-  setSelectedChCell: (cell: ChCell | null) => void
+  selectedChCell: ChCell | null;
+  setSelectedChCell: (cell: ChCell | null) => void;
 }
 
 export interface ChCellProps {
   cell: ChCell;
   selected: boolean;
-  click: (target: ChCell) => void
+  click: (target: ChCell) => void;
 }

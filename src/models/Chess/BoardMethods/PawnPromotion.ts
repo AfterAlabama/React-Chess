@@ -4,7 +4,6 @@ import { Board } from "../Board";
 import { Cell } from "../Cell";
 import { Queen } from "../Pieces/Queen";
 
-
 export function PawnPromotion(
   target: Cell,
   selectedCell: Cell | null,
@@ -22,7 +21,7 @@ export function PawnPromotion(
       );
       selectedCell.piece = null;
       target.setPiece(whiteQueen.cell.piece!);
-    };
+    }
 
     if (target.x === 7) {
       const blackQueen = new Queen(

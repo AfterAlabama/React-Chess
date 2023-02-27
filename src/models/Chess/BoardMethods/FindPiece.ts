@@ -4,9 +4,7 @@ import { Board } from "../Board";
 import { Cell } from "../Cell";
 
 export class FindPiece {
-  static findKings(
-    board: Board
-  ) {
+  static findKings(board: Board) {
     let blackKing = new Cell(0, 0, Colors.BLACK, board, null);
 
     let whiteKing = new Cell(0, 0, Colors.WHITE, board, null);
@@ -32,11 +30,9 @@ export class FindPiece {
       }
     }
     return { whiteKing, blackKing };
-  };
+  }
 
-  static findRooks (
-    board: Board
-  ){
+  static findRooks(board: Board) {
     let leftBlackRook = new Cell(0, 0, Colors.BLACK, board, null);
 
     let rightBlackRook = new Cell(0, 7, Colors.WHITE, board, null);

@@ -1,21 +1,20 @@
-$underAttack : radial-gradient(red, burlywood);
+$underAttack: radial-gradient(red, burlywood);
 
 :export {
-  underAttack: $underAttack
-};
-
-
-.selected {
-  background: radial-gradient(green, burlywood)
+  underAttack: $underAttack;
 }
 
-img{
+.selected {
+  background: radial-gradient(green, burlywood);
+}
+
+img {
   &:hover {
-    cursor: grab
-  };
+    cursor: grab;
+  }
 
   &:active {
-    cursor: grabbing
+    cursor: grabbing;
   }
 }
 
@@ -31,17 +30,17 @@ img{
 }
 
 //widescreen
-@media only screen and (min-width: 1201px){
+@media only screen and (min-width: 1201px) {
   .available {
     width: 12px;
     height: 12px;
   }
-  
+
   .cell {
     width: 64px;
     height: 64px;
-  
-    img{
+
+    img {
       width: 48px;
       height: 48px;
     }
@@ -49,17 +48,17 @@ img{
 }
 
 //normal size
-@media only screen and (min-width: 769px) and (max-width: 1200px){
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
   .available {
     width: 10px;
     height: 10px;
   }
-  
+
   .cell {
     width: 46px;
     height: 46px;
-  
-    img{
+
+    img {
       width: 34px;
       height: 34px;
     }
@@ -67,17 +66,17 @@ img{
 }
 
 //tablets
-@media only screen and (min-width: 501px) and (max-width: 768px){
+@media only screen and (min-width: 501px) and (max-width: 768px) {
   .available {
     width: 10px;
     height: 10px;
   }
-  
+
   .cell {
     width: 46px;
     height: 46px;
-  
-    img{
+
+    img {
       width: 34px;
       height: 34px;
     }
@@ -86,20 +85,19 @@ img{
 
 //smartphones
 
-@media only screen and (min-width: 325px) and (max-width: 500px){
+@media only screen and (min-width: 325px) and (max-width: 500px) {
   .available {
     width: 7px;
     height: 7px;
   }
-  
+
   .cell {
     width: 34px;
     height: 34px;
-  
-    img{
+
+    img {
       width: 22px;
       height: 22px;
     }
   }
 }
-

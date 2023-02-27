@@ -1,4 +1,4 @@
-import { useRef} from "react";
+import { useRef } from "react";
 import GamesSection from "./GamesSection";
 import Header from "./Header";
 
@@ -11,10 +11,10 @@ const MainPage = () => {
     divRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
-  return ( 
+  return (
     <>
-      <Header clickHandler = {clickHandler} />
-      <GamesSection ref = {divRef} />
+      <Header clickHandler={clickHandler} />
+      <GamesSection ref={divRef} />
     </>
   );
 };

@@ -1,5 +1,5 @@
 export enum RouteNames {
-  DEFAULT= '/',
-  CHESS = '/chess',
-  CHECKERS = '/checkers'
+  DEFAULT = "/",
+  CHESS = "/chess",
+  CHECKERS = "/checkers",
 }
