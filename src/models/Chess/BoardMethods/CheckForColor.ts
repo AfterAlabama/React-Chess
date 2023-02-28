@@ -1,4 +1,4 @@
-import { Colors } from "../../../helpers/Colors";
+import { Colors } from "../../../helpers/Enums/Colors";
 import { Board } from "../Board";
 import { Cell } from "../Cell";
 

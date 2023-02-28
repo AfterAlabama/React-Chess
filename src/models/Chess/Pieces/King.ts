@@ -1,9 +1,9 @@
-import { Colors } from "../../../helpers/Colors";
+import { Colors } from "../../../helpers/Enums/Colors";
 import { Cell } from "../Cell";
 import { Piece } from "./Piece";
 import blackLogo from "../../../assets/black-king.png";
 import whiteLogo from "../../../assets/white-king.png";
-import { PieceNames } from "../../../helpers/PieceNames";
+import { PieceNames } from "../../../helpers/Enums/PieceNames";
 import { KingMethods } from "../PieceMethods/KingMethods";
 
 export class King extends Piece {

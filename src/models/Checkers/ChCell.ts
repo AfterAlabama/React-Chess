@@ -1,4 +1,4 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 import { ChBoard } from "./ChBoard";
 import { ChPiece } from "./Pieces/ChPiece";
 

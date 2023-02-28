@@ -1,4 +1,4 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 import { ChCell } from "./ChCell";
 import { Checker } from "./Pieces/Checker";
 

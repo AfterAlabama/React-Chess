@@ -1,19 +1,23 @@
 import { forwardRef } from "react";
 import SectionContent from "../UI/SectionContent";
-import classes from './GameSection.module.scss';
+import cl from './GameSection.module.scss';
+import SectionPic from '../../assets/wood.jpg';
 
 const GamesSection = forwardRef<HTMLDivElement>((_, divRef) => {
   return (
-    <section className={classes.section} >
-      <div
+    <section className={cl.section} >
+      <article
         ref={divRef}
-        className={classes.sectionImage}
       >
-        <SectionContent
-          classes={classes}
+        <img
+          alt = ''
+          className = {cl.sectionImage}
+          src = {SectionPic}
         />
-      </div>
-
+        <SectionContent
+          cl={cl}
+        />
+      </article>
     </section>
   );
 });

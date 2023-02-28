@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { CellProps } from "../../helpers/Props";
+import { CellProps } from "../../helpers/Props/ChessProps";
 import { Cell } from "../../models/Chess/Cell";
-import classes from "./CellComponent.module.scss";
+import cl from "./CellComponent.module.scss";
 
 const CellComponent: FC<CellProps> = ({
   cell,
@@ -13,9 +13,9 @@ const CellComponent: FC<CellProps> = ({
 }) => {
 
   const cellStyle = [
-    classes.cell,
+    cl.cell,
     cell.color,
-    selected ? classes.selected : "",
+    selected ? cl.selected : "",
   ].join(" ");
 
   const showPieces = cell.piece?.logo ? (
@@ -39,13 +39,13 @@ const CellComponent: FC<CellProps> = ({
 
   const availableDots =
     cell.available && !cell.piece ? (
-      <div className={classes.available}></div>
+      <div className={cl.available}></div>
     ) : (
       ""
     );
 
   const PieceUnderAttack = {
-    background: cell.available && cell.piece ? classes.underAttack : "",
+    background: cell.available && cell.piece ? cl.underAttack : "",
   };
 
   function dragStartHandler(cell: Cell) {

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 import { Board } from "../../models/Chess/Board";
 import { Cell } from "../../models/Chess/Cell";
 import { Player } from "../../models/Chess/Player";
 import BoardComponent from "./BoardComponent";
 import LostPieces from "./LostPieces";
-import classes from "./ChessBoard.module.scss";
+import cl from "./ChessBoard.module.scss";
 import { CreateBoard } from "../../models/Chess/BoardMethods/CreateBoard";
 import { KingMethods } from "../../models/Chess/PieceMethods/KingMethods";
 
@@ -41,20 +41,20 @@ const ChessBoard = () => {
 
 
   return (
-    <div className={classes.chess}>
+    <div className={cl.chess}>
       {KingMethods.Mate(board, currentPlayer.color)
         ?
-        <div className={classes.mateMessage}>
+        <p className={cl.mateMessage}>
           Ready for another Game? Press restart
-        </div>
+        </p>
         :
-        <div className={classes.turn}>{currentPlayer.color} to move
-        </div>}
+        <h2 className={cl.turn}>{currentPlayer.color} to move
+        </h2>}
       <button
-        className={classes.restartBtn} onClick={restart}
+        className={cl.restartBtn} onClick={restart}
       >Restart
       </button>
-      <div className={classes.flex}>
+      <div className={cl.flex}>
         <BoardComponent
           board={board}
           setBoard={setBoard}
@@ -63,7 +63,7 @@ const ChessBoard = () => {
           selectedCell={selectedCell}
           setSelectedCell={setSelectedCell}
         />
-        <div className={classes.columns}>
+        <div className={cl.columns}>
           <LostPieces
             title="Black Pieces"
             pieces={board.lostBlackPieces}

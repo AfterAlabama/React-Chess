@@ -1,5 +1,5 @@
-import { Colors } from "../../../helpers/Colors";
-import { PieceNames } from "../../../helpers/PieceNames";
+import { Colors } from "../../../helpers/Enums/Colors";
+import { PieceNames } from "../../../helpers/Enums/PieceNames";
 import { Board } from "../Board";
 import { Cell } from "../Cell";
 import { BlockCheck } from "../CellMethods/BlockCheck";
@@ -24,24 +24,15 @@ export class Highlight {
 
     //left white castling
     if (
-      whiteKing.x === leftWhiteRook.x 
-      &&
-      !whiteKingCheck 
-      &&
-      whiteKing.piece?.isFirstStep 
-      &&
-      leftWhiteRook.piece?.isFirstStep 
-      &&
-      IsEmpty.Cell(board.getCells(1, 7)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(1, 7)) 
-      &&
-      IsEmpty.Cell(board.getCells(2, 7)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(2, 7)) 
-      &&
-      IsEmpty.Cell(board.getCells(3, 7)) 
-      &&
+      whiteKing.x === leftWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      leftWhiteRook.piece?.isFirstStep &&
+      IsEmpty.Cell(board.getCells(1, 7)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(1, 7)) &&
+      IsEmpty.Cell(board.getCells(2, 7)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(2, 7)) &&
+      IsEmpty.Cell(board.getCells(3, 7)) &&
       !IsCellUnderAttack(board, currentColor, board.getCells(3, 7))
     ) {
       if (selectedCell === whiteKing) {
@@ -51,20 +42,13 @@ export class Highlight {
 
     //right white castling
     if (
-      whiteKing.x === rightWhiteRook.x 
-      &&
-      !whiteKingCheck 
-      &&
-      whiteKing.piece?.isFirstStep 
-      &&
-      rightWhiteRook.piece?.isFirstStep 
-      &&
-      IsEmpty.Cell(board.getCells(6, 7)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(6, 7)) 
-      &&
-      IsEmpty.Cell(board.getCells(5, 7)) 
-      &&
+      whiteKing.x === rightWhiteRook.x &&
+      !whiteKingCheck &&
+      whiteKing.piece?.isFirstStep &&
+      rightWhiteRook.piece?.isFirstStep &&
+      IsEmpty.Cell(board.getCells(6, 7)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(6, 7)) &&
+      IsEmpty.Cell(board.getCells(5, 7)) &&
       !IsCellUnderAttack(board, currentColor, board.getCells(5, 7))
     ) {
       if (selectedCell === whiteKing) {
@@ -74,24 +58,15 @@ export class Highlight {
 
     //left black castling
     if (
-      blackKing.x === leftBlackRook.x 
-      &&
-      !blackKingCheck 
-      &&
-      blackKing.piece?.isFirstStep 
-      &&
-      leftBlackRook.piece?.isFirstStep 
-      &&
-      IsEmpty.Cell(board.getCells(1, 0)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(1, 0)) 
-      &&
-      IsEmpty.Cell(board.getCells(2, 0)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(2, 0)) 
-      &&
-      IsEmpty.Cell(board.getCells(3, 0)) 
-      &&
+      blackKing.x === leftBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      leftBlackRook.piece?.isFirstStep &&
+      IsEmpty.Cell(board.getCells(1, 0)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(1, 0)) &&
+      IsEmpty.Cell(board.getCells(2, 0)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(2, 0)) &&
+      IsEmpty.Cell(board.getCells(3, 0)) &&
       !IsCellUnderAttack(board, currentColor, board.getCells(3, 0))
     ) {
       if (selectedCell === blackKing) {
@@ -101,20 +76,13 @@ export class Highlight {
 
     //right black castling
     if (
-      blackKing.x === rightBlackRook.x 
-      &&
-      !blackKingCheck 
-      &&
-      blackKing.piece?.isFirstStep 
-      &&
-      rightBlackRook.piece?.isFirstStep 
-      &&
-      IsEmpty.Cell(board.getCells(5, 0)) 
-      &&
-      !IsCellUnderAttack(board, currentColor, board.getCells(5, 0)) 
-      &&
-      IsEmpty.Cell(board.getCells(6, 0)) 
-      &&
+      blackKing.x === rightBlackRook.x &&
+      !blackKingCheck &&
+      blackKing.piece?.isFirstStep &&
+      rightBlackRook.piece?.isFirstStep &&
+      IsEmpty.Cell(board.getCells(5, 0)) &&
+      !IsCellUnderAttack(board, currentColor, board.getCells(5, 0)) &&
+      IsEmpty.Cell(board.getCells(6, 0)) &&
       !IsCellUnderAttack(board, currentColor, board.getCells(6, 0))
     ) {
       if (selectedCell === blackKing) {

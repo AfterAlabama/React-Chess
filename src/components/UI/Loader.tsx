@@ -1,13 +1,14 @@
-import { ReactNode } from 'react';
+import { FC } from 'react';
+import { LoaderProps } from '../../helpers/Props/UIProps';
 import cl from './Loader.module.scss';
 
-const Loader = (
-  { children }: { children: ReactNode; }
+const Loader: FC<LoaderProps> = (
+  { children }
 ) => {
   return (
     <div className={cl.container}>
       {children}
-      <div className={cl.loader}></div>
+      <article className={cl.loader}></article>
     </div>
   );
 };

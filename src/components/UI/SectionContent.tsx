@@ -1,25 +1,29 @@
-import { RouteNames } from "../../helpers/RouteNames";
+import { RouteNames } from "../../helpers/Enums/RouteNames";
 import SectionGame from "./SectionGame";
+import ChessPic from '../../assets/chesspic.jpg';
+import CheckersPic from '../../assets/checkers.jpg';
+import { FC } from "react";
+import { SectionContentProps } from "../../helpers/Props/UIProps";
 
-const SectionContent = ({ classes }: any) => {
+const SectionContent: FC<SectionContentProps> = ({ cl }) => {
   return (
-    <div
-      className={classes.sectionContent}
+    <section
+      className={cl.sectionContent}
     >
       <h1>Choose Your Game</h1>
       <>
         <SectionGame
-          classes={classes}
-          image={classes.chessImage}
+          cl={cl}
+          image={ChessPic}
           route={RouteNames.CHESS}
         />
         <SectionGame
-          classes={classes}
-          image={classes.checkersImage}
+          cl={cl}
+          image={CheckersPic}
           route={RouteNames.CHECKERS}
         />
       </>
-    </div>
+    </section>
   );
 };
 

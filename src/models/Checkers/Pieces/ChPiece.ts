@@ -1,5 +1,5 @@
-import { Colors } from "../../../helpers/Colors";
-import { PieceNames } from "../../../helpers/PieceNames";
+import { Colors } from "../../../helpers/Enums/Colors";
+import { PieceNames } from "../../../helpers/Enums/PieceNames";
 import { ChCell } from "../ChCell";
 import logo from "../../../assets/black attempt 1.png";
 

@@ -1,4 +1,4 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 
 export class Player {
   color: Colors;

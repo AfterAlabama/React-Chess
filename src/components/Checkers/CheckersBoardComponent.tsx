@@ -1,5 +1,5 @@
 import { FC, Fragment, useCallback, useEffect } from 'react';
-import { ChBoardProps } from '../../helpers/Props';
+import { ChBoardProps } from '../../helpers/Props/CheckersProps';
 import { CheckersActionsOnClick } from '../../models/Checkers/BoardMethods/CheckersActionsOnClick';
 import { ChCell } from '../../models/Checkers/ChCell';
 import cl from './ChBoardComponent.module.scss';

@@ -1,4 +1,4 @@
-import { Colors } from "../../../helpers/Colors";
+import { Colors } from "../../../helpers/Enums/Colors";
 import { Board } from "../Board";
 import { CheckForColor } from "../BoardMethods/CheckForColor";
 import { FindPiece } from "../BoardMethods/FindPiece";
@@ -63,25 +63,16 @@ export class KingMethods {
               const target2 = row2[z];
 
               if (
-                (whiteKing.piece!.canMove(target) 
-                &&
-                !IsCellUnderAttack(board, currentColor, target)) 
-                ||
-                (target2.piece?.color === whiteKing.piece!.color 
-                &&
-                target2.piece?.canMove(target) 
-                &&
-                BlockCheck.doesCellBlockTheCheck(target, board, target2)) 
-                ||
-                (blackKing.piece!.canMove(target) 
-                &&
-                !IsCellUnderAttack(board, currentColor, target)) 
-                ||
-                (target2.piece?.color === blackKing.piece!.color 
-                &&
-                target2.piece?.canMove(target) 
-                &&
-                BlockCheck.doesCellBlockTheCheck(target, board, target2))
+                (whiteKing.piece!.canMove(target) &&
+                  !IsCellUnderAttack(board, currentColor, target)) ||
+                (target2.piece?.color === whiteKing.piece!.color &&
+                  target2.piece?.canMove(target) &&
+                  BlockCheck.doesCellBlockTheCheck(target, board, target2)) ||
+                (blackKing.piece!.canMove(target) &&
+                  !IsCellUnderAttack(board, currentColor, target)) ||
+                (target2.piece?.color === blackKing.piece!.color &&
+                  target2.piece?.canMove(target) &&
+                  BlockCheck.doesCellBlockTheCheck(target, board, target2))
               ) {
                 count += 1;
               }
@@ -97,10 +88,7 @@ export class KingMethods {
     }
   }
 
-  static CanKingCastle(
-    king: King,
-    target: Cell
-  ){
+  static CanKingCastle(king: King, target: Cell) {
     if (king.isFirstStep && target.x === king.cell.x && target.available) {
       if (
         king.color === Colors.WHITE &&
@@ -118,10 +106,7 @@ export class KingMethods {
     }
   }
 
-  static CanKingMove(
-    king: King,
-    target: Cell
-  ){
+  static CanKingMove(king: King, target: Cell) {
     if (
       (target.x === king.cell.x + 1 ||
         target.x === king.cell.x - 1 ||
@@ -134,10 +119,7 @@ export class KingMethods {
     }
   }
 
-  static CanKingProtect(
-    king: King,
-    target: Cell
-  ){
+  static CanKingProtect(king: King, target: Cell) {
     if (
       target.piece &&
       target.piece.color === king.color &&

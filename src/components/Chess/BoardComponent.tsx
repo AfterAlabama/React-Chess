@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from "react";
-import { Boardprops } from "../../helpers/Props";
+import { Boardprops } from "../../helpers/Props/ChessProps";
 import { Cell } from "../../models/Chess/Cell";
 import CellComponent from "./CellComponent";
-import classes from "./BoardComponent.module.scss";
+import cl from "./BoardComponent.module.scss";
 import useSound from "use-sound";
 import moveSound from "../../assets/6a897efd83627af.mp3";
 import { PawnPromotion } from "../../models/Chess/BoardMethods/PawnPromotion";
@@ -91,35 +91,35 @@ const BoardComponent: FC<Boardprops> = ({
 
   if (KingMethods.isKingUnderAttack(board).blackKingCheck) {
     return (
-      <div className={classes.check}>
+      <div className={cl.check}>
         {KingMethods.Mate(board, currentPlayer.color)
           ?
-          <h1 className={classes.checkMessage}>Black Mated!!</h1>
+          <h1 className={cl.checkMessage}>Black Mated!!</h1>
           :
-          <h1 className={classes.checkMessage}>Black Checked!!</h1>
+          <h1 className={cl.checkMessage}>Black Checked!!</h1>
         }
-        <div className={classes.board}>{showCells}</div>
+        <article className={cl.board}>{showCells}</article>
       </div>
     );
   };
 
   if (KingMethods.isKingUnderAttack(board).whiteKingCheck) {
     return (
-      <div className={classes.check}>
+      <div className={cl.check}>
         {KingMethods.Mate(board, currentPlayer.color)
           ?
-          <h1 className={classes.checkMessage}>White Mated!!</h1>
+          <h1 className={cl.checkMessage}>White Mated!!</h1>
           :
-          <h1 className={classes.checkMessage}>White Checked!!</h1>
+          <h1 className={cl.checkMessage}>White Checked!!</h1>
         }
-        <div className={classes.board}>{showCells}</div>
+        <article className={cl.board}>{showCells}</article>
       </div>
     );
   };
 
   return (
     <>
-      <div className={classes.board}>{showCells}</div>
+      <article className={cl.board}>{showCells}</article>
     </>
   );
 };

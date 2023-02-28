@@ -1,4 +1,4 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 import { Board } from "./Board";
 import { PawnMethods } from "./PieceMethods/PawnMethods";
 import { Piece } from "./Pieces/Piece";
@@ -51,9 +51,8 @@ export class Cell {
   }
 
   movePiece(target: Cell) {
+    PawnMethods.PawnTakesEnPassant(this, target);
 
-    PawnMethods.PawnTakesEnPassant(this, target)
-    
     //ordinary moves
     if (this.piece && this.piece?.canMove(target)) {
       this.piece.movePiece(target);

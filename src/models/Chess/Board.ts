@@ -1,4 +1,4 @@
-import { Colors } from "../../helpers/Colors";
+import { Colors } from "../../helpers/Enums/Colors";
 import { Highlight } from "./BoardMethods/Highlight";
 import { Cell } from "./Cell";
 import { Bishop } from "./Pieces/Bishop";

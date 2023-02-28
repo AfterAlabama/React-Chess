@@ -1,36 +1,45 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
-import { navProps } from "../../helpers/Props";
-import { RouteNames } from "../../helpers/RouteNames";
-import classes from './NavBar.module.scss';
+import { NavProps } from "../../helpers/Props/MainPageProps";
+import { RouteNames } from "../../helpers/Enums/RouteNames";
+import cl from './NavBar.module.scss';
 
 
 
-const NavBar = ({ setVisible }: navProps) => {
+const NavBar: FC<NavProps> = ({ setVisible }) => {
   return (
-    <nav className={classes.nav}>
-      <div
-        className={classes.logo}
+    <nav className={cl.nav}>
+      <article
+        className={cl.logo}
         onClick={() => setVisible(true)}
       >
-        <span className={classes.coral}>Chess</span>zardo
-      </div>
-      <div>
-        <Link
-          className={classes.link}
-          to={RouteNames.DEFAULT}>
-          Main Page
-        </Link>
-        <Link
-          className={classes.link}
-          to={RouteNames.CHESS}>
-          Chess
-        </Link>
-        <Link
-          className={classes.link}
-          to={RouteNames.CHECKERS}>
-          Checkers
-        </Link>
-      </div>
+        <span className={cl.coral}>Chess</span>zardo
+      </article>
+      <ul
+        className={cl.ul}
+      >
+        <li>
+          <Link
+            className={cl.link}
+            to={RouteNames.DEFAULT}>
+            Main Page
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={cl.link}
+            to={RouteNames.CHESS}>
+            Chess
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={cl.link}
+            to={RouteNames.CHECKERS}>
+            Checkers
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };

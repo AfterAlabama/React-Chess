@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ChCellProps } from '../../helpers/Props';
+import { ChCellProps } from '../../helpers/Props/CheckersProps';
 import cl from './ChCellComponent.module.scss';
 
 const CheckersCellComponent: FC<ChCellProps> = ({ cell, selected, click }) => {

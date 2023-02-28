@@ -1,9 +1,10 @@
-import { modalContentProps } from "../../helpers/Props";
+import { FC } from "react";
+import { ModalContentProps } from "../../helpers/Props/UIProps";
 
 
-const GitModalContent = ({ setVisible }: modalContentProps) => {
+const GitModalContent: FC<ModalContentProps> = ({ setVisible }) => {
   return (
-    <div>
+    <>
       <h3>Liked our content? Look for more:</h3>
       <a
         href="https://github.com/AfterAlabama?tab=repositories"
@@ -11,7 +12,7 @@ const GitModalContent = ({ setVisible }: modalContentProps) => {
         rel="noopener noreferrer"
         onClick={() => setVisible(false)}
       >To GitHub</a>
-    </div>
+    </>
   );
 };
 

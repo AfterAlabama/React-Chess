@@ -1,7 +1,9 @@
-import { modalProps } from '../../helpers/Props';
+import { FC } from 'react';
+import { ModalProps } from '../../helpers/Props/UIProps';
 import cl from './GitModal.module.scss';
+import GitModalContent from './GitModalContent';
 
-const GitHubModal = ({ visible, setVisible, children }: modalProps) => {
+const GitHubModal: FC<ModalProps> = ({ visible, setVisible }) => {
 
   const rootClass = [cl.modal];
 
@@ -13,12 +15,14 @@ const GitHubModal = ({ visible, setVisible, children }: modalProps) => {
     <div
       className={rootClass.join(' ')}
       onClick={() => setVisible(false)}>
-      <div
+      <article
         className={cl.modalContent}
         onClick={e => e.stopPropagation()}
       >
-        {children}
-      </div>
+        <GitModalContent
+          setVisible={setVisible}
+        />
+      </article>
     </div>
   );
 };

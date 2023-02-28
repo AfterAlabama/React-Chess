@@ -1,15 +1,11 @@
-import { PieceNames } from "../../../helpers/PieceNames";
+import { PieceNames } from "../../../helpers/Enums/PieceNames";
 import { Board } from "../Board";
 import { FindPiece } from "../BoardMethods/FindPiece";
 import { Cell } from "../Cell";
 import { KingMethods } from "../PieceMethods/KingMethods";
 
 export class BlockCheck {
-  static doesPieceBlockTheCheck(
-    target: Cell,
-    board: Board,
-    movingCell : Cell
-    ) {
+  static doesPieceBlockTheCheck(target: Cell, board: Board, movingCell: Cell) {
     const { blackKing, whiteKing } = FindPiece.findKings(board);
 
     for (let i = 0; i < board.cells.length; i++) {
@@ -42,20 +38,17 @@ export class BlockCheck {
                 target !== randomCell
               ) {
                 return true;
-              };
+              }
 
               if (
                 target ===
-                board.getCells(
-                  randomCell.y + dy * z,
-                  randomCell.x + dx * z
-                )
+                board.getCells(randomCell.y + dy * z, randomCell.x + dx * z)
               ) {
                 return false;
               }
             }
           }
-        };
+        }
 
         //white bishop
         if (
@@ -75,13 +68,10 @@ export class BlockCheck {
             for (let z = 1; z < absY; z++) {
               if (
                 target ===
-                board.getCells(
-                  randomCell.y + dy * z,
-                  randomCell.x + dx * z
-                )
+                board.getCells(randomCell.y + dy * z, randomCell.x + dx * z)
               ) {
                 return false;
-              };
+              }
 
               if (
                 movingCell ===
@@ -95,7 +85,7 @@ export class BlockCheck {
               }
             }
           }
-        };
+        }
 
         //black rook
         if (
@@ -112,7 +102,7 @@ export class BlockCheck {
               if (randomCell.piece.canMove(movingCell)) {
                 if (movingCell === board.getCells(randomCell.y, x)) {
                   return true;
-                };
+                }
 
                 if (
                   target === randomCell ||
@@ -122,7 +112,7 @@ export class BlockCheck {
                 }
               }
             }
-          };
+          }
 
           if (whiteKing.x === randomCell.x) {
             const min1 = Math.min(whiteKing.y, randomCell.y);
@@ -136,7 +126,7 @@ export class BlockCheck {
                   target === randomCell
                 ) {
                   return false;
-                };
+                }
 
                 if (movingCell === board.getCells(y, randomCell.x)) {
                   return true;
@@ -144,7 +134,7 @@ export class BlockCheck {
               }
             }
           }
-        };
+        }
 
         //black queen
         if (
@@ -171,19 +161,16 @@ export class BlockCheck {
                 target !== randomCell
               ) {
                 return true;
-              };
+              }
 
               if (
                 target ===
-                board.getCells(
-                  randomCell.y + dy * z,
-                  randomCell.x + dx * z
-                )
+                board.getCells(randomCell.y + dy * z, randomCell.x + dx * z)
               ) {
                 return false;
               }
             }
-          };
+          }
 
           if (whiteKing.y === randomCell.y) {
             const min = Math.min(randomCell.x, whiteKing.x);
@@ -194,7 +181,7 @@ export class BlockCheck {
               if (randomCell.piece.canMove(movingCell)) {
                 if (movingCell === board.getCells(randomCell.y, x)) {
                   return true;
-                };
+                }
 
                 if (
                   target === randomCell ||
@@ -204,7 +191,7 @@ export class BlockCheck {
                 }
               }
             }
-          };
+          }
 
           if (whiteKing.x === randomCell.x) {
             const min1 = Math.min(whiteKing.y, randomCell.y);
@@ -218,7 +205,7 @@ export class BlockCheck {
                   target === randomCell
                 ) {
                   return false;
-                };
+                }
 
                 if (movingCell === board.getCells(y, randomCell.x)) {
                   return true;
@@ -226,7 +213,7 @@ export class BlockCheck {
               }
             }
           }
-        };
+        }
 
         //white queen
         if (
@@ -253,19 +240,16 @@ export class BlockCheck {
                 target !== randomCell
               ) {
                 return true;
-              };
+              }
 
               if (
                 target ===
-                board.getCells(
-                  randomCell.y + dy * z,
-                  randomCell.x + dx * z
-                )
+                board.getCells(randomCell.y + dy * z, randomCell.x + dx * z)
               ) {
                 return false;
               }
             }
-          };
+          }
 
           if (blackKing.y === randomCell.y) {
             const min = Math.min(randomCell.x, blackKing.x);
@@ -276,7 +260,7 @@ export class BlockCheck {
               if (randomCell.piece.canMove(movingCell)) {
                 if (movingCell === board.getCells(randomCell.y, x)) {
                   return true;
-                };
+                }
 
                 if (
                   target === randomCell ||
@@ -286,7 +270,7 @@ export class BlockCheck {
                 }
               }
             }
-          };
+          }
 
           if (blackKing.x === randomCell.x) {
             const min1 = Math.min(blackKing.y, randomCell.y);
@@ -300,7 +284,7 @@ export class BlockCheck {
                   target === randomCell
                 ) {
                   return false;
-                };
+                }
 
                 if (movingCell === board.getCells(y, randomCell.x)) {
                   return true;
@@ -312,16 +296,13 @@ export class BlockCheck {
       }
     }
     return false;
-  };
+  }
 
-  static doesCellBlockTheCheck(
-    target: Cell,
-    board: Board,
-    movingCell: Cell
-    ) {
+  static doesCellBlockTheCheck(target: Cell, board: Board, movingCell: Cell) {
     const { blackKing, whiteKing } = FindPiece.findKings(board);
 
-    const { blackAttacker, whiteAttacker } = KingMethods.isKingUnderAttack(board);
+    const { blackAttacker, whiteAttacker } =
+      KingMethods.isKingUnderAttack(board);
 
     for (let i = 0; i < board.cells.length; i++) {
       const row = board.cells[i];
@@ -333,7 +314,7 @@ export class BlockCheck {
           randomCell.piece?.canMove(target)
         ) {
           return true;
-        };
+        }
 
         if (
           target === blackAttacker &&
@@ -343,17 +324,16 @@ export class BlockCheck {
           return true;
         }
       }
-    };
+    }
 
     if (whiteAttacker?.piece?.name === PieceNames.BISHOP) {
-
       //black bishop
       const absY = Math.abs(whiteKing.y - whiteAttacker.y);
       const absX = Math.abs(whiteKing.x - whiteAttacker.x);
 
       if (absX !== absY) {
         return false;
-      };
+      }
 
       const dy = whiteAttacker.y < whiteKing.y ? 1 : -1;
       const dx = whiteAttacker.x < whiteKing.x ? 1 : -1;
@@ -361,15 +341,12 @@ export class BlockCheck {
       for (let i = 1; i < absY; i++) {
         if (
           target ===
-          board.getCells(
-            whiteAttacker.y + dy * i,
-            whiteAttacker.x + dx * i
-          )
+          board.getCells(whiteAttacker.y + dy * i, whiteAttacker.x + dx * i)
         ) {
           return true;
         }
       }
-    };
+    }
 
     //white bishop
     if (blackAttacker?.piece?.name === PieceNames.BISHOP) {
@@ -378,7 +355,7 @@ export class BlockCheck {
 
       if (absX !== absY) {
         return false;
-      };
+      }
 
       const dy = blackAttacker.y < blackKing.y ? 1 : -1;
       const dx = blackAttacker.x < blackKing.x ? 1 : -1;
@@ -387,15 +364,12 @@ export class BlockCheck {
         if (
           movingCell.piece?.canMove(target) &&
           target ===
-            board.getCells(
-              blackAttacker.y + dy * i,
-              blackAttacker.x + dx * i
-            )
+            board.getCells(blackAttacker.y + dy * i, blackAttacker.x + dx * i)
         ) {
           return true;
         }
       }
-    };
+    }
 
     //black rook
     if (whiteAttacker?.piece?.name === PieceNames.ROOK) {
@@ -409,7 +383,7 @@ export class BlockCheck {
         ) {
           return true;
         }
-      };
+      }
 
       const min1 = Math.min(whiteAttacker.y, whiteKing.y);
       const max1 = Math.max(whiteAttacker.y, whiteKing.y);
@@ -422,7 +396,7 @@ export class BlockCheck {
           return true;
         }
       }
-    };
+    }
 
     //black rook
     if (blackAttacker?.piece?.name === PieceNames.ROOK) {
@@ -436,7 +410,7 @@ export class BlockCheck {
         ) {
           return true;
         }
-      };
+      }
 
       const min1 = Math.min(blackAttacker.y, blackKing.y);
       const max1 = Math.max(blackAttacker.y, blackKing.y);
@@ -463,10 +437,7 @@ export class BlockCheck {
           if (
             movingCell.piece?.canMove(target) &&
             target ===
-              board.getCells(
-                whiteAttacker.y + dy * i,
-                whiteAttacker.x + dx * i
-              )
+              board.getCells(whiteAttacker.y + dy * i, whiteAttacker.x + dx * i)
           ) {
             return true;
           }
@@ -482,7 +453,7 @@ export class BlockCheck {
           ) {
             return true;
           }
-        };
+        }
 
         const min1 = Math.min(whiteAttacker.y, whiteKing.y);
         const max1 = Math.max(whiteAttacker.y, whiteKing.y);
@@ -496,7 +467,7 @@ export class BlockCheck {
           }
         }
       }
-    };
+    }
 
     //black Queen
     if (blackAttacker?.piece?.name === PieceNames.QUEEN) {
@@ -510,10 +481,7 @@ export class BlockCheck {
           if (
             movingCell.piece?.canMove(target) &&
             target ===
-              board.getCells(
-                blackAttacker.y + dy * i,
-                blackAttacker.x + dx * i
-              )
+              board.getCells(blackAttacker.y + dy * i, blackAttacker.x + dx * i)
           ) {
             return true;
           }
@@ -529,8 +497,8 @@ export class BlockCheck {
           ) {
             return true;
           }
-        };
-        
+        }
+
         const min1 = Math.min(blackAttacker.y, blackKing.y);
         const max1 = Math.max(blackAttacker.y, blackKing.y);
 
