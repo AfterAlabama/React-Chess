@@ -1,6 +1,8 @@
+import { Colors } from '../../../helpers/Enums/Colors';
 import { Player } from '../../Chess/Player';
 import { ChBoard } from '../ChBoard';
 import { ChCell } from '../ChCell';
+import { ChQueen } from '../Pieces/ChQueen';
 import { CheckerAttack } from './CheckerAttack';
 
 export class CheckersActionsOnClick {
@@ -12,7 +14,7 @@ export class CheckersActionsOnClick {
 		currentPlayer: Player,
 		swapPlayers: () => void
 	) {
-		if (selectedChCell && target === selectedChCell) {
+		if (selectedChCell && (target === selectedChCell || !selectedChCell.piece?.canMove(target))) {
 			setSelectedChCell(null);
 		}
 		if (
@@ -36,6 +38,44 @@ export class CheckersActionsOnClick {
 
 			selectedChCell.movePiece(target);
 			setSelectedChCell(null);
+			swapPlayers();
+		}
+	}
+
+	static CheckerPromotion(
+		selectedChCell: ChCell | null,
+		target: ChCell,
+		board: ChBoard,
+		setSelectedChCell: (cell: ChCell | null) => void,
+		swapPlayers: () => void
+	) {
+		//white checker
+		if (
+			selectedChCell &&
+			selectedChCell.piece &&
+			selectedChCell.piece.color === Colors.WHITE &&
+			selectedChCell.piece.canMove(target) &&
+			target.x === 0
+		) {
+			setSelectedChCell(null);
+			selectedChCell.piece = null;
+			const whiteQueen = new ChQueen(Colors.WHITE, board.getCells(target.y, 0));
+			target.setPiece(whiteQueen);
+			swapPlayers();
+		}
+
+		//black checker
+		if (
+			selectedChCell &&
+			selectedChCell.piece &&
+			selectedChCell.piece.color === Colors.BLACK &&
+			selectedChCell.piece.canMove(target) &&
+			target.x === 7
+		) {
+			setSelectedChCell(null);
+			selectedChCell.piece = null;
+			const blackQueen = new ChQueen(Colors.BLACK, board.getCells(target.y, 7));
+			target.setPiece(blackQueen);
 			swapPlayers();
 		}
 	}

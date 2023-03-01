@@ -5,60 +5,68 @@ import { ChCell } from '../../models/Checkers/ChCell';
 import cl from './ChBoardComponent.module.scss';
 import CheckersCellComponent from './CheckersCellComponent';
 
-
 const CheckersBoardComponent: FC<ChBoardProps> = ({
-  chBoard,
-  setChBoard,
-  selectedChCell,
-  setSelectedChCell,
-  currentPlayer,
-  swapPlayers
+	chBoard,
+	setChBoard,
+	selectedChCell,
+	setSelectedChCell,
+	currentPlayer,
+	swapPlayers,
 }) => {
+	const click = (target: ChCell) => {
+		CheckersActionsOnClick.CheckerPromotion(
+			selectedChCell,
+			target,
+			chBoard,
+			setSelectedChCell,
+			swapPlayers
+		);
 
-  const click = (target: ChCell) => {
-    CheckersActionsOnClick.OrdinaryMoves(
-      selectedChCell,
-      target,
-      chBoard,
-      setSelectedChCell,
-      currentPlayer,
-      swapPlayers
-    );
-  };
+		CheckersActionsOnClick.OrdinaryMoves(
+			selectedChCell,
+			target,
+			chBoard,
+			setSelectedChCell,
+			currentPlayer,
+			swapPlayers
+		);
+	};
 
+	const highlightCells = () => {
+		chBoard.highlightChCells(selectedChCell);
+		updateBoard();
+	};
 
-  const highlightCells = () => {
-    chBoard.highlightChCells(selectedChCell);
-    updateBoard();
-  };
+	const updateBoard = useCallback(() => {
+		const newBoard = chBoard.getCopyBoard();
+		setChBoard(newBoard);
+	}, [chBoard, setChBoard]);
 
-  const updateBoard = useCallback(() => {
-    const newBoard = chBoard.getCopyBoard();
-    setChBoard(newBoard);
-  }, [chBoard, setChBoard]);
+	useEffect(() => {
+		highlightCells();
+	}, [selectedChCell]);
 
-  useEffect(() => {
-    highlightCells();
-  }, [selectedChCell]);
-
-  return (
-    <div className={cl.board} >
-      {chBoard.cells.map((row, index) =>
-        <Fragment
-          key={index}
-        >
-          {row.map(cell => <CheckersCellComponent
-            key={cell.id}
-            cell={cell}
-            selected={cell.x === selectedChCell?.x && cell.y === selectedChCell?.y}
-            click={click}
-            currentPlayer = {currentPlayer}
-            setSelectedChCell={setSelectedChCell}
-            selectedChCell={selectedChCell}
-          />)}
-        </Fragment>)}
-    </div>
-  );
+	return (
+		<div className={cl.board}>
+			{chBoard.cells.map((row, index) => (
+				<Fragment key={index}>
+					{row.map((cell) => (
+						<CheckersCellComponent
+							key={cell.id}
+							cell={cell}
+							selected={
+								cell.x === selectedChCell?.x && cell.y === selectedChCell?.y
+							}
+							click={click}
+							currentPlayer={currentPlayer}
+							setSelectedChCell={setSelectedChCell}
+							selectedChCell={selectedChCell}
+						/>
+					))}
+				</Fragment>
+			))}
+		</div>
+	);
 };
 
 export default CheckersBoardComponent;
