@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, DragEvent } from "react";
 import { CellProps } from "../../helpers/Props/ChessProps";
 import { Cell } from "../../models/Chess/Cell";
 import cl from "./CellComponent.module.scss";
@@ -52,11 +52,11 @@ const CellComponent: FC<CellProps> = ({
     setSelectedCell(cell);
   };
 
-  function dragOverHandler(e: any) {
+  function dragOverHandler(e: DragEvent<HTMLImageElement | HTMLDivElement>) {
     e.preventDefault();
   };
 
-  function dropHandler(e: any, cell: Cell) {
+  function dropHandler(e: DragEvent<HTMLImageElement | HTMLDivElement>, cell: Cell) {
     e.preventDefault();
     if (selectedCell && selectedCell.piece && cell.available) {
       click(cell);

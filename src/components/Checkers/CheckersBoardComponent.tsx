@@ -52,6 +52,9 @@ const CheckersBoardComponent: FC<ChBoardProps> = ({
             cell={cell}
             selected={cell.x === selectedChCell?.x && cell.y === selectedChCell?.y}
             click={click}
+            currentPlayer = {currentPlayer}
+            setSelectedChCell={setSelectedChCell}
+            selectedChCell={selectedChCell}
           />)}
         </Fragment>)}
     </div>

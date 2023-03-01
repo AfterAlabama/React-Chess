@@ -15,5 +15,8 @@ export interface ChCellProps {
   cell: ChCell;
   selected: boolean;
   click: (target: ChCell) => void;
+  currentPlayer: Player;
+  setSelectedChCell: (cell: ChCell) => void,
+  selectedChCell: ChCell | null
 }
 
