@@ -86,8 +86,7 @@ const BoardComponent: FC<Boardprops> = ({
   useEffect(() => {
     board.highlightCells(selectedCell, currentPlayer.color);
     updateBoard();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCell, currentPlayer.color]);
+  }, [selectedCell]);
 
   if (KingMethods.isKingUnderAttack(board).blackKingCheck) {
     return (

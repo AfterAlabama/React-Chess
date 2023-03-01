@@ -20,13 +20,18 @@ const CheckersBoard = () => {
   const [selectedChSell, setSelectedChCell] = useState<ChCell | null>(null);
 
   useEffect(() => {
-    CreateChBoard(setChBoard);
+    CreateChBoard(setChBoard)
   }, []);
 
   const restart = () => {
     CreateChBoard(setChBoard);
     setSelectedChCell(null);
+    setCurrentPlayer(whitePlayer)
   };
+
+  const swapPlayers = () => {
+    setCurrentPlayer(currentPlayer === whitePlayer ? blackPlayer : whitePlayer)
+  }
 
   return (
     <div
@@ -37,6 +42,9 @@ const CheckersBoard = () => {
         src={checkersPic}
         className={cl.checkersPic}
       />
+      <h2
+        className = {cl.turn}
+      >{currentPlayer.color} to move</h2>
       <button
         className={cl.restartBtn}
         onClick={restart}
@@ -47,6 +55,8 @@ const CheckersBoard = () => {
         setChBoard={setChBoard}
         selectedChCell={selectedChSell}
         setSelectedChCell={setSelectedChCell}
+        currentPlayer = {currentPlayer}
+        swapPlayers = {swapPlayers}
       />
     </div>
   );

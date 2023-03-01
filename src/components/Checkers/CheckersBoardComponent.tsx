@@ -10,7 +10,9 @@ const CheckersBoardComponent: FC<ChBoardProps> = ({
   chBoard,
   setChBoard,
   selectedChCell,
-  setSelectedChCell
+  setSelectedChCell,
+  currentPlayer,
+  swapPlayers
 }) => {
 
   const click = (target: ChCell) => {
@@ -18,7 +20,9 @@ const CheckersBoardComponent: FC<ChBoardProps> = ({
       selectedChCell,
       target,
       chBoard,
-      setSelectedChCell
+      setSelectedChCell,
+      currentPlayer,
+      swapPlayers
     );
   };
 
