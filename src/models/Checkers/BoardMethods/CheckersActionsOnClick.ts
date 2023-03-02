@@ -57,6 +57,8 @@ export class CheckersActionsOnClick {
 			selectedChCell.piece.canMove(target) &&
 			target.x === 0
 		) {
+			CheckerAttack(selectedChCell, board, target);
+
 			setSelectedChCell(null);
 			selectedChCell.piece = null;
 			const whiteQueen = new ChQueen(Colors.WHITE, board.getCells(target.y, 0));
@@ -72,6 +74,9 @@ export class CheckersActionsOnClick {
 			selectedChCell.piece.canMove(target) &&
 			target.x === 7
 		) {
+
+			CheckerAttack(selectedChCell, board, target);
+
 			setSelectedChCell(null);
 			selectedChCell.piece = null;
 			const blackQueen = new ChQueen(Colors.BLACK, board.getCells(target.y, 7));
