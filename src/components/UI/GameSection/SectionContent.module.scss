@@ -1,0 +1,51 @@
+@import '../../../helpers/utilities';
+
+.sectionContent {
+	@include overlay-shared;
+
+	h1 {
+		cursor: default;
+	}
+}
+
+//Wide Screen
+@media only screen and (min-width: 1201px) {
+	.sectionContent {
+		h1 {
+			font-size: 60px;
+		}
+	}
+}
+
+//normal size
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+	.section {
+		.sectionContent {
+			h1 {
+				font-size: 60px;
+			}
+		}
+	}
+}
+
+//tablets
+@media only screen and (min-width: 501px) and (max-width: 768px) {
+	.section {
+		.sectionContent {
+			h1 {
+				font-size: 50px;
+			}
+		}
+	}
+}
+
+//smartphones
+@media only screen and (min-width: 325px) and (max-width: 500px) {
+	.section {
+		.sectionContent {
+			h1 {
+				font-size: 30px;
+			}
+		}
+	}
+}

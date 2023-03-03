@@ -53,11 +53,21 @@ const CheckersBoard = () => {
 
 	return (
 		<div className={cl.checkers}>
-			<img alt='' src={checkersPic} className={cl.checkersPic} />
-			<h2 ref={h2Ref} className={cl.turn}>
+			<img
+				alt='checkersPic'
+				src={checkersPic}
+				className={cl.checkersPic}
+			/>
+			<h2
+				ref={h2Ref}
+				className={cl.turn}
+			>
 				{currentPlayer.color} to move
 			</h2>
-			<button className={cl.restartBtn} onClick={restart}>
+			<button
+				className={cl.restartBtn}
+				onClick={restart}
+			>
 				Restart
 			</button>
 			<CheckersBoardComponent

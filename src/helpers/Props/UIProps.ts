@@ -1,36 +1,38 @@
-import { ReactNode } from "react";
-import { Piece } from "../../models/Chess/Pieces/Piece";
+import { ReactNode } from 'react';
+import { Piece } from '../../models/Chess/Pieces/Piece';
 
 export interface LostGraphProps {
-  pieces: Piece[];
-  cl: {
-    [key:string]:string
-  };
+	pieces: Piece[];
 }
 
 export interface LoaderProps {
-  children: ReactNode
+	children: ReactNode;
 }
 
 export interface ModalProps {
-  visible: boolean;
-  setVisible: (el: boolean) => void;
+	visible: boolean;
+	setVisible: (el: boolean) => void;
 }
 
 export interface ModalContentProps {
-  setVisible: (el: boolean) => void;
-}
-
-export interface SectionContentProps {
-  cl: {
-    [key:string]: string
-  }
+	setVisible: (el: boolean) => void;
 }
 
 export interface SectionGameProps {
-  image: string;
-  route: string;
-  cl: {
-    [key:string]:string
-  }
+	image: string;
+	route: string;
+}
+
+export interface LinkButtonProps {
+	route: string;
+	text: string;
+}
+
+export interface NavbarListitemProps {
+	text: string;
+	href: string;
+}
+
+export interface NavbarLogoProps {
+	setVisible: (el: boolean) => void
 }

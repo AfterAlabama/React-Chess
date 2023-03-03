@@ -1,27 +1,20 @@
-import { FC } from "react";
-import { HeaderProps } from "../../helpers/Props/MainPageProps";
+import { FC } from 'react';
+import { HeaderProps } from '../../helpers/Props/MainPageProps';
 import cl from './Header.module.scss';
-import HeaderPic from "../../assets/tablegame1.jpg";
+import HeaderPic from '../../assets/tablegame1.jpg';
+import HeaderContent from '../UI/Header/HeaderContent';
 
 const Header: FC<HeaderProps> = ({ clickHandler }) => {
-  return (
-    <header className={cl.header} >
-      <img
-        alt = ''
-        src = {HeaderPic}
-        className={cl.headerImage}
-      />
-      <article className={cl.headerContent}>
-        <h1>Games For Everyone!</h1>
-        <p>Wish to play a game? Choose which:</p>
-        <button
-          className={cl.btn}
-          onClick={clickHandler}>
-          Games
-        </button>
-      </article>
-    </header>
-  );
+	return (
+		<header className={cl.header}>
+			<img
+				alt='HeaderPic'
+				src={HeaderPic}
+				className={cl.headerImage}
+			/>
+			<HeaderContent clickHandler={clickHandler} />
+		</header>
+	);
 };
 
 export default Header;

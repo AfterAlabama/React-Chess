@@ -1,8 +1,7 @@
-
 export interface HeaderProps {
-  clickHandler: () => void;
+	clickHandler: () => void;
 }
 
 export interface NavProps {
-  setVisible: (el: boolean) => void;
+	setVisible: (el: boolean) => void;
 }

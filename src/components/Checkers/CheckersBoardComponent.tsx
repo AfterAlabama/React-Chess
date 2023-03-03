@@ -46,27 +46,25 @@ const CheckersBoardComponent: FC<ChBoardProps> = ({
 		highlightCells();
 	}, [selectedChCell]);
 
-	return (
-		<div className={cl.board}>
-			{chBoard.cells.map((row, index) => (
-				<Fragment key={index}>
-					{row.map((cell) => (
-						<CheckersCellComponent
-							key={cell.id}
-							cell={cell}
-							selected={
-								cell.x === selectedChCell?.x && cell.y === selectedChCell?.y
-							}
-							click={click}
-							currentPlayer={currentPlayer}
-							setSelectedChCell={setSelectedChCell}
-							selectedChCell={selectedChCell}
-						/>
-					))}
-				</Fragment>
+	const ShowCells = chBoard.cells.map((row, index) => (
+		<Fragment key={index}>
+			{row.map((cell) => (
+				<CheckersCellComponent
+					key={cell.id}
+					cell={cell}
+					selected={
+						cell.x === selectedChCell?.x && cell.y === selectedChCell?.y
+					}
+					click={click}
+					currentPlayer={currentPlayer}
+					setSelectedChCell={setSelectedChCell}
+					selectedChCell={selectedChCell}
+				/>
 			))}
-		</div>
-	);
+		</Fragment>
+	));
+
+	return <div className={cl.board}>{ShowCells}</div>;
 };
 
 export default CheckersBoardComponent;

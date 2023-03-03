@@ -20,14 +20,18 @@ const CheckersCellComponent: FC<ChCellProps> = ({
 	);
 
 	const showPieces = cell.piece?.logo ? (
-		<img alt='' draggable={false} src={cell.piece?.logo} />
+		<img
+			alt='checkersPieces'
+			draggable={false}
+			src={cell.piece?.logo}
+		/>
 	) : (
 		''
 	);
 
 	const showPiecesDraggable = cell.piece?.logo ? (
 		<img
-			alt=''
+			alt='checkersPiecesAvailable'
 			src={cell.piece?.logo}
 			onDragStart={() => dragStartHandler(cell)}
 			onDragOver={(e) => dragOverHandler(e)}
@@ -38,7 +42,7 @@ const CheckersCellComponent: FC<ChCellProps> = ({
 	);
 
 	const dragStartHandler = (cell: ChCell) => {
-		if(cell.piece){
+		if (cell.piece) {
 			setSelectedChCell(cell);
 		}
 	};
@@ -47,34 +51,43 @@ const CheckersCellComponent: FC<ChCellProps> = ({
 		e.preventDefault();
 	};
 
-	const dropHandler = (e: DragEvent<HTMLImageElement | HTMLDivElement>, cell: ChCell) => {
+	const dropHandler = (
+		e: DragEvent<HTMLImageElement | HTMLDivElement>,
+		cell: ChCell
+	) => {
 		e.preventDefault();
-		if(selectedChCell && selectedChCell.piece && selectedChCell.piece.canMove(cell)){
-			click(cell)
+		if (
+			selectedChCell &&
+			selectedChCell.piece &&
+			selectedChCell.piece.canMove(cell)
+		) {
+			click(cell);
 		}
 	};
 
-	return (
-		<>
-			{cell.piece && cell.piece.color === currentPlayer.color ? (
-				<div className={cellStyle} onClick={() => click(cell)}>
-					{availableDots}
-					{showPiecesDraggable}
-				</div>
-			) : (
-				<div 
-					className={cellStyle} 
-					onClick={() => click(cell)}
-          onDragStart={() => dragStartHandler(cell)}
-          onDragOver={(e) => dragOverHandler(e)}
-          onDrop={(e) => dropHandler(e, cell)}
-					>
-					{availableDots}
-					{showPieces}
-				</div>
-			)}
-		</>
-	);
+	const DragCondition =
+		cell.piece && cell.piece.color === currentPlayer.color ? (
+			<div
+				className={cellStyle}
+				onClick={() => click(cell)}
+			>
+				{availableDots}
+				{showPiecesDraggable}
+			</div>
+		) : (
+			<div
+				className={cellStyle}
+				onClick={() => click(cell)}
+				onDragStart={() => dragStartHandler(cell)}
+				onDragOver={(e) => dragOverHandler(e)}
+				onDrop={(e) => dropHandler(e, cell)}
+			>
+				{availableDots}
+				{showPieces}
+			</div>
+		);
+
+	return <>{DragCondition}</>;
 };
 
 export default CheckersCellComponent;

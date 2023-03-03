@@ -1,0 +1,6 @@
+@import '../../../helpers/utilities';
+
+.bigBtn {
+	@include btn-shared;
+	font-size: 40px;
+}
