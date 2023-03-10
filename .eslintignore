@@ -2,3 +2,4 @@ webpack.config.js
 webpack.prod.js
 webpack.dev.js
 webpack.common.js
+jest.config.js
