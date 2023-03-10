@@ -3,7 +3,7 @@ import { Boardprops } from '../../helpers/Props/ChessProps';
 import { Cell } from '../../models/Chess/Cell';
 import CellComponent from './CellComponent';
 import cl from './BoardComponent.module.scss';
-import useSound from 'use-sound';
+import useSound from 'use-sound'
 import moveSound from '../../assets/6a897efd83627af.mp3';
 import { PawnPromotion } from '../../models/Chess/BoardMethods/PawnPromotion';
 import { KingMovesOutOfCheck } from '../../models/Chess/BoardMethods/KingMovesOutOfCheck';

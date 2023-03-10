@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RouteNames } from '../../helpers/Enums/RouteNames';
-import Loader from '../UI/Generic/Loader';
+import Loader from '../UI/Loader';
 
 const ChessBoard = lazy(() => import('../Chess/ChessBoard'));
 

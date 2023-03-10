@@ -33,6 +33,10 @@ export interface NavbarListitemProps {
 	href: string;
 }
 
+export interface ChildrenOnlyProps {
+	children: ReactNode
+}
+
 export interface NavbarLogoProps {
 	setVisible: (el: boolean) => void
 }

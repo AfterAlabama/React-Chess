@@ -1,16 +1,10 @@
-import { Component, ReactNode } from 'react';
-import Loader from '../UI/Generic/Loader';
+import { Component } from 'react';
+import { ErrorBoundaryState } from '../../helpers/Props/ComponentProps/ErrorBoundaryProps';
+import { ChildrenOnlyProps } from '../../helpers/Props/UIProps';
+import Loader from '../UI/Loader';
 
-interface ErrorBoundaryProps {
-	children: ReactNode;
-}
-
-interface ErrorBoundaryState {
-	hasError: boolean;
-}
-
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-	constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends Component<ChildrenOnlyProps, ErrorBoundaryState> {
+	constructor(props: ChildrenOnlyProps) {
 		super(props);
 		this.state = { hasError: false };
 	}
