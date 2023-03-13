@@ -1,7 +1,10 @@
 import { Component } from 'react';
-import { ErrorBoundaryState } from '../../helpers/Props/ComponentProps/ErrorBoundaryProps';
-import { ChildrenOnlyProps } from '../../helpers/Props/UIProps';
+import { ChildrenOnlyProps } from '../../types/Props/UIProps';
 import Loader from '../UI/Loader';
+
+interface ErrorBoundaryState {
+	hasError: boolean;
+}
 
 class ErrorBoundary extends Component<ChildrenOnlyProps, ErrorBoundaryState> {
 	constructor(props: ChildrenOnlyProps) {

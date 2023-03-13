@@ -1,4 +1,4 @@
-import { RouteNames } from '../../../helpers/Enums/RouteNames';
+import { RouteNames } from '../../../types/Enums/RouteNames';
 import SectionGame from './SectionGame';
 import ChessPic from '../../../assets/chesspic.jpg';
 import CheckersPic from '../../../assets/checkers.jpg';

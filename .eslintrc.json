@@ -21,6 +21,10 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "react/display-name": "off",
+        "no-mixed-spaces-and-tabs": "off",
+        "@typescript-eslint/no-empty-function": "off"
     }
 }

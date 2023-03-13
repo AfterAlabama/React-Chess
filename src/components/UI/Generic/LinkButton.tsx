@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { LinkButtonProps } from '../../../helpers/Props/UIProps';
+import { LinkButtonProps } from '../../../types/Props/UIProps';
 import cl from './LinkButton.module.scss';
 
 const LinkButton: FC<LinkButtonProps> = ({ route, text }) => {

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ModalProps } from '../../../helpers/Props/UIProps';
+import { ModalProps } from '../../../types/Props/UIProps';
 import cl from './GitModal.module.scss';
 import GitModalContent from './GitModalContent';
 

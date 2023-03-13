@@ -1,34 +1,30 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Colors } from '../../helpers/Enums/Colors';
-import { Board } from '../../models/Chess/Board';
-import { Cell } from '../../models/Chess/Cell';
-import { Player } from '../../models/Chess/Player';
+import { useCallback, useState } from 'react';
+import { Colors } from '../../types/Enums/Colors';
+import { Board } from '../../game/Chess/Board';
+import { Cell } from '../../game/Chess/Cell';
+import { Player } from '../../game/Chess/Player';
 import BoardComponent from './BoardComponent';
 import LostPieces from './LostPieces';
 import cl from './ChessBoard.module.scss';
-import { CreateBoard } from '../../models/Chess/BoardMethods/CreateBoard';
-import { KingMethods } from '../../models/Chess/PieceMethods/KingMethods';
+import { KingMethods } from '../../game/Chess/PieceMethods/KingMethods/KingMethods';
+import { CreateBoard } from '../../game/Chess/BoardMethods/CreateBoard/CreateBoard';
 
 const ChessBoard = () => {
-	const [board, setBoard] = useState(new Board());
+	const [board, setBoard] = useState<Board>(CreateBoard());
 
-	const [whitePlayer] = useState(new Player(Colors.WHITE));
+	const [whitePlayer] = useState<Player>(new Player(Colors.WHITE));
 
-	const [blackPlayer] = useState(new Player(Colors.BLACK));
+	const [blackPlayer] = useState<Player>(new Player(Colors.BLACK));
 
 	const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
 
 	const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
 	const restart = () => {
-		CreateBoard(setBoard);
+		setBoard(CreateBoard());
 		setSelectedCell(null);
 		setCurrentPlayer(whitePlayer);
 	};
-
-	useEffect(() => {
-		CreateBoard(setBoard);
-	}, []);
 
 	const swapPlayers = useCallback(() => {
 		setCurrentPlayer(

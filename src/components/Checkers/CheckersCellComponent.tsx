@@ -1,6 +1,6 @@
 import { FC, DragEvent } from 'react';
-import { ChCellProps } from '../../helpers/Props/CheckersProps';
-import { ChCell } from '../../models/Checkers/ChCell';
+import { ChCellProps } from '../../types/Props/CheckersProps';
+import { ChCell } from '../../game/Checkers/ChCell';
 import cl from './ChCellComponent.module.scss';
 
 const CheckersCellComponent: FC<ChCellProps> = ({

@@ -1,15 +1,15 @@
 import { FC, Fragment, useEffect } from 'react';
-import { Boardprops } from '../../helpers/Props/ChessProps';
-import { Cell } from '../../models/Chess/Cell';
+import { Boardprops } from '../../types/Props/ChessProps';
+import { Cell } from '../../game/Chess/Cell';
 import CellComponent from './CellComponent';
 import cl from './BoardComponent.module.scss';
-import useSound from 'use-sound'
+import useSound from 'use-sound';
 import moveSound from '../../assets/6a897efd83627af.mp3';
-import { PawnPromotion } from '../../models/Chess/BoardMethods/PawnPromotion';
-import { KingMovesOutOfCheck } from '../../models/Chess/BoardMethods/KingMovesOutOfCheck';
-import { Castling } from '../../models/Chess/BoardMethods/Castling';
-import { OtherMoves } from '../../models/Chess/BoardMethods/OtherMoves';
-import { KingMethods } from '../../models/Chess/PieceMethods/KingMethods';
+import { PawnPromotion } from '../../game/Chess/BoardMethods/PawnPromotion/PawnPromotion';
+import { KingMovesOutOfCheck } from '../../game/Chess/BoardMethods/KingMovesOutOfCheck/KingMovesOutOfCheck';
+import { Castling } from '../../game/Chess/BoardMethods/Castling/Castling';
+import { OtherMoves } from '../../game/Chess/BoardMethods/OtherMoves/OtherMoves';
+import { KingMethods } from '../../game/Chess/PieceMethods/KingMethods/KingMethods';
 
 const BoardComponent: FC<Boardprops> = ({
 	board,
@@ -30,18 +30,20 @@ const BoardComponent: FC<Boardprops> = ({
 				setSelectedCell,
 				swapPlayers
 			);
-			PawnPromotion(target, selectedCell, board);
-			Castling.KingMovesWhileCastling(
-				target,
-				selectedCell,
-				board,
-				setSelectedCell,
-				swapPlayers
-			);
-			selectedCell.movePiece(target);
-			setSelectedCell(null);
-			play();
-			swapPlayers();
+
+			if (
+				PawnPromotion(target, selectedCell, board) ||
+				Castling.KingMovesWhileCastling(target, selectedCell, board)
+			) {
+				setSelectedCell(null);
+				play();
+				swapPlayers();
+			} else {
+				selectedCell.movePiece(target);
+				setSelectedCell(null);
+				play();
+				swapPlayers();
+			}
 		}
 		OtherMoves(selectedCell, target, setSelectedCell, currentPlayer);
 	}

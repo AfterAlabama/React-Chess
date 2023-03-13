@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { HeaderProps } from '../../../helpers/Props/MainPageProps';
+import { HeaderProps } from '../../../types/Props/MainPageProps';
 import cl from './HeaderContent.module.scss';
 
 const HeaderContent: FC<HeaderProps> = ({ clickHandler }) => {

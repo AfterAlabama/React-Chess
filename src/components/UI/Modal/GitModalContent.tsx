@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ModalContentProps } from '../../../helpers/Props/UIProps';
+import { ModalContentProps } from '../../../types/Props/UIProps';
 
 const GitModalContent: FC<ModalContentProps> = ({ setVisible }) => {
 	return (

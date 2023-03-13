@@ -6,14 +6,14 @@ import SectionPic from '../../assets/wood.jpg';
 const GamesSection = forwardRef<HTMLDivElement>((_, divRef) => {
 	return (
 		<section className={cl.section}>
-			<article ref={divRef}>
+			<div ref={divRef}>
 				<img
 					alt='sectionImage'
 					className={cl.sectionImage}
 					src={SectionPic}
 				/>
 				<SectionContent />
-			</article>
+			</div>
 		</section>
 	);
 });

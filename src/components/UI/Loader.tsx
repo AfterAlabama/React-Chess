@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ChildrenOnlyProps } from '../../helpers/Props/UIProps';
+import { ChildrenOnlyProps } from '../../types/Props/UIProps';
 import cl from './Loader.module.scss';
 
 const Loader: FC<ChildrenOnlyProps> = ({ children }) => {

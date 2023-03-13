@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Lostprops } from '../../helpers/Props/ChessProps';
-import { KingMethods } from '../../models/Chess/PieceMethods/KingMethods';
+import { Lostprops } from '../../types/Props/ChessProps';
+import { KingMethods } from '../../game/Chess/PieceMethods/KingMethods/KingMethods';
 import LostPieceGraph from '../UI/LostPieces/LostPieceGraph';
 import cl from './LostPieces.module.scss';
 

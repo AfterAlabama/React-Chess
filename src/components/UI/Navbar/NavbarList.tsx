@@ -1,6 +1,6 @@
 import NavbarListItem from './NavbarListItem';
 import cl from './NavbarList.module.scss';
-import { RouteNames } from '../../../helpers/Enums/RouteNames';
+import { RouteNames } from '../../../types/Enums/RouteNames';
 
 const NavbarList = () => {
 	return (

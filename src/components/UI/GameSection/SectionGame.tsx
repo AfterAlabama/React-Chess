@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { SectionGameProps } from '../../../helpers/Props/UIProps';
+import { SectionGameProps } from '../../../types/Props/MainPageProps';
 import LinkButton from '../Generic/LinkButton';
 import cl from './SectionGame.module.scss';
 

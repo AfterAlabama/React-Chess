@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { Colors } from '../../helpers/Enums/Colors';
-import { CreateChBoard } from '../../models/Checkers/BoardMethods/CreateChBoard';
-import { ChBoard } from '../../models/Checkers/ChBoard';
-import { Player } from '../../models/Chess/Player';
+import { Colors } from '../../types/Enums/Colors';
+import { CreateChBoard } from '../../game/Checkers/BoardMethods/CreateChBoard';
+import { ChBoard } from '../../game/Checkers/ChBoard';
+import { Player } from '../../game/Chess/Player';
 import CheckersBoardComponent from './CheckersBoardComponent';
 import cl from './ChBoard.module.scss';
-import { ChCell } from '../../models/Checkers/ChCell';
+import { ChCell } from '../../game/Checkers/ChCell';
 import checkersPic from '../../assets/CheckersBackground.jpg';
 import { useIsSecondRender } from '../../hooks/isSecondRender';
-import { CheckersGameOver } from '../../models/Checkers/BoardMethods/CheckersGameOver';
+import { CheckersGameOver } from '../../game/Checkers/BoardMethods/CheckersGameOver';
 
 const CheckersBoard = () => {
 	const [chBoard, setChBoard] = useState(new ChBoard());

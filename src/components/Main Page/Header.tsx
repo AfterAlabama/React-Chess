@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { HeaderProps } from '../../helpers/Props/MainPageProps';
+import { HeaderProps } from '../../types/Props/MainPageProps';
 import cl from './Header.module.scss';
 import HeaderPic from '../../assets/tablegame1.jpg';
 import HeaderContent from '../UI/Header/HeaderContent';

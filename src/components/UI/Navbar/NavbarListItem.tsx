@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { NavbarListitemProps } from '../../../helpers/Props/UIProps';
+import { NavbarListitemProps } from '../../../types/Props/MainPageProps';
 import cl from './NavbarListItem.module.scss';
 
 const NavbarListItem: FC<NavbarListitemProps> = ({ text, href }) => {

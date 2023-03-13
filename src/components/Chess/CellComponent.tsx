@@ -1,6 +1,6 @@
 import { FC, DragEvent } from 'react';
-import { CellProps } from '../../helpers/Props/ChessProps';
-import { Cell } from '../../models/Chess/Cell';
+import { CellProps } from '../../types/Props/ChessProps';
+import { Cell } from '../../game/Chess/Cell';
 import cl from './CellComponent.module.scss';
 
 const CellComponent: FC<CellProps> = ({

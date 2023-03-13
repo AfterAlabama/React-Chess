@@ -3,3 +3,4 @@ webpack.prod.js
 webpack.dev.js
 webpack.common.js
 jest.config.js
+__mocks__

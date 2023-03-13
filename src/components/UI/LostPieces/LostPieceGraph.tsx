@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { LostGraphProps } from '../../../helpers/Props/UIProps';
+import { LostGraphProps } from '../../../types/Props/MainPageProps';
 import cl from './LostPieceGraph.module.scss';
 
 const LostPieceGraph: FC<LostGraphProps> = ({ pieces }) => {

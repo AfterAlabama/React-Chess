@@ -8,6 +8,7 @@ To start a development server:
 
 To launch production: 
 ```bash
+  #to create the prod build
   npm run build
   #then off to the build folder
   cd <build directory>
@@ -15,5 +16,9 @@ To launch production:
   npx serve
 ```
 
+To Test The App:
+```bash
+  npm run test
+```
 
 Live Demo : https://remarkable-sorbet-0aa2be.netlify.app/
