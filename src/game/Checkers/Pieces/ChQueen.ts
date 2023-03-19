@@ -4,7 +4,7 @@ import { ChPiece } from './ChPiece';
 import whiteLogo from '../../../assets/white-queen.png';
 import blackLogo from '../../../assets/black-queen.png';
 import { PieceNames } from '../../../types/Enums/PieceNames';
-import { ChQueenMovement } from '../PieceMethods/ChQueenMovement';
+import { ChQueenMovement } from '../PieceMethods/ChQueenMovement/ChQueenMovement';
 
 export class ChQueen extends ChPiece {
 	constructor(color: Colors, cell: ChCell) {

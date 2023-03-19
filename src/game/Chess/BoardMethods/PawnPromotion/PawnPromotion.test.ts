@@ -2,7 +2,7 @@ import { Colors } from '../../../../types/Enums/Colors';
 import { Board } from '../../Board';
 import { Pawn } from '../../Pieces/Pawn';
 import { Rook } from '../../Pieces/Rook';
-import { CreateBoard } from '../CreateBoard/CreateBoard';
+import { CreateBoard } from '../../../SharedLogic/CreateBoard/CreateBoard';
 import { PawnPromotion } from './PawnPromotion';
 
 describe('Pawn Promotion', () => {

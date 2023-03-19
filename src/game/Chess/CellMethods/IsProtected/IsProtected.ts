@@ -1,7 +1,7 @@
 import { PieceNames } from '../../../../types/Enums/PieceNames';
 import { Cell } from '../../Cell';
 import { Piece } from '../../Pieces/Piece';
-import { IsEmpty } from '../IsEmpty/IsEmpty';
+import { IsEmpty } from '../../../SharedLogic/IsEmpty/IsEmpty';
 
 export class IsProtected {
 	static Diagonal(somePiece: Piece, target: Cell): boolean {

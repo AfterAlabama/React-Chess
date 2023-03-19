@@ -17,7 +17,7 @@ export abstract class ChPiece {
 		this.logo = null;
 	}
 
-	public canMove(target: ChCell) {
+	public canMove(target: ChCell): boolean {
 		if (target.piece) {
 			return false;
 		}
@@ -26,6 +26,4 @@ export abstract class ChPiece {
 		}
 		return true;
 	}
-
-	public movePiece(target: ChCell) {}
 }

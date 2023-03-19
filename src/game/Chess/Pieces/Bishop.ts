@@ -4,7 +4,7 @@ import { Piece } from './Piece';
 import blackLogo from '../../../assets/black-bishop.png';
 import whiteLogo from '../../../assets/white-bishop.png';
 import { PieceNames } from '../../../types/Enums/PieceNames';
-import { IsEmpty } from '../CellMethods/IsEmpty/IsEmpty';
+import { IsEmpty } from '../../SharedLogic/IsEmpty/IsEmpty';
 import { IsProtected } from '../CellMethods/IsProtected/IsProtected';
 
 export class Bishop extends Piece {

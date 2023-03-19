@@ -1,9 +1,9 @@
 import { Colors } from '../../types/Enums/Colors';
 import { Board } from './Board';
 import { AddLostPieceLogic } from './CellMethods/AddLostPiece/AddLostPieceLogic';
-import { IsEnemyLogic } from './CellMethods/IsEnemy/IsEnemyLogic';
-import { MovePieceLogic } from './CellMethods/MovePiece/MovePieceLogic';
-import { SetPieceLogic } from './CellMethods/SetPiece/SetPieceLogic';
+import { IsEnemyLogic } from '../SharedLogic/IsEnemy/IsEnemyLogic';
+import { MovePieceLogic } from '../SharedLogic/MovePiece/MovePieceLogic';
+import { SetPieceLogic } from '../SharedLogic/SetPiece/SetPieceLogic';
 import { Piece } from './Pieces/Piece';
 
 export class Cell {
@@ -32,11 +32,11 @@ export class Cell {
 	}
 
 	public isEnemy(target: Cell): boolean {
-		return IsEnemyLogic(target, this);
+		return IsEnemyLogic<Cell, Piece | null>(target, this);
 	}
 
 	public setPiece(piece: Piece): void {
-		SetPieceLogic(this, piece);
+		SetPieceLogic<Cell, Piece>(this, piece);
 	}
 
 	addLostPiece(piece: Piece): void {
@@ -44,6 +44,6 @@ export class Cell {
 	}
 
 	movePiece(target: Cell): void {
-		MovePieceLogic(this, target);
+		MovePieceLogic<Cell, Piece>(this, target);
 	}
 }

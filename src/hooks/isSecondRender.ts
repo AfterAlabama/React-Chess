@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 
-
-export const useIsSecondRender = (fn: Function, deps: any[]) => {
+export const useIsSecondRender = <T>(fn: () => void, deps: T[]) => {
   const isFirstRender = useRef(true);
 
   useLayoutEffect(() => {

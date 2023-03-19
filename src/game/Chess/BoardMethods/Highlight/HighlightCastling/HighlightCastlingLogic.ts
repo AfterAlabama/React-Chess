@@ -2,7 +2,7 @@ import { Colors } from '../../../../../types/Enums/Colors';
 import { Board } from '../../../Board';
 import { Cell } from '../../../Cell';
 import { IsCellUnderAttack } from '../../../CellMethods/IsCellUnderAttack/IsCellUnderAttack';
-import { IsEmpty } from '../../../CellMethods/IsEmpty/IsEmpty';
+import { IsEmpty } from '../../../../SharedLogic/IsEmpty/IsEmpty';
 import { KingMethods } from '../../../PieceMethods/KingMethods/KingMethods';
 import { FindPiece } from '../../FindPiece/FindPiece';
 

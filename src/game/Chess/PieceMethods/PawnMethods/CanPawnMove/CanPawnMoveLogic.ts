@@ -1,6 +1,6 @@
 import { Colors } from '../../../../../types/Enums/Colors';
 import { Cell } from '../../../Cell';
-import { IsEmpty } from '../../../CellMethods/IsEmpty/IsEmpty';
+import { IsEmpty } from '../../../../SharedLogic/IsEmpty/IsEmpty';
 import { Pawn } from '../../../Pieces/Pawn';
 
 export const CanPawnMoveLogic = (pawn: Pawn, target: Cell): boolean => {

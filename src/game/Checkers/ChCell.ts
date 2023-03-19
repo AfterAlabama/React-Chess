@@ -1,4 +1,6 @@
 import { Colors } from '../../types/Enums/Colors';
+import { MovePieceLogic } from '../SharedLogic/MovePiece/MovePieceLogic';
+import { SetPieceLogic } from '../SharedLogic/SetPiece/SetPieceLogic';
 import { ChBoard } from './ChBoard';
 import { ChPiece } from './Pieces/ChPiece';
 
@@ -24,18 +26,14 @@ export class ChCell {
 		this.piece = piece;
 		this.board = board;
 		this.available = false;
-		this.id = Math.random();
+		this.id = Number(`${y}.${x}`);
 	}
 
-	public setPiece(piece: ChPiece) {
-		this.piece = piece;
-		this.piece.cell = this;
+	public setPiece(piece: ChPiece): void {
+		SetPieceLogic<ChCell, ChPiece>(this, piece)
 	}
 
-	public movePiece(target: ChCell) {
-		if (this.piece && this.piece.canMove(target)) {
-			target.setPiece(this.piece);
-			this.piece = null;
-		}
+	public movePiece(target: ChCell): void {
+		MovePieceLogic<ChCell, ChPiece>(this, target)
 	}
 }

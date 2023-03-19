@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function preloadImage(src: string) {
+export function preloadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = function () {
@@ -15,7 +15,6 @@ function preloadImage(src: string) {
 
 export default function useImagePreloader(imageList: string[]) {
   const [imagesPreloaded, setImagesPreloaded] = useState<boolean>(false);
-
   useEffect(() => {
     let isCancelled = false;
 
@@ -24,7 +23,7 @@ export default function useImagePreloader(imageList: string[]) {
         return;
       }
 
-      const imagesPromiseList: Promise<any>[] = [];
+      const imagesPromiseList: Promise<HTMLImageElement>[] = [];
       for (const i of imageList) {
         imagesPromiseList.push(preloadImage(i));
       }
@@ -43,7 +42,7 @@ export default function useImagePreloader(imageList: string[]) {
     return () => {
       isCancelled = true;
     };
-  }, [imageList]);
+  }, []);
 
   return { imagesPreloaded };
 }

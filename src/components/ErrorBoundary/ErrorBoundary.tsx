@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { ChildrenOnlyProps } from '../../types/Props/UIProps';
-import Loader from '../UI/Loader';
+import Loader from '../Generic/Loader/Loader';
 
 interface ErrorBoundaryState {
 	hasError: boolean;

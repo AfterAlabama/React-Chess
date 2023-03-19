@@ -2,7 +2,6 @@ import { Colors } from '../../../../types/Enums/Colors';
 import { Board } from '../../Board';
 import { Cell } from '../../Cell';
 import { HighlightCastlingLogic } from './HighlightCastling/HighlightCastlingLogic';
-import { HighlightOrdinaryMovesLogic } from './HighlightOrdinaryMoves/HighlightOrdinaryMovesLogic';
 import { KingEscapingLogic } from './KingEscaping/KingEscapingLogic';
 import { PieceMovingInCheckLogic } from './PieceMovingInCheck/PieceMovingInCheckLogic';
 import { PieceStandingInCheckLogic } from './PieceStandingInCheck/PieceStandingInCheckLogic';
@@ -30,9 +29,5 @@ export class Highlight {
 		currentColor: Colors
 	): void {
 		KingEscapingLogic(selectedCell, board, currentColor);
-	}
-
-	static ordinaryMoves(board: Board, selectedCell: Cell | null): void {
-		HighlightOrdinaryMovesLogic(board, selectedCell);
 	}
 }

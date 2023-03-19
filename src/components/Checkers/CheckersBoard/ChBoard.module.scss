@@ -1,0 +1,78 @@
+@import '../../../types/utilities';
+
+.restartBtn {
+	@include btn-shared;
+	color: black;
+	background-color: #f3f3f3;
+	margin-bottom: 50px;
+}
+
+.checkers {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	background: rgba(0, 0, 0, 0.5);
+
+	.checkersPic {
+		position: absolute;
+		top: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+	}
+
+	.turn {
+		margin-bottom: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: white;
+		cursor: default;
+	}
+}
+
+//wide screen
+@media only screen and (min-width: 1201px) {
+	.checkers {
+		height: 110vh;
+
+		.turn {
+			font-size: 80px;
+		}
+	}
+}
+
+//normal size
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+	.checkers {
+		height: 110vh;
+
+		.turn {
+			font-size: 80px;
+		}
+	}
+}
+
+//tablets
+@media only screen and (min-width: 501px) and (max-width: 768px) {
+	.checkers {
+		height: 110vh;
+
+		.turn {
+			font-size: 50px;
+		}
+	}
+}
+
+//smartphones
+@media only screen and (min-width: 325px) and (max-width: 500px) {
+	.checkers {
+		height: 110vh;
+
+		.turn {
+			font-size: 40px;
+		}
+	}
+}

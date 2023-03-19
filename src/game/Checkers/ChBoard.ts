@@ -1,65 +1,30 @@
-import { Colors } from '../../types/Enums/Colors';
+import { GetCopyBoardLogic } from '../SharedLogic/GetCopyBoard/GetCopyBoardLogic';
+import { InitCellslogic } from '../SharedLogic/InitCells/InitCellsLogic';
+import { OrdinaryMoves } from '../SharedLogic/OrdinaryMoves/OrdinaryMoves';
+import { PieceAddition } from '../SharedLogic/PieceAddition/PieceAddition';
 import { ChCell } from './ChCell';
-import { Checker } from './Pieces/Checker';
+import { ChPiece } from './Pieces/ChPiece';
 
 export class ChBoard {
 	cells: ChCell[][] = [];
 
-	public initCheckersCells() {
-		for (let i = 0; i < 8; i++) {
-			const row: ChCell[] = [];
-			for (let j = 0; j < 8; j++) {
-				if ((i + j) % 2 !== 0) {
-					row.push(new ChCell(i, j, Colors.BLACK, this, null));
-				} else {
-					row.push(new ChCell(i, j, Colors.WHITE, this, null));
-				}
-			}
-			this.cells.push(row);
-		}
+	public initCells(): void {
+		InitCellslogic<this, ChPiece, ChCell>(this, ChCell);
 	}
 
-	public highlightChCells(selectedChCell: ChCell | null) {
-		for (let i = 0; i < this.cells.length; i++) {
-			const row = this.cells[i];
-			for (let j = 0; j < row.length; j++) {
-				const target = row[j];
-
-				target.available = !!selectedChCell?.piece?.canMove(target);
-			}
-		}
+	public highlightChCells(selectedChCell: ChCell | null): void {
+		OrdinaryMoves<ChBoard, ChCell, ChPiece>(this, selectedChCell);
 	}
 
-	public getCopyBoard() {
-		const newBoard = new ChBoard();
-		newBoard.cells = this.cells;
-		return newBoard;
+	public getCopyBoard(): ChBoard {
+		return GetCopyBoardLogic<ChBoard, ChCell, ChPiece>(this, ChBoard);
 	}
 
-	private addCheckers() {
-		for (let i = 0; i < 3; i++) {
-			const row = this.cells[i];
-			for (let j = 0; j < row.length; j++) {
-				if ((i + j) % 2 !== 0) {
-					new Checker(Colors.BLACK, this.getCells(j, i));
-				}
-			}
-		}
-		for (let i = 5; i < 8; i++) {
-			const row = this.cells[i];
-			for (let j = 0; j < row.length; j++) {
-				if ((i + j) % 2 !== 0) {
-					new Checker(Colors.WHITE, this.getCells(j, i));
-				}
-			}
-		}
-	}
-
-	public getCells(y: number, x: number) {
+	public getCells(y: number, x: number): ChCell {
 		return this.cells[x][y];
 	}
 
-	public addChPieces() {
-		this.addCheckers();
+	public addPieces(): void {
+		new PieceAddition().AddAllCheckersPieces(this);
 	}
 }

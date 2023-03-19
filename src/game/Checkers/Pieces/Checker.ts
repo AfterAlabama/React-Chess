@@ -4,7 +4,7 @@ import { ChCell } from '../ChCell';
 import { ChPiece } from './ChPiece';
 import blackLogo from '../../../assets/black attempt 1.png';
 import whiteLogo from '../../../assets/white atempt 1.png';
-import { CheckerMovement } from '../PieceMethods/CheckerMovement';
+import { CheckerMovement } from '../PieceMethods/CheckerMovement/CheckerMovement';
 
 export class Checker extends ChPiece {
 	constructor(color: Colors, cell: ChCell) {
