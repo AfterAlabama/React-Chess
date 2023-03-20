@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RouteNames } from '../../../types/Enums/RouteNames';
 import Loader from '../../Generic/Loader/Loader';
+import NotFound from '../../Generic/NotFound/NotFound';
 
 const ChessBoard = lazy(() => import('../../Chess/ChessBoard/ChessBoard'));
 
@@ -55,6 +56,10 @@ const AppRouter = () => {
 						<CheckersBoard />
 					</Suspense>
 				}
+			/>
+			<Route
+				path = '*'
+				element= {<NotFound />}
 			/>
 		</Routes>
 	);

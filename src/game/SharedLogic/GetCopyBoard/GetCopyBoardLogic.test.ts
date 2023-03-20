@@ -1,4 +1,6 @@
 import { Board } from '../../Chess/Board';
+import { Cell } from '../../Chess/Cell';
+import { Piece } from '../../Chess/Pieces/Piece';
 import { GetCopyBoardLogic } from './GetCopyBoardLogic';
 
 test('Get Copy Board', () => {
@@ -12,5 +14,5 @@ test('Get Copy Board', () => {
 	newBoard.lostBlackPieces = board.lostBlackPieces;
 	newBoard.lostWhitePieces = board.lostWhitePieces;
 
-	expect(GetCopyBoardLogic(board)).toEqual(newBoard);
+	expect(GetCopyBoardLogic<Board, Cell, Piece>(board, Board)).toEqual(newBoard);
 });

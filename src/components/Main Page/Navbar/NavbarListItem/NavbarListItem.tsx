@@ -7,6 +7,7 @@ const NavbarListItem: FC<NavbarListitemProps> = ({ text, href }) => {
 	return (
 		<li>
 			<Link
+				data-testid={href}
 				className={cl.link}
 				to={href}
 			>

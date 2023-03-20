@@ -2,24 +2,27 @@ import { Colors } from '../../../../types/Enums/Colors';
 import { Board } from '../../Board';
 import { Pawn } from '../../Pieces/Pawn';
 import { Rook } from '../../Pieces/Rook';
-import { CreateBoard } from '../../../SharedLogic/CreateBoard/CreateBoard';
 import { PawnPromotion } from './PawnPromotion';
 
 describe('Pawn Promotion', () => {
-	const findCell = (y: number, x: number, func: () => Board) =>
-		func().getCells(y, x);
-
 	test('Pawn Promotion Returns true', () => {
-		const board = CreateBoard();
-		const target = findCell(0, 0, CreateBoard);
-		const selectedCell = findCell(1, 1, CreateBoard);
+		const CreateSpecialBoard = () => {
+			const board = new Board()
+			board.initCells()
+			new Pawn(Colors.WHITE, board.getCells(1,1))
+			return board
+		}
+		const board = CreateSpecialBoard()
+		const target = board.getCells(0,0);
+		const selectedCell = board.getCells(1,1);
 
 		expect(PawnPromotion(target, selectedCell, board)).toBe(true);
 	});
 
 	test('Pawn Promotion Returns false', () => {
-		const board = CreateBoard();
-		const target = findCell(0, 0, CreateBoard);
+		const board = new Board();
+		board.initCells()
+		const target = board.getCells(0,0);
 		const selectedCell = null;
 
 		expect(PawnPromotion(target, selectedCell, board)).toBe(false);
@@ -34,8 +37,8 @@ describe('Pawn Promotion', () => {
 		}
 
 		const SpecialBoard = CreateSpecialBoard();
-		const target = findCell(0, 0, CreateSpecialBoard);
-		const selectedCell = findCell(0, 1, CreateSpecialBoard);
+		const target = SpecialBoard.getCells(0,0);
+		const selectedCell = SpecialBoard.getCells(0,1);
 		const setPiece = jest.spyOn(target, 'setPiece');
 
 		PawnPromotion(target, selectedCell, SpecialBoard);
@@ -57,8 +60,8 @@ describe('Pawn Promotion', () => {
 		}
 
 		const SpecialBoard = CreateSpecialBoard();
-		const target = findCell(0, 0, CreateSpecialBoard);
-		const selectedCell = findCell(1, 1, CreateSpecialBoard);
+		const target = SpecialBoard.getCells(0,0);
+		const selectedCell = SpecialBoard.getCells(1,1);
 		const setPiece = jest.spyOn(target, 'setPiece');
 
 		expect(target.piece).not.toBeNull();
@@ -79,8 +82,8 @@ describe('Pawn Promotion', () => {
 		}
 
 		const SpecialBoard = CreateSpecialBoard();
-		const target = findCell(0, 7, CreateSpecialBoard);
-		const selectedCell = findCell(0, 6, CreateSpecialBoard);
+		const target = SpecialBoard.getCells(0,7);
+		const selectedCell = SpecialBoard.getCells(0,6);
 		const setPiece = jest.spyOn(target, 'setPiece');
 
 		PawnPromotion(target, selectedCell, SpecialBoard);
@@ -102,8 +105,8 @@ describe('Pawn Promotion', () => {
 		}
 
 		const SpecialBoard = CreateSpecialBoard();
-		const target = findCell(0, 7, CreateSpecialBoard);
-		const selectedCell = findCell(1, 6, CreateSpecialBoard);
+		const target = SpecialBoard.getCells(0,7);
+		const selectedCell = SpecialBoard.getCells(1,6);
 		const setPiece = jest.spyOn(target, 'setPiece');
 
 		expect(target.piece).not.toBeNull();

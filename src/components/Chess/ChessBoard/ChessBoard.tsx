@@ -38,7 +38,10 @@ const ChessBoard = () => {
 	);
 
 	return (
-		<div className={cl.chess}>
+		<div
+			data-testid='chess'
+			className={cl.chess}
+		>
 			{MateCondition}
 			<button
 				className={cl.restartBtn}

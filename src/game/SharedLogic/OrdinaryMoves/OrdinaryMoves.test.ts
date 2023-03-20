@@ -1,6 +1,7 @@
 import { Colors } from '../../../types/Enums/Colors';
 import { Board } from '../../Chess/Board';
 import { Rook } from '../../Chess/Pieces/Rook';
+import { OrdinaryMoves } from './OrdinaryMoves';
 
 describe('Ordinary Moves', () => {
 	test('Can move', () => {
@@ -14,7 +15,7 @@ describe('Ordinary Moves', () => {
 		const target = SpecialBoard.getCells(5, 7);
 		const selectedCell = SpecialBoard.getCells(0, 7);
 
-		HighlightOrdinaryMovesLogic(SpecialBoard, selectedCell);
+		OrdinaryMoves(SpecialBoard, selectedCell);
 
 		expect(target.available).toBe(true);
 	});
@@ -29,7 +30,7 @@ describe('Ordinary Moves', () => {
 		const target = SpecialBoard.getCells(5, 5);
 		const selectedCell = SpecialBoard.getCells(0, 7);
 
-		HighlightOrdinaryMovesLogic(SpecialBoard, selectedCell);
+		OrdinaryMoves(SpecialBoard, selectedCell);
 
 		expect(target.available).toBe(false);
 	});

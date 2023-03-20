@@ -48,7 +48,7 @@ const CheckersBoard = () => {
 	};
 
 	return (
-		<div className={cl.checkers}>
+		<div data-testid='checkers' className={cl.checkers}>
 			<img
 				alt='checkersPic'
 				src={checkersPic}

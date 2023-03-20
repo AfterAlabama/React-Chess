@@ -28,7 +28,7 @@ const MainPage = () => {
 		</>
 	);
 
-	return <>{ImagesPreloadCondition}</>;
+	return <div data-testid='mainPage'>{ImagesPreloadCondition}</div>;
 };
 
 export default MainPage;
