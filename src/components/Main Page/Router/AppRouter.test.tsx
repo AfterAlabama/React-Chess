@@ -7,31 +7,49 @@ import ChessBoard from '../../Chess/ChessBoard/ChessBoard';
 import MainPage from '../MainPage';
 
 describe('React Router', () => {
-	test('Testing Route Links', () => {
+	test('Testing Main Page Link', () => {
 		render(
 			<MemoryRouter>
 				<App />
 				<MainPage />
-				<ChessBoard />
-				<CheckersBoard />
 			</MemoryRouter>
 		);
 
 		const mainPage = screen.getByTestId('mainPage');
-		const chess = screen.getByTestId('chess');
 		const mainLink = screen.getByTestId('/');
-		const chessLink = screen.getByTestId('/chess');
-		const checkers = screen.getByTestId('checkers');
-		const checkersLink = screen.getByTestId('/checkers');
 
 		userEvent.click(mainLink);
 		expect(mainPage).toBeInTheDocument();
+	});
 
-		userEvent.click(checkersLink);
-		expect(checkers).toBeInTheDocument();
+	test('Testing Chess Link', () => {
+		render(
+			<MemoryRouter>
+				<App />
+				<ChessBoard />
+			</MemoryRouter>
+		);
+
+		const chess = screen.getByTestId('chess');
+		const chessLink = screen.getByTestId('/chess');
 
 		userEvent.click(chessLink);
 		expect(chess).toBeInTheDocument();
+	});
+
+	test('Testing Checkers Link', () => {
+		render(
+			<MemoryRouter>
+				<App />
+				<CheckersBoard />
+			</MemoryRouter>
+		);
+
+		const checkers = screen.getByTestId('checkers');
+		const checkersLink = screen.getByTestId('/checkers');
+
+		userEvent.click(checkersLink);
+		expect(checkers).toBeInTheDocument();
 	});
 
 	test('Testing Nonexistent Route Links', () => {
