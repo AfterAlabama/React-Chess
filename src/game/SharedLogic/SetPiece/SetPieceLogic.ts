@@ -1,14 +1,14 @@
 export const SetPieceLogic = <
-	C extends {
-		piece: P | null;
+	CELL extends {
+		piece: PIECE | null;
 	},
-	P extends {
-		cell: C;
+	PIECE extends {
+		cell: CELL;
 	}
 >(
-	cell: C,
-	piece: P
-): void => {
+	cell: CELL,
+	piece: PIECE
+) => {
 	cell.piece = piece;
 	cell.piece.cell = cell;
 };

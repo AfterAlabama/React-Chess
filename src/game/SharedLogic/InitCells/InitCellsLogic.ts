@@ -1,19 +1,19 @@
 import { Colors } from '../../../types/Enums/Colors';
 
 export const InitCellslogic = <
-	T extends {
-		cells: C[][];
+	BOARD extends {
+		cells: CELL[][];
 	},
-	P,
-	C
+	PIECE,
+	CELL
 >(
-	board: T,
+	board: BOARD,
 	CellClass: {
-		new (x: number, y: number, color: Colors, board: T, piece: P | null): C;
+		new (x: number, y: number, color: Colors, board: BOARD, piece: PIECE | null): CELL;
 	}
-): void => {
+) => {
 	for (let i = 0; i < 8; i++) {
-		const row: C[] = [];
+		const row: CELL[] = [];
 		for (let j = 0; j < 8; j++) {
 			if ((i + j) % 2 !== 0) {
 				row.push(new CellClass(i, j, Colors.BLACK, board, null));

@@ -8,11 +8,11 @@ export class Castling {
 		target: Cell,
 		selectedCell: Cell | null,
 		board: Board
-	): boolean {
+	) {
 		return KingMovesWhileCastlingLogic(target, selectedCell, board);
 	}
 
-	static RookMovesWhileCastling(board: Board): boolean {
+	static RookMovesWhileCastling(board: Board) {
 		return RookMovesWhileCastlingLogic(board);
 	}
 }

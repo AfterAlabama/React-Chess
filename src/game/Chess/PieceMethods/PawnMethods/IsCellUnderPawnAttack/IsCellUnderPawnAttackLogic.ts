@@ -4,7 +4,7 @@ import { Cell } from '../../../Cell';
 export const IsCellUnderPawnAttackLogic = (
 	cell: Cell,
 	target: Cell
-): boolean => {
+) => {
 	const direction = cell.piece?.color === Colors.BLACK ? 1 : -1;
 
 	if (

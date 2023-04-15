@@ -1,17 +1,11 @@
 import { ReactNode } from 'react';
 
-export interface LoaderProps {
-	children: ReactNode;
-}
-
 export interface ModalProps {
 	visible: boolean;
 	setVisible: (el: boolean) => void;
 }
 
-export interface ModalContentProps {
-	setVisible: (el: boolean) => void;
-}
+export type ModalContentProps = Pick<ModalProps, 'setVisible'>
 
 export interface LinkButtonProps {
 	route: string;

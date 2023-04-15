@@ -13,7 +13,7 @@ export class Pawn extends Piece {
 		this.name = PieceNames.PAWN;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (!super.canMove(target)) {
 			return false;
 		}
@@ -28,7 +28,7 @@ export class Pawn extends Piece {
 		return false;
 	}
 
-	public movePiece(target: Cell): void {
+	public movePiece(target: Cell) {
 		this.isFirstStep = false;
 		this.count += 1;
 		if (target) return;

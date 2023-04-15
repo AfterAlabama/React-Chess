@@ -4,7 +4,7 @@ import { Knight } from '../../../Pieces/Knight';
 export const CanKnightProtectLogic = (
 	knight: Knight,
 	target: Cell
-): boolean => {
+) => {
 	const dy = Math.abs(target.y - knight.cell.y);
 
 	const dx = Math.abs(target.x - knight.cell.x);

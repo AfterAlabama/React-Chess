@@ -2,7 +2,7 @@ import { Colors } from '../../../../../types/Enums/Colors';
 import { Cell } from '../../../Cell';
 import { King } from '../../../Pieces/King';
 
-export const CanKingCastleLogic = (king: King, target: Cell): boolean => {
+export const CanKingCastleLogic = (king: King, target: Cell) => {
 	if (king.isFirstStep && target.x === king.cell.x) {
 		if (
 			king.color === Colors.WHITE &&

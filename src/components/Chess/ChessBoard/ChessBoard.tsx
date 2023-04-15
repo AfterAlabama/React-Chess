@@ -10,12 +10,12 @@ import { KingMethods } from '../../../game/Chess/PieceMethods/KingMethods/KingMe
 import { CreateBoard } from '../../../game/SharedLogic/CreateBoard/CreateBoard';
 
 const ChessBoard = () => {
-	const [board, setBoard] = useState<Board>(CreateBoard<Board>(Board));
-	const [whitePlayer] = useState<Player>(new Player(Colors.WHITE));
+	const [board, setBoard] = useState(CreateBoard<Board>(Board));
+	const [whitePlayer] = useState(new Player(Colors.WHITE));
 
-	const [blackPlayer] = useState<Player>(new Player(Colors.BLACK));
+	const [blackPlayer] = useState(new Player(Colors.BLACK));
 
-	const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
+	const [currentPlayer, setCurrentPlayer] = useState(whitePlayer);
 
 	const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 

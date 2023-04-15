@@ -6,7 +6,7 @@ export const CanAttackerBeTaken = (
 	target: Cell,
 	king: Cell,
 	attacker: Cell | undefined
-): boolean => {
+) => {
 	for (let i = 0; i < board.cells.length; i++) {
 		const row = board.cells[i];
 		for (let j = 0; j < row.length; j++) {

@@ -29,11 +29,11 @@ export class ChCell {
 		this.id = Number(`${y}.${x}`);
 	}
 
-	public setPiece(piece: ChPiece): void {
+	public setPiece(piece: ChPiece) {
 		SetPieceLogic<ChCell, ChPiece>(this, piece)
 	}
 
-	public movePiece(target: ChCell): void {
+	public movePiece(target: ChCell) {
 		MovePieceLogic<ChCell, ChPiece>(this, target)
 	}
 }

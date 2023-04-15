@@ -10,7 +10,7 @@ export function KingMovesOutOfCheck(
 	selectedCell: Cell | null,
 	setSelectedCell: (cell: Cell | null) => void,
 	swapPlayers: () => void
-): void {
+) {
 	const { blackKingCheck, whiteKingCheck } =
 		KingMethods.isKingUnderAttack(board);
 

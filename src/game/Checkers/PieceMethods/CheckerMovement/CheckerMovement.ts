@@ -5,7 +5,7 @@ import { DoesCheckerMoveLogic } from './DoesCheckerMove/DoesCheckerMoveLogic';
 
 // Tells if checkers are allowed to move on cells or not (no action)
 export class CheckerMovement {
-	static DoesCheckerMove(checker: Checker, target: ChCell): boolean {
+	static DoesCheckerMove(checker: Checker, target: ChCell) {
 		return DoesCheckerMoveLogic(checker, target);
 	}
 

@@ -6,7 +6,7 @@ export function CheckerAttack(
 	selectedChCell: ChCell | null,
 	board: ChBoard,
 	target: ChCell
-): void {
+) {
 	//white checker to the right
 	if (
 		selectedChCell &&

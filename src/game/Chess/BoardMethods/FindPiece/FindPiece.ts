@@ -10,11 +10,11 @@ export interface FindKingsReturnValue {
 export type FindRooksReturnValue = (Cell | null)[];
 
 export class FindPiece {
-	static findKings(board: Board): FindKingsReturnValue {
+	static findKings(board: Board) {
 		return FindKingsLogic(board);
 	}
 
-	static findRooksInitialPosition(board: Board): FindRooksReturnValue {
+	static findRooksInitialPosition(board: Board) {
 		return FindRooksLogic(board);
 	}
 }

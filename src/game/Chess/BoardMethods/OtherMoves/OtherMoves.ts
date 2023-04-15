@@ -6,7 +6,7 @@ export function OtherMoves(
 	target: Cell,
 	setSelectedCell: (cell: Cell | null) => void,
 	currentPlayer: Player
-): void {
+) {
 	if (
 		!selectedCell ||
 		(target.piece?.color === selectedCell?.piece?.color &&

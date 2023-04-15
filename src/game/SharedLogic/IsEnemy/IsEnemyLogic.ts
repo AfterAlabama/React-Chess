@@ -1,15 +1,15 @@
 import { Colors } from '../../../types/Enums/Colors';
 
 export const IsEnemyLogic = <
-	C extends {
-		piece: P;
+	CELL extends {
+		piece: PIECE;
 	},
-	P extends {
+	PIECE extends {
 		color: Colors;
 	} | null
 >(
-	target: C,
-	cell: C
+	target: CELL,
+	cell: CELL
 ): boolean => {
 	if (target.piece && cell.piece?.color !== target.piece.color) {
 		return true;

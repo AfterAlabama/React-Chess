@@ -7,28 +7,27 @@ import { CanKingMoveLogic } from './CanKingMove/CanKingMoveLogic';
 import { CanKingProtectLogic } from './CanKingProtect/CanKingProtectLogic';
 import {
 	IsKingUnderAttackLogic,
-	IsKingUnderAttackReturnValue,
 } from './IsKingUnderAttack/IsKingUnderAttackLogic';
 import { MateLogic } from './Mate/MateLogic';
 
 export class KingMethods {
-	static isKingUnderAttack(board: Board): IsKingUnderAttackReturnValue {
+	static isKingUnderAttack(board: Board) {
 		return IsKingUnderAttackLogic(board);
 	}
 
-	static Mate(board: Board, currentColor: Colors): boolean {
+	static Mate(board: Board, currentColor: Colors) {
 		return MateLogic(board, currentColor);
 	}
 
-	static CanKingCastle(king: King, target: Cell): boolean {
+	static CanKingCastle(king: King, target: Cell) {
 		return CanKingCastleLogic(king, target);
 	}
 
-	static CanKingMove(king: King, target: Cell): boolean {
+	static CanKingMove(king: King, target: Cell) {
 		return CanKingMoveLogic(king, target);
 	}
 
-	static CanKingProtect(king: King, target: Cell): boolean {
+	static CanKingProtect(king: King, target: Cell) {
 		return CanKingProtectLogic(king, target);
 	}
 }

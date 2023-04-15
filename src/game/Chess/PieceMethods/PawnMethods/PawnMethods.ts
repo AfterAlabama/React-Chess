@@ -5,15 +5,15 @@ import { IsCellUnderPawnAttackLogic } from './IsCellUnderPawnAttack/IsCellUnderP
 import { IsPawnAttackLogic } from './IsPawnAttack/IsPawnAttackLogic';
 
 export class PawnMethods {
-	static isCellUnderPawnAttack(cell: Cell, target: Cell): boolean {
+	static isCellUnderPawnAttack(cell: Cell, target: Cell) {
 		return IsCellUnderPawnAttackLogic(cell, target);
 	}
 
-	static CanPawnMove(pawn: Pawn, target: Cell): boolean {
+	static CanPawnMove(pawn: Pawn, target: Cell) {
 		return CanPawnMoveLogic(pawn, target);
 	}
 
-	static isPawnAttack(pawn: Pawn, target: Cell): boolean {
+	static isPawnAttack(pawn: Pawn, target: Cell) {
 		return IsPawnAttackLogic(pawn, target);
 	}
 }

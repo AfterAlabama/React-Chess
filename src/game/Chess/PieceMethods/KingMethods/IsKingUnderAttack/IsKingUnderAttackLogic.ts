@@ -13,7 +13,7 @@ export interface IsKingUnderAttackReturnValue {
 
 export const IsKingUnderAttackLogic = (
 	board: Board
-): IsKingUnderAttackReturnValue => {
+) => {
 	const { blackKing, whiteKing } = FindPiece.findKings(board);
 
 	let whiteKingCheck = false;

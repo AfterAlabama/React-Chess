@@ -1,20 +1,20 @@
 export const OrdinaryMoves = <
-	T extends {
-		cells: C[][];
+	BOARD extends {
+		cells: CELL[][];
 	},
-	C extends {
+	CELL extends {
 		available: boolean;
-		piece: P | null;
+		piece: PIECE | null;
 	},
-	P extends {
-		canMove: (target: C) => boolean;
+	PIECE extends {
+		canMove: (target: CELL) => boolean;
 	}
 >(
-	board: T,
-	selectedCell: C | null
-): void => {
+	board: BOARD,
+	selectedCell: CELL | null
+) => {
 	for (let i = 0; i < board.cells.length; i++) {
-		const row: C[] = board.cells[i];
+		const row: CELL[] = board.cells[i];
 		for (let j = 0; j < row.length; j++) {
 			const target = row[j];
 			target.available = !!selectedCell?.piece?.canMove(target);

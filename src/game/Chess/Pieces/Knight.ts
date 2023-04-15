@@ -13,7 +13,7 @@ export class Knight extends Piece {
 		this.name = PieceNames.KNIGHT;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (!super.canMove(target)) {
 			return false;
 		}
@@ -24,7 +24,7 @@ export class Knight extends Piece {
 		return false;
 	}
 
-	public canProtect(target: Cell): boolean {
+	public canProtect(target: Cell) {
 		if (KnightMethods.CanKnightProtect(this, target)) {
 			return true;
 		}

@@ -1,17 +1,17 @@
 export const GetCopyBoardLogic = <
-	T extends {
-		cells: C[][];
-		lostBlackPieces?: P[];
-		lostWhitePieces?: P[];
+	BOARD extends {
+		cells: CELL[][];
+		lostBlackPieces?: PIECE[];
+		lostWhitePieces?: PIECE[];
 	},
-	C,
-	P
+	CELL,
+	PIECE
 >(
-	prevBoard: T,
+	prevBoard: BOARD,
 	nextBoard: {
-		new (): T;
+		new (): BOARD;
 	}
-): T => {
+) => {
 	const newBoard = new nextBoard();
 	newBoard.cells = prevBoard.cells;
 	newBoard.lostBlackPieces = prevBoard.lostBlackPieces;

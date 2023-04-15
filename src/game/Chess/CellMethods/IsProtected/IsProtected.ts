@@ -4,7 +4,7 @@ import { Piece } from '../../Pieces/Piece';
 import { IsEmpty } from '../../../SharedLogic/IsEmpty/IsEmpty';
 
 export class IsProtected {
-	static Diagonal(somePiece: Piece, target: Cell): boolean {
+	static Diagonal(somePiece: Piece, target: Cell) {
 		let count = 1;
 
 		const absY = Math.abs(somePiece.cell.y - target.y);
@@ -50,7 +50,7 @@ export class IsProtected {
 		return false;
 	}
 
-	static Vertical(somePiece: Piece, target: Cell): boolean {
+	static Vertical(somePiece: Piece, target: Cell) {
 		let count = 1;
 
 		const min = Math.min(somePiece.cell.x, target.x);
@@ -78,7 +78,7 @@ export class IsProtected {
 		return false;
 	}
 
-	static Horizontal(somePiece: Piece, target: Cell): boolean {
+	static Horizontal(somePiece: Piece, target: Cell) {
 		let count = 1;
 		const min = Math.min(somePiece.cell.y, target.y);
 		const max = Math.max(somePiece.cell.y, target.y);

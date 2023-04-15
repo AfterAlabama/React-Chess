@@ -13,11 +13,11 @@ export class Board {
 	lostBlackPieces: Piece[] = [];
 	lostWhitePieces: Piece[] = [];
 
-	public initCells(): void {
+	public initCells() {
 		InitCellslogic<Board, Piece, Cell>(this, Cell);
 	}
 
-	public highlightCells(selectedCell: Cell | null, currentColor: Colors): void {
+	public highlightCells(selectedCell: Cell | null, currentColor: Colors) {
 		Highlight.highlightCastling(selectedCell, currentColor, this);
 		Highlight.pieceStandingInCheck(selectedCell, this);
 		Highlight.pieceMovingInCheck(selectedCell, this);
@@ -26,15 +26,15 @@ export class Board {
 		OrdinaryMoves<Board, Cell, Piece>(this, selectedCell);
 	}
 
-	public getCopyBoard(): Board {
+	public getCopyBoard() {
 		return GetCopyBoardLogic<Board, Cell, Piece>(this, Board);
 	}
 
-	public getCells(y: number, x: number): Cell {
+	public getCells(y: number, x: number) {
 		return GetCellsLogic<Board, Cell, Piece>(y, x, this);
 	}
 
-	public addPieces(): void {
+	public addPieces() {
 		new PieceAddition().AddingAllChessPieces(this);
 	}
 }

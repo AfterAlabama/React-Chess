@@ -12,7 +12,7 @@ type HeaderContextProp = {
 export const HeaderContext = createContext<HeaderContextProp>(null!);
 
 const MainPage = () => {
-	const divRef = useRef<HTMLDivElement>(null!);
+	const divRef = useRef<HTMLDivElement>({} as HTMLDivElement);
 	const { imagesPreloaded } = useImagePreloader([logo1, logo2]);
 	
 	function clickHandler() {

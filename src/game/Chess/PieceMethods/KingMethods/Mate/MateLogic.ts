@@ -5,7 +5,7 @@ import { BlockCheck } from '../../../CellMethods/BlockTheCheck/BlockCheck';
 import { IsCellUnderAttack } from '../../../CellMethods/IsCellUnderAttack/IsCellUnderAttack';
 import { KingMethods } from '../KingMethods';
 
-export const MateLogic = (board: Board, currentColor: Colors): boolean => {
+export const MateLogic = (board: Board, currentColor: Colors) => {
 	let count = 0;
 	const { blackKing, whiteKing } = FindPiece.findKings(board);
 

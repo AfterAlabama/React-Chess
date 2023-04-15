@@ -1,19 +1,19 @@
 import { Cell } from '../../Chess/Cell';
 
 export const MovePieceLogic = <
-	C extends {
-		piece: P | null;
-		addLostPiece?: (target: P) => void;
-		setPiece: (target: P) => void;
+	CELL extends {
+		piece: PIECE | null;
+		addLostPiece?: (target: PIECE) => void;
+		setPiece: (target: PIECE) => void;
 	},
-	P extends {
-		canMove: (target: C) => boolean;
-		movePiece?: (target: C) => void;
+	PIECE extends {
+		canMove: (target: CELL) => boolean;
+		movePiece?: (target: CELL) => void;
 	}
 >(
-	cell: C,
-	target: C
-): void => {
+	cell: CELL,
+	target: CELL
+) => {
 	if (cell.piece && cell.piece.canMove(target)) {
 		if (typeof target === typeof Cell) {
 			if (target.piece) {

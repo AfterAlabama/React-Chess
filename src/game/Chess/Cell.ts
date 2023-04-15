@@ -31,19 +31,19 @@ export class Cell {
 		this.id = Number(`${y}.${x}`);
 	}
 
-	public isEnemy(target: Cell): boolean {
+	public isEnemy(target: Cell) {
 		return IsEnemyLogic<Cell, Piece | null>(target, this);
 	}
 
-	public setPiece(piece: Piece): void {
+	public setPiece(piece: Piece) {
 		SetPieceLogic<Cell, Piece>(this, piece);
 	}
 
-	addLostPiece(piece: Piece): void {
+	addLostPiece(piece: Piece) {
 		AddLostPieceLogic(this, piece);
 	}
 
-	movePiece(target: Cell): void {
+	movePiece(target: Cell) {
 		MovePieceLogic<Cell, Piece>(this, target);
 	}
 }

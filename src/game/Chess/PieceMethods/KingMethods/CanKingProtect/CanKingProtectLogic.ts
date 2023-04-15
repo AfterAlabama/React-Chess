@@ -1,7 +1,7 @@
 import { Cell } from '../../../Cell';
 import { King } from '../../../Pieces/King';
 
-export const CanKingProtectLogic = (king: King, target: Cell): boolean => {
+export const CanKingProtectLogic = (king: King, target: Cell) => {
 	if (
 		target.piece &&
 		target.piece.color === king.color &&

@@ -5,7 +5,7 @@ import { BlockCheck } from '../../../CellMethods/BlockTheCheck/BlockCheck';
 export const PieceStandingInCheckLogic = (
 	selectedCell: Cell | null,
 	board: Board
-): void => {
+) => {
 	for (let i = 0; i < board.cells.length; i++) {
 		const row: Cell[] = board.cells[i];
 		for (let j = 0; j < row.length; j++) {

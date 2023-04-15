@@ -11,11 +11,12 @@ export interface ChBoardProps {
 	swapPlayers: () => void;
 }
 
-export interface ChCellProps {
+export interface ChCellProps
+	extends Pick<
+		ChBoardProps,
+		'currentPlayer' | 'setSelectedChCell' | 'selectedChCell'
+	> {
 	cell: ChCell;
 	selected: boolean;
 	click: (target: ChCell) => void;
-	currentPlayer: Player;
-	setSelectedChCell: (cell: ChCell) => void;
-	selectedChCell: ChCell | null;
 }

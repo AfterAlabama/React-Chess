@@ -1,9 +1,9 @@
 export function CreateBoard<
-	T extends {
+	BOARD extends {
 		initCells: () => void;
 		addPieces: () => void;
 	}
->(board: { new (): T }): T {
+>(board: { new (): BOARD }) {
 	const newBoard = new board();
 	newBoard.initCells();
 	newBoard.addPieces();

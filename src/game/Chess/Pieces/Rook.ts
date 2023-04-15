@@ -14,7 +14,7 @@ export class Rook extends Piece {
 		this.name = PieceNames.ROOK;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (!super.canMove(target)) {
 			return false;
 		}
@@ -29,7 +29,7 @@ export class Rook extends Piece {
 		return false;
 	}
 
-	public canProtect(target: Cell): boolean {
+	public canProtect(target: Cell) {
 		if (IsProtected.Vertical(this, target)) {
 			return true;
 		}
@@ -41,7 +41,7 @@ export class Rook extends Piece {
 		return false;
 	}
 
-	public movePiece(target: Cell): void {
+	public movePiece(target: Cell) {
 		this.isFirstStep = false;
 		if (target) return;
 	}

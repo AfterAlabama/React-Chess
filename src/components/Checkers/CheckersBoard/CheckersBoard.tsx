@@ -17,11 +17,11 @@ const CheckersBoard = () => {
 
 	const [blackPlayer] = useState(new Player(Colors.BLACK));
 
-	const [currentPlayer, setCurrentPlayer] = useState<Player>(whitePlayer);
+	const [currentPlayer, setCurrentPlayer] = useState(whitePlayer);
 
 	const [selectedChCell, setSelectedChCell] = useState<ChCell | null>(null);
 
-	const h2Ref = useRef<HTMLHeadingElement>(null!);
+	const h2Ref = useRef<HTMLHeadingElement>({} as HTMLHeadingElement);
 
 	//checks if white or black have lost
 	useIsSecondRender<ChBoard>(() => {

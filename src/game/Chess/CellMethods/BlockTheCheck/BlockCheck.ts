@@ -15,7 +15,7 @@ export class BlockCheck {
 		target: Cell,
 		board: Board,
 		movingCell: Cell
-	): boolean {
+	) {
 		const { blackKing, whiteKing } = FindPiece.findKings(board);
 
 		for (let i = 0; i < board.cells.length; i++) {
@@ -57,7 +57,7 @@ export class BlockCheck {
 		return false;
 	}
 
-	static doesCellBlockTheCheck(target: Cell, board: Board): boolean {
+	static doesCellBlockTheCheck(target: Cell, board: Board) {
 		const { blackKing, whiteKing } = FindPiece.findKings(board);
 
 		const { blackAttacker, whiteAttacker } =

@@ -8,7 +8,7 @@ export const IsCellUnderAttack = (
 	board: Board,
 	currentPlayer: Colors | undefined,
 	target: Cell
-): boolean => {
+) => {
 	let count = 0;
 	for (let i = 0; i < board.cells.length; i++) {
 		const row = board.cells[i];

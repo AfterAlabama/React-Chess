@@ -3,7 +3,7 @@ import { Cell } from '../../../Cell';
 import { IsEmpty } from '../../../../SharedLogic/IsEmpty/IsEmpty';
 import { Pawn } from '../../../Pieces/Pawn';
 
-export const CanPawnMoveLogic = (pawn: Pawn, target: Cell): boolean => {
+export const CanPawnMoveLogic = (pawn: Pawn, target: Cell) => {
 	const direction = pawn.color === Colors.BLACK ? 1 : -1;
 
 	const firstStep = pawn.color === Colors.BLACK ? 2 : -2;

@@ -8,7 +8,7 @@ export function PawnPromotion(
 	target: Cell,
 	selectedCell: Cell | null,
 	board: Board
-): boolean {
+) {
 	if (
 		selectedCell &&
 		selectedCell.piece &&

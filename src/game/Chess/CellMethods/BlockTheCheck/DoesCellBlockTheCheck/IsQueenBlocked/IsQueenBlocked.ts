@@ -7,7 +7,7 @@ export const IsQueenBlocked = (
 	king: Cell,
 	target: Cell,
 	board: Board
-): boolean => {
+) => {
 	if (attacker && attacker.piece?.name === PieceNames.QUEEN) {
 		//diagonal
 		const absY = Math.abs(king.y - attacker.y);

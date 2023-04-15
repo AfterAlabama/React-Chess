@@ -8,7 +8,7 @@ import { FindPiece } from '../../FindPiece/FindPiece';
 export const PieceMovingInCheckLogic = (
 	selectedCell: Cell | null,
 	board: Board
-): void => {
+) => {
 	const { whiteKing, blackKing } = FindPiece.findKings(board);
 
 	const { whiteKingCheck, blackKingCheck } =

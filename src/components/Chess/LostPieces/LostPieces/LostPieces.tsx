@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Lostprops } from '../../../../types/Props/ChessProps';
+import { LostProps } from '../../../../types/Props/ChessProps';
 import { KingMethods } from '../../../../game/Chess/PieceMethods/KingMethods/KingMethods';
 import LostPieceGraph from '../LostPieceGraph/LostPieceGraph';
 import cl from './LostPieces.module.scss';
 
-const LostPieces: FC<Lostprops> = ({ pieces, title, board, currentPlayer }) => {
+const LostPieces: FC<LostProps> = ({ pieces, title, board, currentPlayer }) => {
 	const condition =
 		KingMethods.isKingUnderAttack(board).blackKingCheck ||
 		KingMethods.isKingUnderAttack(board).whiteKingCheck ||

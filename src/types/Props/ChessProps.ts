@@ -3,7 +3,7 @@ import { Cell } from '../../game/Chess/Cell';
 import { Piece } from '../../game/Chess/Pieces/Piece';
 import { Player } from '../../game/Chess/Player';
 
-export interface Boardprops {
+export interface BoardProps {
 	board: Board;
 	setBoard: (board: Board) => void;
 	currentPlayer: Player;
@@ -12,18 +12,17 @@ export interface Boardprops {
 	setSelectedCell: (cell: Cell | null) => void;
 }
 
-export interface CellProps {
+export interface CellProps
+	extends Pick<
+		BoardProps,
+		'selectedCell' | 'setSelectedCell' | 'currentPlayer'
+	> {
 	cell: Cell;
 	selected: boolean;
 	click: (cell: Cell) => void;
-	selectedCell: Cell | null;
-	setSelectedCell: (cell: Cell | null) => void;
-	currentPlayer: Player;
 }
 
-export interface Lostprops {
+export interface LostProps extends Pick<BoardProps, 'board' | 'currentPlayer'> {
 	title: string;
 	pieces: Piece[];
-	board: Board;
-	currentPlayer: Player;
 }

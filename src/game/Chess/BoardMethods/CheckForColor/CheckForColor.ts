@@ -2,7 +2,7 @@ import { Colors } from '../../../../types/Enums/Colors';
 import { Board } from '../../Board';
 import { Cell } from '../../Cell';
 
-export function CheckForColor(board: Board, king: Cell): void {
+export function CheckForColor(board: Board, king: Cell) {
 	if (board.getCells(king.y + 1, king.x)) {
 		if (board.getCells(king.y + 1, king.x).color === Colors.BLACK) {
 			king.color = Colors.WHITE;

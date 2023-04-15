@@ -5,7 +5,7 @@ import { Checker } from '../../../Pieces/Checker';
 export const DoesCheckerAttackLogic = (
 	checker: Checker,
 	target: ChCell
-): boolean => {
+) => {
 	// White Checker
 	if (
 		checker.color === Colors.WHITE &&

@@ -13,7 +13,7 @@ export class Checker extends ChPiece {
 		this.logo = this.color === Colors.BLACK ? blackLogo : whiteLogo;
 	}
 
-	public canMove(target: ChCell): boolean {
+	public canMove(target: ChCell) {
 		if (!super.canMove(target)) {
 			return false;
 		}

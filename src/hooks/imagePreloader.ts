@@ -14,7 +14,7 @@ export function preloadImage(src: string): Promise<HTMLImageElement> {
 }
 
 export default function useImagePreloader(imageList: string[]) {
-  const [imagesPreloaded, setImagesPreloaded] = useState<boolean>(false);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
   useEffect(() => {
     let isCancelled = false;
 

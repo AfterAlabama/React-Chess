@@ -2,9 +2,8 @@ import { Colors } from '../../../../../types/Enums/Colors';
 import { PieceNames } from '../../../../../types/Enums/PieceNames';
 import { Board } from '../../../Board';
 import { Cell } from '../../../Cell';
-import { FindKingsReturnValue } from '../FindPiece';
 
-export const FindKingsLogic = (board: Board): FindKingsReturnValue => {
+export const FindKingsLogic = (board: Board) => {
 	let blackKing = {} as Cell;
 	let whiteKing = {} as Cell;
 

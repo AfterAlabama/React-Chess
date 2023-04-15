@@ -1,7 +1,7 @@
 import { Cell } from '../../../Cell';
 import { Knight } from '../../../Pieces/Knight';
 
-export const CanKnightMoveLogic = (knight: Knight, target: Cell): boolean => {
+export const CanKnightMoveLogic = (knight: Knight, target: Cell) => {
 	const dy = Math.abs(target.y - knight.cell.y);
 
 	const dx = Math.abs(target.x - knight.cell.x);

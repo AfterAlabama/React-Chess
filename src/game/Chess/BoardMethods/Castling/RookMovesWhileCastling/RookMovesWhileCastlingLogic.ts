@@ -1,7 +1,7 @@
 import { Board } from '../../../Board';
 import { FindPiece } from '../../FindPiece/FindPiece';
 
-export const RookMovesWhileCastlingLogic = (board: Board): boolean => {
+export const RookMovesWhileCastlingLogic = (board: Board) => {
 	const [leftBlackRook, rightBlackRook, leftWhiteRook, rightWhiteRook] =
 		FindPiece.findRooksInitialPosition(board);
 

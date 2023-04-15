@@ -14,7 +14,7 @@ export class Queen extends Piece {
 		this.name = PieceNames.QUEEN;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (!super.canMove(target)) {
 			return false;
 		}
@@ -33,7 +33,7 @@ export class Queen extends Piece {
 		return false;
 	}
 
-	public canProtect(target: Cell): boolean {
+	public canProtect(target: Cell) {
 		if (IsProtected.Vertical(this, target)) {
 			return true;
 		}

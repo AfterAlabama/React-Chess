@@ -8,7 +8,7 @@ export const KingMovesWhileCastlingLogic = (
 	target: Cell,
 	selectedCell: Cell | null,
 	board: Board
-): boolean => {
+) => {
 	let count = 0;
 	if (
 		selectedCell &&

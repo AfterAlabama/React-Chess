@@ -1,13 +1,13 @@
 export const GetCellsLogic = <
-	T extends {
-		cells: C[][];
-		lostBlackPieces?: P[];
-		lostWhitePieces?: P[];
+	BOARD extends {
+		cells: CELL[][];
+		lostBlackPieces?: PIECE[];
+		lostWhitePieces?: PIECE[];
 	},
-	C,
-	P
+	CELL,
+	PIECE
 >(
 	y: number,
 	x: number,
-	board: T
-): C => board.cells[x][y];
+	board: BOARD
+) => board.cells[x][y];

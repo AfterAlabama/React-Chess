@@ -2,7 +2,7 @@ import { Colors } from '../../../../types/Enums/Colors';
 import { Cell } from '../../Cell';
 import { Piece } from '../../Pieces/Piece';
 
-export const AddLostPieceLogic = (cell: Cell, piece: Piece): void => {
+export const AddLostPieceLogic = (cell: Cell, piece: Piece) => {
 	if (piece.color === Colors.BLACK) {
 		cell.board.lostBlackPieces.push(piece);
 	}

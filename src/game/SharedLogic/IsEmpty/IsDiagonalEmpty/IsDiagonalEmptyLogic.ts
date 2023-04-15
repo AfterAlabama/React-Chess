@@ -1,19 +1,19 @@
 import { IsEmpty } from '../IsEmpty';
 
 export const IsDiagonalEmptyLogic = <
-	T extends {
-		getCells: (y: number, x: number) => C;
+	BOARD extends {
+		getCells: (y: number, x: number) => CELL;
 	},
-	C extends {
+	CELL extends {
 		y: number;
 		x: number;
-		board: T;
-		piece: P | null;
+		board: BOARD;
+		piece: PIECE | null;
 	},
-	P
+	PIECE
 >(
-	cell: C,
-	target: C
+	cell: CELL,
+	target: CELL
 ) => {
 	const absY = Math.abs(cell.y - target.y);
 	const absX = Math.abs(cell.x - target.x);
@@ -27,7 +27,7 @@ export const IsDiagonalEmptyLogic = <
 
 	for (let i = 1; i < absY; i++) {
 		if (
-			!IsEmpty.Cell<C, typeof target.piece>(
+			!IsEmpty.Cell<CELL, typeof target.piece>(
 				cell.board.getCells(cell.y + dy * i, cell.x + dx * i)
 			)
 		) {

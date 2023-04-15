@@ -1,5 +1,5 @@
 import { FC, Fragment, useEffect } from 'react';
-import { Boardprops } from '../../../types/Props/ChessProps';
+import { BoardProps } from '../../../types/Props/ChessProps';
 import { Cell } from '../../../game/Chess/Cell';
 import CellComponent from '../CellComponent/CellComponent';
 import cl from './BoardComponent.module.scss';
@@ -11,7 +11,7 @@ import { Castling } from '../../../game/Chess/BoardMethods/Castling/Castling';
 import { OtherMoves } from '../../../game/Chess/BoardMethods/OtherMoves/OtherMoves';
 import { KingMethods } from '../../../game/Chess/PieceMethods/KingMethods/KingMethods';
 
-const BoardComponent: FC<Boardprops> = ({
+const BoardComponent: FC<BoardProps> = ({
 	board,
 	setBoard,
 	currentPlayer,

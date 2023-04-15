@@ -13,7 +13,7 @@ export class King extends Piece {
 		this.name = PieceNames.KING;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (!super.canMove(target)) {
 			return false;
 		}
@@ -28,14 +28,14 @@ export class King extends Piece {
 		return false;
 	}
 
-	public canProtect(target: Cell): boolean {
+	public canProtect(target: Cell) {
 		if (KingMethods.CanKingProtect(this, target)) {
 			return true;
 		}
 		return false;
 	}
 
-	public movePiece(target: Cell): void {
+	public movePiece(target: Cell) {
 		this.isFirstStep = false;
 		if (target) return;
 	}

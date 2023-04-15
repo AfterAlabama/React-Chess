@@ -7,7 +7,7 @@ export const IsBishopBlocked = (
 	king: Cell,
 	target: Cell,
 	board: Board
-): boolean => {
+) => {
 	if (attacker && attacker.piece?.name === PieceNames.BISHOP) {
 		const absY = Math.abs(king.y - attacker.y);
 		const absX = Math.abs(king.x - attacker.x);

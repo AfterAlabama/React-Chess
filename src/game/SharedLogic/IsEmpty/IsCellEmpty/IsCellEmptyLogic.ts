@@ -1,10 +1,10 @@
 export const IsCellEmptyLogic = <
-	C extends {
-		piece: P | null;
+	CELL extends {
+		piece: PIECE | null;
 	},
-	P
+	PIECE
 >(
-	cell: C
+	cell: CELL
 ) => {
 	return cell.piece === null;
 };

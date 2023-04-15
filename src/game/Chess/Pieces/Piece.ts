@@ -24,7 +24,7 @@ export abstract class Piece {
 		this.cell.piece = this;
 	}
 
-	public attacksKing(target: Cell): boolean {
+	public attacksKing(target: Cell) {
 		if (
 			target.piece?.name === PieceNames.KING &&
 			target.piece.color !== this.color &&
@@ -35,7 +35,7 @@ export abstract class Piece {
 		return false;
 	}
 
-	public canMove(target: Cell): boolean {
+	public canMove(target: Cell) {
 		if (this.color === target.piece?.color) {
 			return false;
 		}
@@ -43,7 +43,7 @@ export abstract class Piece {
 		return true;
 	}
 
-	public movePiece(target: Cell): void {
+	public movePiece(target: Cell) {
 		this.isFirstStep = false;
 		if (target) return;
 	}

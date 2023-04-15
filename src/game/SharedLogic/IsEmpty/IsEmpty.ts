@@ -5,56 +5,56 @@ import { IsVerticalEmptyLogic } from './IsVerticalEmpty/IsVerticalEmptyLogic';
 
 export class IsEmpty {
 	static Cell<
-		C extends {
-			piece: P | null;
+		CELL extends {
+			piece: PIECE | null;
 		},
-		P
-	>(cell: C): boolean {
-		return IsCellEmptyLogic<C, P>(cell);
+		PIECE
+	>(cell: CELL) {
+		return IsCellEmptyLogic<CELL, PIECE>(cell);
 	}
 
 	static Vertical<
-		T extends {
-			getCells: (y: number, x: number) => C;
+		BOARD extends {
+			getCells: (y: number, x: number) => CELL;
 		},
-		C extends {
+		CELL extends {
 			y: number;
 			x: number;
-			board: T;
-			piece: P | null;
+			board: BOARD;
+			piece: PIECE | null;
 		},
-		P
-	>(cell: C, target: C): boolean {
-		return IsVerticalEmptyLogic<T, C, P>(cell, target);
+		PIECE
+	>(cell: CELL, target: CELL): boolean {
+		return IsVerticalEmptyLogic<BOARD, CELL, PIECE>(cell, target);
 	}
 
 	static Horizontal<
-		T extends {
-			getCells: (y: number, x: number) => C;
+		BOARD extends {
+			getCells: (y: number, x: number) => CELL;
 		},
-		C extends {
+		CELL extends {
 			y: number;
 			x: number;
-			board: T;
-			piece: P | null;
+			board: BOARD;
+			piece: PIECE | null;
 		},
-		P
-	>(cell: C, target: C): boolean {
-		return IsHorizontalEmptyLogic<T, C, P>(cell, target);
+		PIECE
+	>(cell: CELL, target: CELL) {
+		return IsHorizontalEmptyLogic<BOARD, CELL, PIECE>(cell, target);
 	}
 
 	static Diagonal<
-		T extends {
-			getCells: (y: number, x: number) => C;
+		BOARD extends {
+			getCells: (y: number, x: number) => CELL;
 		},
-		C extends {
+		CELL extends {
 			y: number;
 			x: number;
-			board: T;
-			piece: P | null;
+			board: BOARD;
+			piece: PIECE | null;
 		},
-		P
-	>(cell: C, target: C): boolean {
-		return IsDiagonalEmptyLogic<T, C, P>(cell, target);
+		PIECE
+	>(cell: CELL, target: CELL) {
+		return IsDiagonalEmptyLogic<BOARD, CELL, PIECE>(cell, target);
 	}
 }

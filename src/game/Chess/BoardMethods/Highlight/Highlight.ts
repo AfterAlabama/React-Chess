@@ -11,15 +11,15 @@ export class Highlight {
 		selectedCell: Cell | null,
 		currentColor: Colors | undefined,
 		board: Board
-	): boolean {
+	) {
 		return HighlightCastlingLogic(selectedCell, currentColor, board);
 	}
 
-	static pieceStandingInCheck(selectedCell: Cell | null, board: Board): void {
+	static pieceStandingInCheck(selectedCell: Cell | null, board: Board) {
 		PieceStandingInCheckLogic(selectedCell, board);
 	}
 
-	static pieceMovingInCheck(selectedCell: Cell | null, board: Board): void {
+	static pieceMovingInCheck(selectedCell: Cell | null, board: Board) {
 		PieceMovingInCheckLogic(selectedCell, board);
 	}
 
@@ -27,7 +27,7 @@ export class Highlight {
 		selectedCell: Cell | null,
 		board: Board,
 		currentColor: Colors
-	): void {
+	) {
 		KingEscapingLogic(selectedCell, board, currentColor);
 	}
 }

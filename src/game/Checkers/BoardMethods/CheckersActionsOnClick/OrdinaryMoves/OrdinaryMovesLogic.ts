@@ -10,7 +10,7 @@ export const OrdinaryMovesLogic = (
 	setSelectedChCell: (cell: ChCell | null) => void,
 	currentPlayer: Player,
 	swapPlayers: () => void
-): void => {
+) => {
 	if (
 		selectedChCell &&
 		(target === selectedChCell || !selectedChCell.piece?.canMove(target))

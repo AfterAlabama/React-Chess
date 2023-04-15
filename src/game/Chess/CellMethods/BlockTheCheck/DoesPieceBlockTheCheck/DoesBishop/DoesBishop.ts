@@ -8,7 +8,7 @@ export const DoesBishop = (
 	movingCell: Cell,
 	target: Cell,
 	king: Cell
-): boolean => {
+) => {
 	let count = 0;
 	if (
 		randomCell.piece &&

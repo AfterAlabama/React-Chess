@@ -7,7 +7,7 @@ export const IsRookBlocked = (
 	king: Cell,
 	target: Cell,
 	board: Board
-): boolean => {
+) => {
 	if (attacker && attacker.piece?.name === PieceNames.ROOK) {
 		const min = Math.min(attacker.x, king.x);
 		const max = Math.max(attacker.x, king.x);

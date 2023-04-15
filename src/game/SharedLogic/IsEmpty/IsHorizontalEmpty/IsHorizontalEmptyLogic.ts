@@ -1,19 +1,19 @@
 import { IsEmpty } from '../IsEmpty';
 
 export const IsHorizontalEmptyLogic = <
-	T extends {
-		getCells: (y: number, x: number) => C;
+	BOARD extends {
+		getCells: (y: number, x: number) => CELL;
 	},
-	C extends {
+	CELL extends {
 		y: number;
 		x: number;
-		board: T;
-		piece: P | null;
+		board: BOARD;
+		piece: PIECE | null;
 	},
-	P
+	PIECE
 >(
-	cell: C,
-	target: C
+	cell: CELL,
+	target: CELL
 ) => {
 	if (cell.x !== target.x) {
 		return false;
@@ -23,7 +23,7 @@ export const IsHorizontalEmptyLogic = <
 	const max = Math.max(cell.y, target.y);
 
 	for (let y = min + 1; y < max; y++) {
-		if (!IsEmpty.Cell<C, typeof target.piece>(cell.board.getCells(y, cell.x))) {
+		if (!IsEmpty.Cell<CELL, typeof target.piece>(cell.board.getCells(y, cell.x))) {
 			return false;
 		}
 	}

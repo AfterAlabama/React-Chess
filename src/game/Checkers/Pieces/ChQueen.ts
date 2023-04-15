@@ -13,7 +13,7 @@ export class ChQueen extends ChPiece {
 		this.name = PieceNames.CH_QUEEN;
 	}
 
-	public canMove(target: ChCell): boolean {
+	public canMove(target: ChCell) {
 		if (!super.canMove(target)) {
 			return false;
 		}

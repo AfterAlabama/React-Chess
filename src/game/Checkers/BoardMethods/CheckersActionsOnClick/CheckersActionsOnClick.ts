@@ -14,7 +14,7 @@ export class CheckersActionsOnClick {
 		setSelectedChCell: (cell: ChCell | null) => void,
 		currentPlayer: Player,
 		swapPlayers: () => void
-	): void {
+	) {
 		OrdinaryMovesLogic(
 			selectedChCell,
 			target,
